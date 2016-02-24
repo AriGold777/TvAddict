@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 /**
  * @author Marcel
- *
+ * test
  */
 public class DatabaseConnection {
 	protected static Connection instance;
