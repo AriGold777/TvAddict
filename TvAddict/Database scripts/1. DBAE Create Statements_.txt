@@ -1,0 +1,53 @@
+﻿CREATE TABLE serie
+(
+  serie_id SERIAL,
+  serie_name varchar(40) NOT NULL,
+  beschreibung varchar(200) NOT NULL,
+  fsk int2 NOT NULL,
+  genre1 varchar(30) NOT NULL,
+  genre2 varchar(30),
+  genre3 varchar(30),
+  CONSTRAINT serie_pkey PRIMARY KEY (serie_id)
+) 
+WITHOUT OIDS;
+
+
+
+CREATE TABLE schauspieler
+(
+  person_id SERIAL,
+  name varchar(30) NOT NULL,
+  serie_id int2 NOT NULL,
+  CONSTRAINT person_pkey PRIMARY KEY (person_id),
+  CONSTRAINT f_key FOREIGN KEY (serie_id)
+    REFERENCES serie (serie_id) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+WITHOUT OIDS;
+
+
+
+CREATE TABLE benutzer
+(
+  user_id SERIAL,
+  mitarbeiter boolean NOT NULL,
+  user_name varchar (30) NOT NULL,
+  v_name varchar(30) NOT NULL,
+  n_name varchar(30) NOT NULL,
+  email text NOT NULL,
+  passwort varchar(30) NOT NULL,
+  CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name),
+  CONSTRAINT f_key FOREIGN KEY (serie_id)
+    REFERENCES serie (serie_id) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+WITHOUT OIDS;
+
+
+
+CREATE TABLE favorites
+(
+  user_id int2 NOT NULL,
+  serie_id int2 NOT NULL
+)
+WITHOUT OIDS;
