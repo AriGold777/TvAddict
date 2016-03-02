@@ -36,7 +36,7 @@ CREATE TABLE benutzer
   n_name varchar(30) NOT NULL,
   email text NOT NULL,
   passwort varchar(30) NOT NULL,
-  CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name),
+  CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name)
 
 ) 
 WITHOUT OIDS;

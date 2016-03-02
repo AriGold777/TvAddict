@@ -13,12 +13,13 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection {
 	protected static Connection instance;
-	private static final String DB_SERVER = "localhost:5432";
-	private static final String DB_NAME = "Serien";
-	private static final String DB_USER = "postgres";
-	private static final String DB_PASSWORD = "1234";
+	private static final String DB_SERVER = "abgabe-dbae.iis.uni-hildesheim.de:5432";
+	private static final String DB_NAME = "db_dbae_chefs";
+	private static final String DB_USER = "group_dbae_chefs";
+	private static final String DB_PASSWORD = "tomcat7";
 	private static final String DB_DRIVER = "org.postgresql.Driver";
 	private static final String DB_URL = "jdbc:postgresql://" + DB_SERVER + "/" + DB_NAME;
+
 
 	/**
 	 * Initializes a connection to the data base defined by DB_URL.
