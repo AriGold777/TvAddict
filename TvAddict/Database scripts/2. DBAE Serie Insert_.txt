@@ -1,3 +1,3 @@
-insert into Serie (serie_name,beschreibung,fsk) values('Lucifer', 'Der Teufel nimmt sich Urlaub und hilft dem LAPD.',16);
-insert into Serie (serie_name,beschreibung,fsk) values('Suits', 'Der geniale College-Abbrecher Mike Ross gibt sich als Anwalt aus.',12);
-insert into Serie (serie_name,beschreibung,fsk) values('The Big Bang Theory', '4 Nerds treffen auf die hübsche Blondine Penny.',12);
+insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3) values('Lucifer', 'Der Teufel nimmt sich Urlaub und hilft dem LAPD.',16,'Fantasy','Comedy','');
+insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3) values('Suits', 'Der geniale College-Abbrecher Mike Ross gibt sich als Anwalt aus.',12,'Drama','Comedy','');
+insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3) values('The Big Bang Theory', '4 Nerds treffen auf die hübsche Blondine Penny.',12,'Comedy','','');

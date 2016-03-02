@@ -37,9 +37,7 @@ CREATE TABLE benutzer
   email text NOT NULL,
   passwort varchar(30) NOT NULL,
   CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name),
-  CONSTRAINT f_key FOREIGN KEY (serie_id)
-    REFERENCES serie (serie_id) MATCH SIMPLE
-    ON UPDATE NO ACTION ON DELETE NO ACTION
+
 ) 
 WITHOUT OIDS;
 
@@ -50,4 +48,25 @@ CREATE TABLE favorites
   user_id int2 NOT NULL,
   serie_id int2 NOT NULL
 )
+WITHOUT OIDS;
+
+
+
+
+
+//Nicht reinkopieren
+CREATE TABLE benutzer
+(
+  user_id SERIAL,
+  mitarbeiter boolean NOT NULL,
+  user_name varchar (30) NOT NULL,
+  v_name varchar(30) NOT NULL,
+  n_name varchar(30) NOT NULL,
+  email text NOT NULL,
+  passwort varchar(30) NOT NULL,
+  CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name),
+  CONSTRAINT f_key FOREIGN KEY (serie_id)
+    REFERENCES serie (serie_id) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
 WITHOUT OIDS;
