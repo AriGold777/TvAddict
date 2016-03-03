@@ -11,6 +11,26 @@
 ) 
 WITHOUT OIDS;
 
+CREATE TABLE bewertungen
+(
+  serie_id int2 NOT NULL REFERENCES serie(serie_id),
+  bewertung numeric(3,1),
+  anzahl_1 numeric(3,1),
+  anzahl_2 numeric(3,1),
+  anzahl_3 numeric(3,1),
+  anzahl_4 numeric(3,1),
+  anzahl_5 numeric(3,1),
+  anzahl_6 numeric(3,1),
+  anzahl_7 numeric(3,1),
+  anzahl_8 numeric(3,1),
+  anzahl_9 numeric(3,1),
+  anzahl_10 numeric(3,1),
+  CONSTRAINT f_key FOREIGN KEY (serie_id)
+    REFERENCES serie (serie_id) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT gueltige_bewertung CHECK ((bewertung > 0.0) AND (bewertung <= 10.0))
+) 
+WITHOUT OIDS;
 
 
 CREATE TABLE schauspieler
@@ -29,25 +49,34 @@ WITHOUT OIDS;
 
 CREATE TABLE benutzer
 (
-  user_id SERIAL,
+  user_id SERIAL CONSTRAINT benutzer_eindeutig UNIQUE,
   mitarbeiter boolean NOT NULL,
-  user_name varchar (30) NOT NULL,
+  user_name varchar (30) UNIQUE NOT NULL,
   v_name varchar(30) NOT NULL,
   n_name varchar(30) NOT NULL,
-  email text NOT NULL,
+  email text UNIQUE NOT NULL,
   passwort varchar(30) NOT NULL,
   CONSTRAINT user_pkey PRIMARY KEY (user_id, user_name)
-
 ) 
 WITHOUT OIDS;
 
 
-
 CREATE TABLE favorites
 (
-  user_id int2 NOT NULL,
-  serie_id int2 NOT NULL
+  user_id int2 NOT NULL REFERENCES benutzer(user_id),
+  serie_id int2 NOT NULL REFERENCES serie(serie_id)
 )
+WITHOUT OIDS;
+
+
+CREATE TABLE comments
+(
+  comment_id SERIAL,
+  user_id int2 NOT NULL REFERENCES benutzer(user_id),
+  serie_id int2 NOT NULL REFERENCES serie(serie_id),
+  comment_text text NOT NULL,
+  CONSTRAINT comment_pkey PRIMARY KEY (comment_id)
+) 
 WITHOUT OIDS;
 
 

@@ -30,7 +30,7 @@ public class SearchObject {
 		this.con = new DatabaseConnection().getConnection();
 	}
 	
-	public ResultSet doSearch(String name) {
+	public ResultSet simpleSearch(String name) {
 		
 		//Basic SQL Statement
 		String sql = "SELECT * FROM serie WHERE TRUE";
@@ -46,6 +46,36 @@ public class SearchObject {
 		//SQL Statement & Where Statement verbinden
 		String completeSQL = sql + where;
 		
+		//Prepared Statement in ResultSet
+		try {
+			result = con.prepareStatement(completeSQL).executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public ResultSet advancedSearch(String name, String genre, String fsk) {
+		//Basic SQL Statement
+		String sql = "SELECT * FROM serie WHERE TRUE";
+				
+		//Leerer where-String
+		String where ="";
+				
+		if (!name.equals("") && name != null) {
+			where += " AND serie.serie_name ilike '%"+name+"%'";
+		}
+		if (!fsk.equals("") && fsk != null) {
+			where += " AND serie.fsk <= "+fsk;
+		}
+		if (!genre.equals("") && genre != null) {
+			where += " AND (serie.genre1 = '"+genre+"' OR serie.genre2 = '"+genre+"' OR serie.genre3 = '"+genre+"')";
+		}
+				
+		//SQL Statement & Where Statement verbinden
+		String completeSQL = sql + where;
+				
 		//Prepared Statement in ResultSet
 		try {
 			result = con.prepareStatement(completeSQL).executeQuery();

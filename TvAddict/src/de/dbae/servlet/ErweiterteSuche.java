@@ -15,16 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class Testsuche
+ * Servlet implementation class ErweiterteSuche
  */
-@WebServlet("/Testsuche")
-public class Testsuche extends HttpServlet {
+@WebServlet("/ErweiterteSuche")
+public class ErweiterteSuche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Testsuche() {
+    public ErweiterteSuche() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +33,24 @@ public class Testsuche extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String name = request.getParameter("name");
+		String genre = request.getParameter("genre");
+		String fsk = request.getParameter("fsk");
+		System.out.println(genre);
+		SearchObject searchobject = new SearchObject();
+		ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		rows = searchobject.convert(rs);
+		request.setAttribute("result", rows);
+		request.getRequestDispatcher("erweiterteSuche.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		
-		SearchObject searchobject = new SearchObject();
-		ResultSet rs = searchobject.simpleSearch(name);
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		rows = searchobject.convert(rs);
-		request.setAttribute("result", rows);
-		request.getRequestDispatcher("testoutput.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

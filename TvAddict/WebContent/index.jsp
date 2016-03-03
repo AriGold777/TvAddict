@@ -27,6 +27,10 @@
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit"> Suchen</button>
 					</form>
+					
+					<form action="erweiterteSuche.jsp">
+    					<input type="submit" value="Erweiterte Suche">
+					</form>
 				
 		</div>			
 </div>
@@ -37,7 +41,7 @@
 	
 		<a href="#" class="button1 big farbe">Anmelden</a>
 	
-		<a href="#" class="button2 big farbe">Regestrieren</a>
+		<a href="#" class="button2 big farbe">Registrieren</a>
 	
 		
 	</div>	
