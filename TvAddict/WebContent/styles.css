@@ -1,0 +1,162 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	height: 100%;
+}
+
+header {
+	position:fixed;
+	top: 0;
+	height: 5em;
+	width:100%;
+	background-image: url(headImg.jpg);
+}
+
+#logo {
+	position: fixed;
+	float: left;
+	margin-top: 1em;
+	margin-left: 1em;
+	
+}
+
+#nav {
+	position: relative;
+	float: right;
+	margin-right: 1em;
+	margin-top: 1em;
+}
+
+li {
+	float: left;
+	list-style: none;
+	height: 40px;
+	margin-right: 1em;
+}
+
+#textfeld {
+	float: right;
+	margin-right: 1em;
+	margin-top: 0em;
+}
+
+#main {
+	margin-top: 5em;
+	posiition: absolute;
+	background-image: url(bodyImg.jpg);
+	min-height: 100%;
+	width: 100%;
+	
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	top: 25px;
+}
+
+.button1 {
+	
+    display: inline-block;
+    float: left;
+    position: static;
+    margin: 100px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+    
+ 
+}
+
+ a.button1:hover {
+	background-color: red;
+}
+
+.big {
+    padding: 0 40px;
+    padding-top: 10px;
+    height: 45px;
+    text-transform: uppercase;
+    font: bold 20px/22px Arial, sans-serif;
+}
+
+.big span {
+    display: block;
+    text-transform: none;
+    font: italic normal 12px/18px Georgia, sans-serif;
+    text-shadow: 1px 1px 1px rgba(255,255,255, .12);
+}
+
+.farbe {
+    color: black;
+ 
+    background: #8C0000; /* Old browsers */
+   
+}
+
+.button2 {
+    display: inline-block;
+    float: right;
+    position: static;
+    margin: 100px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+ 
+}
+
+a.button2:hover {
+	background-color: red;
+}
+
+.big {
+    padding: 0 40px;
+    padding-top: 10px;
+    height: 45px;
+    text-transform: uppercase;
+    font: bold 20px/22px Arial, sans-serif;
+}
+
+.big span {
+    display: block;
+    text-transform: none;
+    font: italic normal 12px/18px Georgia, sans-serif;
+    text-shadow: 1px 1px 1px rgba(255,255,255, .12);
+}
+
+.farbe {
+    color: black;
+ 
+
+}
+
+
+footer {
+	position: fixed;
+	background-image: url(footImg.jpg);
+	bottom: 0;
+	height: 5em;
+	width: 100%;
+	margin-top: 5px;
+
+}
+
+ul#navigation{
+	float: right;
+	list-style-type:none;
+	margin-right:1em;
+	
+}
+
+li#navigation {
+	
+	list-style: none;
+	height: 40px;
+	
+}
+
