@@ -34,13 +34,27 @@ public class ErweiterteSuche extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
+		//Genre-Abfragen
 		String genre = request.getParameter("genre");
+		String paraGenre = "";
+		if (!(genre != null)){
+			genre = "";
+			paraGenre = "Kein Genre ausgewählt.";
+		} else {
+			paraGenre = "Genre: " + genre;
+		}
 		String fsk = request.getParameter("fsk");
-		System.out.println(genre);
+
 		SearchObject searchobject = new SearchObject();
+		
+		int genreAnzahl = searchobject.genreCount();
+		
+		
 		ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		rows = searchobject.convert(rs);
+		request.setAttribute("genreCount", genreAnzahl);
+		request.setAttribute("genre", paraGenre);
 		request.setAttribute("result", rows);
 		request.getRequestDispatcher("erweiterteSuche.jsp").forward(request, response);
 	}

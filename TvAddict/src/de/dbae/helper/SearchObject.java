@@ -58,7 +58,7 @@ public class SearchObject {
 	
 	public ResultSet advancedSearch(String name, String genre, String fsk) {
 		//Basic SQL Statement
-		String sql = "SELECT * FROM serie WHERE TRUE";
+		String sql = "SELECT serie_name, beschreibung, fsk FROM serie WHERE TRUE";
 				
 		//Leerer where-String
 		String where ="";
@@ -84,6 +84,29 @@ public class SearchObject {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public int genreCount() {
+		String countSql = "SELECT COUNT (DISTINCT genre1)"
+				+ " FROM (SELECT genre1 FROM serie WHERE genre1<>''"
+				+ " UNION"
+				+ " SELECT genre2 FROM serie WHERE genre2<>''"
+				+ " UNION"
+				+ " SELECT genre3 FROM serie WHERE genre3<>''"
+				+ ") as GenreCount";
+		int count = 0;
+		try {
+			ResultSet rs;
+			rs = con.prepareStatement(countSql).executeQuery();
+			while (rs.next()) {
+	            count = rs.getInt("count");
+	        }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 	
 	//ResultSet konvertieren

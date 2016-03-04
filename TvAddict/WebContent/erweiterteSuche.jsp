@@ -21,7 +21,28 @@
   		</select>
 		<button type="submit">Suchen</button>
 	</form>
-	<table border=4>
+	
+	<h3>${genre}</h3>
+	<table border=3>
+	<thead>
+    <tr>
+    	<td>Name</td>
+    	<td>Beschreibung</td>
+    	<td>FSK</td>
+    	<td>Link</td>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${result}" var="columns">
+      <tr>
+        <c:forEach items="${columns}" var="column">
+          <td><c:out value="${column.value}" /></td>
+        </c:forEach>
+      </tr>
+    </c:forEach>
+    </tbody>
+	</table>
+	<%-- <table border=4>
   	<thead>
     <tr>
       <c:forEach items="${result[0]}" var="column">
@@ -38,6 +59,6 @@
       </tr>
     </c:forEach>
   	</tbody>
-	</table>
+	</table> --%>
 </body>
 </html>

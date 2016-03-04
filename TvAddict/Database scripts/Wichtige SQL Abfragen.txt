@@ -1,0 +1,12 @@
+Hier braucht ihr nix von kopieren.
+Sind nur ein paar SQL Abfragen für Funktionen und so :)
+
+//Unterschiedliche Genres gezählt
+SELECT COUNT (DISTINCT genre1)
+FROM (
+SELECT genre1 FROM serie WHERE genre1<>''
+UNION
+SELECT genre2 FROM serie WHERE genre2<>''
+UNION
+SELECT genre3 FROM serie WHERE genre3<>''
+) as GenreCount;
