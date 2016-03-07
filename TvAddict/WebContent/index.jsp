@@ -18,7 +18,7 @@
 		<div id="nav">
 				<ul>
 					<li><a href="#">Startseite</a></li>
-					<li><a href="#">Serien</a></li>
+					<li><a href="SerienUebersicht.jsp">Serien</a></li>
 					<li><a href="#">Mein Profil</a></li>
 					<li><a href="#">Kontakt</a></li>
 					</ul>
