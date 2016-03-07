@@ -1,33 +1,176 @@
 * {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 }
 
 html, body {
 	height: 100%;
 }
 
+#seite {
+	position: relative;
+	background-image: url(bodyImg.jpg);
+	margin: 0 auto;
+	min-height: 100%; 
+	width: 100%;
+}
+
 header {
-	position:fixed;
+	position: fixed;
 	top: 0;
-	height: 5em;
-	width:100%;
+	width: 100%;
 	background-image: url(headImg.jpg);
 }
 
 #logo {
+	top: 1em;
 	position: fixed;
 	float: left;
-	margin-top: 1em;
-	margin-left: 1em;
-	
+	margin: 0 auto;
 }
 
-#nav {
-	position: relative;
+#navig {
+	position: relative; 
 	float: right;
 	margin-right: 1em;
 	margin-top: 1em;
+}
+
+#navig a {
+    text-decoration: none; 
+    font-weight: bold;
+    color: black; 
+    background-color: #8C0000;
+    font-size: 25px;
+  }
+  #navig a:focus,
+  #navig a:hover,
+  #navig a:active {    
+    color: black; 
+    background-color: red;
+  }
+
+li {
+	float: left;
+	color: green;
+	list-style: none;
+	height: 40px;
+	margin-right: 1em;
+}
+
+
+
+#textfeld {
+	float: right;
+	margin-right: 1em;
+	margin-top: 0em;
+}
+
+
+
+#main {
+	margin-top:5em;
+	margin-bottom: 5em;
+	
+	
+	
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	top: 5px;
+	font-size: 25px;
+	margin-bottom: 3em;
+}
+
+h2 {
+	color: white;
+	text-align: center;
+	
+	
+}
+
+p {
+	
+	text-align: center;
+    color: white;
+    
+}
+
+.button1 {
+	display: inline-block;
+	position: static; 
+	margin : 100px;
+	text-decoration: none;
+	font: bold 12px/25px Arial, sans-serif;
+	margin: 100px;
+	float: left;
+}
+
+a.button1:hover {
+	background-color: red;
+}
+
+.button2 {
+	display: inline-block;
+	positon: static;
+	float: right;
+	margin: 100px;
+	text-decoration: none;
+	font: bold 12px/25px Arial, sans-serif;
+}
+
+a.button2:hover {
+	background-color: red;
+}
+
+.big {
+	padding: 0 40px;
+	padding-top: 10px;
+	height: 45px;
+	text-transform: uppercase;
+	font: bold 20px/22px Arial, sans-serif;
+}
+
+.big span {
+	display: block;
+	text-transform: none;
+	font: italic normal 12px/18px Georgia, sans-serif;
+	text-shadow: 1px 1px 1px rgba(255, 255, 255, .12);
+}
+
+.farbe {
+	color: black;
+	background: #8C0000;
+}
+
+p {
+	color: white;
+	text-align: center;
+}
+
+#slider {
+	margin-top:2em;
+	
+}
+
+
+footer {
+	position: fixed;
+	background-image: url(footImg.jpg);
+	margin-top:2em;
+	bottom: 0px;
+	width: 100%;
+}
+
+#navmenu {
+	position: relative;
+	float: right;
+	margin-right: 1em;
+	
+	
+	
 }
 
 li {
@@ -37,126 +180,64 @@ li {
 	margin-right: 1em;
 }
 
-#textfeld {
-	float: right;
-	margin-right: 1em;
-	margin-top: 0em;
+#signup {
+    padding:50px 25px;
+	background: rgba(220,160,140,0);
+    box-shadow: 
+        0px 0px 0px 5px rgba( 255,255,255,0.4 ), 
+        0px 4px 20px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    display: table;
+    position: static;
+    margin:0 auto;
 }
 
-#main {
-	margin-top: 5em;
-	posiition: absolute;
-	background-image: url(bodyImg.jpg);
-	min-height: 100%;
-	width: 100%;
-	
-}
 
-h1 {
-	color: white;
+#signup .header h2 {
 	text-align: center;
-	top: 25px;
-}
-
-.button1 {
-	
-    display: inline-block;
-    float: left;
-    position: static;
-    margin: 100px;
-    padding: 0 20px;
-    text-align: center;
-    text-decoration: none;
-    font: bold 12px/25px Arial, sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
     
- 
 }
 
- a.button1:hover {
-	background-color: red;
+#signup .header p {
+	font-size: 20px;
+	text-align: center;
+	margin-top: 25px;
+	color:  white;
+	
+	
 }
 
-.big {
-    padding: 0 40px;
-    padding-top: 10px;
-    height: 45px;
-    text-transform: uppercase;
-    font: bold 20px/22px Arial, sans-serif;
+#signup .inputs {
+    margin-top: 50px;
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
-.big span {
+#signup .inputs label {
+    color: #8f8f8f;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    margin-bottom: 7px;
     display: block;
-    text-transform: none;
-    font: italic normal 12px/18px Georgia, sans-serif;
-    text-shadow: 1px 1px 1px rgba(255,255,255, .12);
 }
 
-.farbe {
-    color: black;
- 
-    background: #8C0000; /* Old browsers */
-   
+input::-webkit-input-placeholder {
+    color:    #b5b5b5;
 }
 
-.button2 {
-    display: inline-block;
-    float: right;
-    position: static;
-    margin: 100px;
-    padding: 0 20px;
-    text-align: center;
-    text-decoration: none;
-    font: bold 12px/25px Arial, sans-serif;
- 
-}
-
-a.button2:hover {
-	background-color: red;
-}
-
-.big {
-    padding: 0 40px;
-    padding-top: 10px;
-    height: 45px;
-    text-transform: uppercase;
-    font: bold 20px/22px Arial, sans-serif;
-}
-
-.big span {
-    display: block;
-    text-transform: none;
-    font: italic normal 12px/18px Georgia, sans-serif;
-    text-shadow: 1px 1px 1px rgba(255,255,255, .12);
-}
-
-.farbe {
-    color: black;
- 
-
+input:-moz-placeholder {
+    color:    #b5b5b5;
 }
 
 
-footer {
-	position: fixed;
-	background-image: url(footImg.jpg);
-	bottom: 0;
-	height: 5em;
-	width: 100%;
-	margin-top: 5px;
 
-}
 
-ul#navigation{
-	float: right;
-	list-style-type:none;
-	margin-right:1em;
-	
-}
 
-li#navigation {
-	
-	list-style: none;
-	height: 40px;
-	
-}
 
