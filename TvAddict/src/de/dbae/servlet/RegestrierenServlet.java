@@ -2,7 +2,6 @@ package de.dbae.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,11 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import com.sun.corba.se.impl.ior.WireObjectKeyTemplate;
 
 /**
  * Servlet implementation class RegestrierenServlet

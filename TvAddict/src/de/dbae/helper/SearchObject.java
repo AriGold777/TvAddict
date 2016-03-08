@@ -109,6 +109,33 @@ public class SearchObject {
 		return count;
 	}
 	
+	public ResultSet uebersichtSearch() {
+		String sql = "SELECT serie_name, beschreibung, fsk FROM serie";
+		try {
+			result = con.prepareStatement(sql).executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	public ResultSet detailSchauspielerSearch(String name) {
+		String sql ="SELECT schauspieler.name FROM schauspieler"
+				+ " INNER JOIN serie ON schauspieler.serie_id = serie.serie_id"
+				+ " WHERE serie.serie_name='"+name+"'";
+		try {
+			result = con.prepareStatement(sql).executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	
 	//ResultSet konvertieren
 	public List<Map<String, Object>> convert(ResultSet rs) {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
@@ -129,4 +156,5 @@ public class SearchObject {
 		}
 		return rows;
 	}
+
 }
