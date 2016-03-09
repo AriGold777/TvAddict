@@ -20,6 +20,7 @@ header {
 	top: 0;
 	width: 100%;
 	background-image: url(headImg.jpg);
+	height: 5em;
 }
 
 #logo {
@@ -66,7 +67,12 @@ li {
 	margin-top: 0em;
 }
 
+#suche {
+	position: absolute;
+	margin-top: 3em;
+	margin-right: 1em
 
+}
 
 #main {
 	margin-top:5em;

@@ -33,7 +33,7 @@
 </br>
 	<div id="main">
 		<h1>Melden Sie sich an um den vollen Service zu erhalten</h1>
-		<form id="signup" action="AnmeldenServlet" method="get">
+		<form id="signup" action="AnmeldenServlet" method="post">
 			<h2>Anmelden</h2>
 			<p>Bitte gebe deine Anmeldedaten ein</p>
 				<div class="inputs">
@@ -41,7 +41,7 @@
 					<input type="password" placeholder="Password" name="passwort" required="required"> 
 					<input type="submit" value="Anmelden"></br></br>
 					<a id="submit" href="PasswortZur.jsp">Passwort vergessen?</a></br>
-					<a id="submit" href="regestrieren.jsp">regestrieren?</a>
+					<a id="submit" href="registrieren.jsp">registrieren?</a>
 				</div>
 		</form>
 	</div>

@@ -39,7 +39,7 @@
 					<form action="textarea.html" method="post"> 
 	   					<div>  
 		   					<input type="email" placeholder="E-MAIL" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus>
-		     				<input type="submit" value="Zurücksetzen">
+		     				<input type="submit" value="zurücksetzen">
 	     				</div> 
 					</form> 
 				</div>

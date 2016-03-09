@@ -42,9 +42,8 @@
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
 				</form>
-				
 				<form action="erweiterteSuche.jsp">
-    					<input type="submit" value="Erweiterte Suche">
+    					<input type="submit" value="Erweiterte Suche" id="">
 				</form>
 		</nav>			
 	</header>
