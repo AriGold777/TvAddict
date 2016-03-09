@@ -8,6 +8,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="seite">
+	<header>
+		<div id="logo">
+			<img src="tv.png" width="100" height="50">
+		</div>
+		<nav id="navig">
+			<ul>
+				<li><a href="index">Startseite</a></li>
+				<li><a href="SerienUebersicht">Serien</a></li>
+				<li><a href="Anmelden.jsp">Mein Profil</a></li>
+				<li><a href="kontakt.jsp">Kontakt</a></li>
+			</ul>
+						
+				<form action="Testsuche" id="textfeld" method="post">
+				<input type="text" name="name" placeholder="Name der Serie"> 
+				<button type="submit"> Suchen</button>
+				</form>
+		</nav>			
+	</header>
+</br>
+	<div id="main">
+	<h1>Serien</h1>
 	<table border=3>
 	<thead>
     <tr>
@@ -30,6 +52,16 @@
     </c:forEach>
     </tbody>
 	</table>
+	</div>
+	</br>
+	<footer>
+		<ul id="navmenu">
+			<li><a href="#">Impressum</a></li>
+			<li><a href="#">AGB</a></li>
+			<li><a href="kontakt.jsp">Kontakt</a></li>
+		</ul>
+	</footer>
+</div>
 </body>
 </html>
 <%-- Here should be the link to a servlet with an parameter of the     name, so I know what tvshow was clicked, so I can display its detailview properly. something like
