@@ -15,13 +15,13 @@
 		</div>
 		<nav id="navig">
 			<ul>
-				<li><a href="index">Startseite</a></li>
+				<li><a href="index.jsp">Startseite</a></li>
 				<li><a href="SerienUebersicht">Serien</a></li>
 				<li><a href="Anmelden.jsp">Mein Profil</a></li>
 				<li><a href="kontakt.jsp">Kontakt</a></li>
 			</ul>
 						
-				<form action="Testsuche" id="textfeld" method="post">
+				<form action="SchnelleSuche" id="textfeld" method="get">
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
 				</form>

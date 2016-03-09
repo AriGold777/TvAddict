@@ -13,7 +13,7 @@
 	<b>Schauspieler:</b><br>
 	<c:forEach items="${schauspielerList}" var="columns">
         <c:forEach items="${columns}" var="column">
-          <td><c:out value="${column.value}" /><br>
+          <c:out value="${column.value}" /><br>
         </c:forEach>
     </c:forEach>
 	

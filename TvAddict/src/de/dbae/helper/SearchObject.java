@@ -109,6 +109,23 @@ public class SearchObject {
 		return count;
 	}
 	
+	public ResultSet allGenres() {
+		String sql = "SELECT genre1 FROM serie WHERE genre1<>''"
+				+ " UNION"
+				+ " SELECT genre2 FROM serie"
+				+ " WHERE genre2<>''"
+				+ " UNION"
+				+ " SELECT genre3 FROM serie"
+				+ " WHERE genre3<>''";
+		try {
+			result = con.prepareStatement(sql).executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public ResultSet uebersichtSearch() {
 		String sql = "SELECT serie_name, beschreibung, fsk FROM serie";
 		try {

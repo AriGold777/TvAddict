@@ -11,14 +11,17 @@
 <body>
 	<form action="ErweiterteSuche" id="textfeld" method="get">
 		<input type="text" name="name" placeholder="Name der Serie"><br>
-		<input type="text" name="fsk" placeholder="Altersfreigabe"><br>
+		<input type="text" name="fsk" placeholder="Max. Altersfreigabe"><br>
 <!-- 		Wird noch dynamisch gemacht, damit alle vorhandenen Genres bei Serien angezeigt werden + Dropdownmenü 
 			bis jetzt kommt noch ein Fehler, wenn kein Genre ausgewählt ist. Irgendwie überwindet der "Null-String" die if
 			Abfrage bei SearchObject advancedSearch, mache ich morgen ;)-->
-		<select name="genre" size="3" multiple>
-    		<option>Comedy</option>
-    		<option>Fantasy</option>
-    		<option>Drama</option>
+		<select name="genre"> <%-- size="3" multiple --%>
+			<option>Beliebig</option>
+			<c:forEach items="${genreList}" var="genres">
+				<c:forEach items="${genres}" var="genre">
+					<option><c:out value="${genre.value}" /></option>
+				</c:forEach>
+			</c:forEach>
   		</select>
 		<button type="submit" id="suche">Suchen</button>
 	</form>
@@ -39,6 +42,9 @@
         <c:forEach items="${columns}" var="column">
           <td><c:out value="${column.value}" /></td>
         </c:forEach>
+        <td>
+        <a href="DetailAnsichtServlet?name=${columns.serie_name}">Click</a>
+        </td>
       </tr>
     </c:forEach>
     </tbody>

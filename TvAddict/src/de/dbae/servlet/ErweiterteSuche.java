@@ -37,11 +37,19 @@ public class ErweiterteSuche extends HttpServlet {
 		//Genre-Abfragen
 		String genre = request.getParameter("genre");
 		String paraGenre = "";
+		
+		boolean genreNull = false;
 		if (!(genre != null)){
-			genre = "";
+			genreNull = true;
 			paraGenre = "Kein Genre ausgewählt.";
 		} else {
-			paraGenre = "Genre: " + genre;
+			if (genre.equals("Beliebig")) {
+				paraGenre = "Kein Genre ausgewählt.";
+				genre = "";
+			} else {
+				paraGenre = "Genre: " + genre;
+				
+			}
 		}
 		String fsk = request.getParameter("fsk");
 
@@ -49,13 +57,22 @@ public class ErweiterteSuche extends HttpServlet {
 		
 		int genreAnzahl = searchobject.genreCount();
 		
+		ResultSet genreResultSet = searchobject.allGenres();
+		List<Map<String, Object>> genreList = new ArrayList<Map<String, Object>>();
+		genreList = searchobject.convert(genreResultSet);
 		
-		ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		rows = searchobject.convert(rs);
+		
+		if ((name != null) && (fsk != null) && (!(genreNull))) {
+			ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
+			List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+			rows = searchobject.convert(rs);
+			request.setAttribute("result", rows);
+		}
+		
+		
+		request.setAttribute("genreList", genreList);
 		request.setAttribute("genreCount", genreAnzahl);
 		request.setAttribute("genre", paraGenre);
-		request.setAttribute("result", rows);
 		request.getRequestDispatcher("erweiterteSuche.jsp").forward(request, response);
 	}
 

@@ -38,11 +38,11 @@
 				<li><a href="kontakt.jsp">Kontakt</a></li>
 			</ul>
 					
-				<form action="SchnelleSuche" id="textfeld" method="post">
+				<form action="SchnelleSuche" id="textfeld" method="get">
 				<input type="text" name="name" placeholder="Name der Serie"> 
-				<button type="submit"> Suchen</button>
+				<button type="submit">Suchen</button>
 				</form>
-				<form action="erweiterteSuche.jsp">
+				<form action="ErweiterteSuche">
     					<input type="submit" value="Erweiterte Suche" id="">
 				</form>
 		</nav>			
