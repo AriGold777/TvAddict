@@ -50,6 +50,10 @@ header {
     color: black; 
     background-color: red;
   }
+  
+  #navig .active {
+  	color: red !important;
+  }
 
 li {
 	float: left;

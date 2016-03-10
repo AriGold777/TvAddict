@@ -23,7 +23,7 @@ public class Navigation extends TagSupport{
             //                          Falls aktive Seite     		gebe als aktiv markierten link aus                         falls nicht aktiv gebe normalen link aus
             pageContext.getOut().append(activeSite.equals("index") ? "<a href=\"index.jsp\" class=\"active\" active>Startseite</a> " : "<a href=\"index.jsp\" >Startseite</a> ");
             pageContext.getOut().append(activeSite.equals("SerienUebersicht") ? "<a href=\"SerienUebersicht.jsp\" class=\"active\" active>Serien</a> " : "<a href=\"SerienUebersicht.jsp\" >Serien</a> ");
-            pageContext.getOut().append(activeSite.equals("Anmelden") ? "<a href=\"Anmelden.jsp\" class=\"active\" active>Anmelden</a> " : "<a href=\"Anmelden.jsp\" >Anmelden</a> ");
+            pageContext.getOut().append(activeSite.equals("Anmelden") ? "<a href=\"Anmelden.jsp\" class=\"active\" active>Mein Profil</a> " : "<a href=\"Anmelden.jsp\" >Mein Profil</a> ");
             pageContext.getOut().append(activeSite.equals("kontakt") ? "<a href=\"kontakt.jsp\" class=\"active\" active>Kontakt</a> " : "<a href=\"kontakt.jsp\" >Kontakt</a> ");
             // Navigationsblock abschlieﬂen
             pageContext.getOut().append("</nav>");
