@@ -138,6 +138,7 @@ public class SearchObject {
 	}
 	
 	
+	
 	public ResultSet detailSchauspielerSearch(String name) {
 		String sql ="SELECT schauspieler.name FROM schauspieler"
 				+ " INNER JOIN serie ON schauspieler.serie_id = serie.serie_id"
@@ -152,6 +153,10 @@ public class SearchObject {
 		
 	}
 	
+	public Bewertung bewertungSearch(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	//ResultSet konvertieren
 	public List<Map<String, Object>> convert(ResultSet rs) {
@@ -173,5 +178,6 @@ public class SearchObject {
 		}
 		return rows;
 	}
+
 
 }

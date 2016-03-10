@@ -65,6 +65,3 @@
 </div>
 </body>
 </html>
-<%-- Here should be the link to a servlet with an parameter of the     name, so I know what tvshow was clicked, so I can display its detailview properly. something like
-<a href="DetailAnsichtServlet?name=${columns[0].value">Click</a>
-but it doesnt work. --%>

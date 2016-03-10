@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.dbae.helper.Bewertung;
 import de.dbae.helper.SearchObject;
 
 /**
@@ -39,6 +40,9 @@ public class DetailAnsichtServlet extends HttpServlet {
 		List<Map<String, Object>> schauspielerList = new ArrayList<Map<String, Object>>();
 		schauspielerList = searchobject.convert(rs);
 		
+		Bewertung bewertung = searchobject.bewertungSearch(name);
+		
+		request.setAttribute("bewertung", bewertung);
 		request.setAttribute("name", name);
 		request.setAttribute("schauspielerList", schauspielerList);
 		

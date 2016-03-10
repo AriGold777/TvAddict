@@ -36,8 +36,7 @@ public class SerienUebersicht extends HttpServlet {
 		SearchObject searchobject = new SearchObject();	
 		ResultSet rs = searchobject.uebersichtSearch();
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		String test = "Lucifer";
-		request.setAttribute("test", test);
+
 		rows = searchobject.convert(rs);
 		request.setAttribute("result", rows);
 		request.getRequestDispatcher("SerienUebersicht.jsp").forward(request, response);
