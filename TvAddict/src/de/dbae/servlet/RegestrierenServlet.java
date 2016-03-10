@@ -45,7 +45,6 @@ public class RegestrierenServlet extends HttpServlet {
 		String benutzername = request.getParameter("benutzername");
 		String email = request.getParameter("email");
 		
-		//int alter = Integer.parseInt(request.getParameter("alter"));
 		ArrayList<String> liste = new ArrayList<String>();
         PrintWriter out = response.getWriter();
 
