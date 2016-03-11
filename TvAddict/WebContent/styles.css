@@ -1,3 +1,6 @@
+<!--@author: Hassib-->
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -20,7 +23,7 @@ header {
 	top: 0;
 	width: 100%;
 	background-image: url(headImg.jpg);
-	height: 5em;
+	height: auto;
 }
 
 #logo {
@@ -43,6 +46,7 @@ header {
     color: black; 
     background-color: #8C0000;
     font-size: 25px;
+    padding: 5px;
   }
   #navig a:focus,
   #navig a:hover,
@@ -52,7 +56,7 @@ header {
   }
   
   #navig .active {
-  	color: red; 
+  	color: white; 
   }
 
 li {
@@ -64,22 +68,21 @@ li {
 }
 
 
-
 #textfeld {
 	float: right;
-	margin-right: 1em;
-	margin-top: 0em;
+	margin-top: 1em;
 }
 
-#suche {
-	position: absolute;
-	margin-top: 3em;
-	margin-right: 1em
-
+#textfeldE {
+	margin-top: auto;
+	margin-bottom:1em;
+	
 }
+
+
 
 #main {
-	margin-top:5em;
+	margin-top:9em;
 	margin-bottom: 5em;
 	
 	
@@ -89,7 +92,7 @@ li {
 h1 {
 	color: white;
 	text-align: center;
-	top: 5px;
+	top: auto;
 	font-size: 25px;
 	margin-bottom: 3em;
 }

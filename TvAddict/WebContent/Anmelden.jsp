@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
+<!--@author: Hassib-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link href="styles.css" rel="stylesheet" type="text/css"/>
@@ -33,14 +35,17 @@
 		<form id="signup" action="AnmeldenServlet" method="post">
 			<h2>Anmelden</h2>
 			<p>Bitte gebe deine Anmeldedaten ein</p>
-				<div class="inputs">
+					<div class="inputs">
 					<input type="text" placeholder="benutzername" name="benutzername" required="required"  autofocus>
-					<input type="password" placeholder="Password" name="passwort" required="required"> 
+					<input type="password" placeholder="Passwort" name="passwort" required="required"> 
 					<input type="submit" value="Anmelden"></br></br>
 					<a id="submit" href="PasswortZur.jsp">Passwort vergessen?</a></br>
 					<a id="submit" href="registrieren.jsp">registrieren?</a>
-				</div>
+					</div>
+				
 		</form>
+		
+	
 	</div>
 	 </br>
 	<footer>

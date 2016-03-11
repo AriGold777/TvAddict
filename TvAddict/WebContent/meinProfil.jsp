@@ -4,6 +4,8 @@
 <html>
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
+<!--@author: Hassib-->
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mein Profil</title>
 
@@ -33,7 +35,7 @@
 	<div id="main">
 		<h1>Mein Profil</h1>
 		<h2>Hallo </h2>
-		
+				
 	</div> 
 	</br>
 	<footer>

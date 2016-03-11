@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
+<!--@author: Hassib-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link href="styles.css" rel="stylesheet" type="text/css"/>
@@ -38,9 +39,10 @@
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit">Suchen</button>
-				</form>
-				<form action="ErweiterteSuche">
-    					<input type="submit" value="Erweiterte Suche" id="">
+				
+					<form action="ErweiterteSuche">
+    					<input type="submit" value="Erweiterte Suche" id="textfeldE">
+					</form>
 				</form>
 		</nav>			
 	</header>
@@ -48,6 +50,7 @@
 	<div id="main">
 		<h1>Willkommen bei TvAddict</h1>
 		<a href="Anmelden.jsp" class="button1 big farbe">Anmelden</a>
+		</form>
 		<a href="regestrieren.jsp" class="button2 big farbe">Regestrieren</a>
 		</br>
 		<p align="center">	Die Redakteure von TvAddict.de 

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="ErweiterteSuche" id="textfeld" method="get">
+	<form action="ErweiterteSuche" id="textfeldE" method="get">
 		<input type="text" name="name" placeholder="Name der Serie"><br>
 		<input type="text" name="fsk" placeholder="Max. Altersfreigabe"><br>
 <!-- 		Wird noch dynamisch gemacht, damit alle vorhandenen Genres bei Serien angezeigt werden + Dropdownmenü 
