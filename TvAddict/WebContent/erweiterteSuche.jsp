@@ -9,6 +9,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="seite">
+	<header>
+		<div id="logo">
+			<img src="tv.png" width="100" height="50">
+		</div>
+		<nav id="navig">
+			
+			<myTags:navigation activeSite="SerienUebersicht"></myTags:navigation>
+	
+				<div id="beideSuchen">	
+				<form action="SchnelleSuche" id="textfeld" method="get">
+					<input type="text" name="name" placeholder="Name der Serie"> 
+					<button type="submit">Suchen</button>
+				
+				</form>
+				<form action="ErweiterteSuche">
+    				<input type="submit" value="Erweiterte Suche" id="textfeldE">
+				</form>
+				</div>
+		</nav>			
+	</header>
+	</br>
+    <div id="main">
 	<form action="ErweiterteSuche" id="textfeldE" method="get">
 		<input type="text" name="name" placeholder="Name der Serie"><br>
 		<input type="text" name="fsk" placeholder="Max. Altersfreigabe"><br>
@@ -49,23 +72,15 @@
     </c:forEach>
     </tbody>
 	</table>
-	<%-- <table border=4>
-  	<thead>
-    <tr>
-      <c:forEach items="${result[0]}" var="column">
-        <td><c:out value="${column.key}" /></td>
-      </c:forEach>
-    </tr>
-  	</thead>
-  	<tbody>
-    <c:forEach items="${result}" var="columns">
-      <tr>
-        <c:forEach items="${columns}" var="column">
-          <td><c:out value="${column.value}" /></td>
-        </c:forEach>
-      </tr>
-    </c:forEach>
-  	</tbody>
-	</table> --%>
+	</div>
+	 </br>
+	<footer>
+		<ul id="navmenu">
+			<li><a href="#">Impressum</a></li>
+			<li><a href="#">AGB</a></li>
+			<li><a href="kontakt.jsp">Kontakt</a></li>
+		</ul>
+	</footer>
+	</div>
 </body>
 </html>

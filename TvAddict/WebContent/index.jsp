@@ -35,15 +35,16 @@
 		<nav id="navig">
 			
 			<myTags:navigation activeSite="index"></myTags:navigation>
-					
+				<div id="beideSuchen">	
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit">Suchen</button>
 				
-					<form action="ErweiterteSuche">
-    					<input type="submit" value="Erweiterte Suche" id="textfeldE">
-					</form>
 				</form>
+				<form action="ErweiterteSuche">
+    				<input type="submit" value="Erweiterte Suche" id="textfeldE">
+				</form>
+				</div>
 		</nav>			
 	</header>
 </br>

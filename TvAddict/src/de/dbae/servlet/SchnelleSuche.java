@@ -17,7 +17,7 @@ import de.dbae.helper.SearchObject;
 /**
  * Servlet implementation class Testsuche
  */
-@WebServlet("/Testsuche")
+@WebServlet("/SchnelleSuche")
 public class SchnelleSuche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +40,7 @@ public class SchnelleSuche extends HttpServlet {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		rows = searchobject.convert(rs);
 		request.setAttribute("result", rows);
-		request.getRequestDispatcher("testoutput.jsp").forward(request, response);
+		request.getRequestDispatcher("schnelleSuche.jsp").forward(request, response);
 
 	}
 

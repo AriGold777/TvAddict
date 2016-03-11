@@ -261,6 +261,17 @@ table {
 	padding: 6px 0 3px 0;
 }
 
+#schauspieler {
+	color: white;
+	text-align: right;
+	margin-right: 10%;
+}
+
+#bewertung {
+	color: white;
+	text-align: center;
+	margin-left: 10%;
+}
 
 
 

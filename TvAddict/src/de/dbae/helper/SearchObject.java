@@ -153,9 +153,39 @@ public class SearchObject {
 		
 	}
 	
+	
+	
 	public Bewertung bewertungSearch(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Bewertung serieBewertung = new Bewertung();
+		String sql = "SELECT serie.serie_name, bewertungen.anzahl_1, bewertungen.anzahl_2,"
+				+ " bewertungen.anzahl_3, bewertungen.anzahl_4, bewertungen.anzahl_5,"
+				+ " bewertungen.anzahl_6, bewertungen.anzahl_7, bewertungen.anzahl_8,"
+				+ " bewertungen.anzahl_9, bewertungen.anzahl_10"
+				+ " FROM bewertungen"
+				+ " INNER JOIN serie ON bewertungen.serie_id = serie.serie_id"
+				+ " WHERE serie.serie_name = '"+name+"'";
+		try {
+			ResultSet tempBewertungen = con.prepareStatement(sql).executeQuery();
+			while(tempBewertungen.next()) {
+				serieBewertung.setAnzahl1(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_1"))));
+				serieBewertung.setAnzahl2(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_2"))));
+				serieBewertung.setAnzahl3(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_3"))));
+				serieBewertung.setAnzahl4(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_4"))));
+				serieBewertung.setAnzahl5(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_5"))));
+				serieBewertung.setAnzahl6(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_6"))));
+				serieBewertung.setAnzahl7(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_7"))));
+				serieBewertung.setAnzahl8(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_8"))));
+				serieBewertung.setAnzahl9(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_9"))));
+				serieBewertung.setAnzahl10(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_10"))));
+				serieBewertung.berechnung();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return serieBewertung;
 	}
 	
 	//ResultSet konvertieren

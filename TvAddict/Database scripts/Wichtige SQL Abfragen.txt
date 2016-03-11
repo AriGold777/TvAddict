@@ -10,3 +10,29 @@ SELECT genre2 FROM serie WHERE genre2<>''
 UNION
 SELECT genre3 FROM serie WHERE genre3<>''
 ) as GenreCount;
+
+
+
+SELECT AVG(anzahl_1)
+FROM 
+(SELECT anzahl_1 FROM bewertungen
+UNION SELECT anzahl_2 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_3 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_4 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_5 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_6 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_7 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_8 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_9 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_10 FROM bewertungen WHERE serie_id = 4)
+AS Average;
+
+SELECT anzahl_1 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_2 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_3 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_5 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_6 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_7 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_8 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_9 FROM bewertungen WHERE serie_id = 4
+UNION SELECT anzahl_10 FROM bewertungen WHERE serie_id = 4;

@@ -3,12 +3,17 @@
  */
 package de.dbae.helper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 /**
  * @author Marcel
  *
  */
 public class Bewertung {
 	private double bewertung;
+	private String bewertungString;
 	private int gesamtBewertungen;
 	private int anzahl1;
 	private int anzahl2;
@@ -24,12 +29,20 @@ public class Bewertung {
 	public Bewertung(){
 		
 	}
-	public String berechnung() {
+	public void berechnung() {
 		gesamtBewertungen = anzahl1+anzahl2+anzahl3+anzahl4+anzahl5+anzahl6+anzahl7+anzahl8+anzahl9+anzahl10;
 		bewertung = ((anzahl1*1.0)+(anzahl2*2.0)+(anzahl3*3.0)+(anzahl4*4.0)+(anzahl5*5.0)+(anzahl6*6.0)+anzahl7*(7.0)
 				+(anzahl8*8.0)+(anzahl9*9.0)+(anzahl10*10.0))/gesamtBewertungen;
-		String bewertungString = String.valueOf(bewertung);
-		return bewertungString;
+		
+		DecimalFormat df = new DecimalFormat("#.#");
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		bewertungString = df.format(bewertung).replace(",", ".");
+//		bewertung = Double.parseDouble(bewertungString);
+//		System.out.println(bewertungString + " vs. " + bewertung);
+		
+//		System.out.println("gesamtBewertungen: "+gesamtBewertungen+" und bewertung: "+bewertung);
+//		System.out.println(df.format(bewertung));
+//		System.out.println(bewertungString);
 	}
 	
 	
@@ -105,5 +118,11 @@ public class Bewertung {
 	}
 	public void setAnzahl10(int anzahl10) {
 		this.anzahl10 = anzahl10;
+	}
+	public String getBewertungString() {
+		return bewertungString;
+	}
+	public void setBewertungString(String bewertungGerundet) {
+		this.bewertungString = bewertungGerundet;
 	}
 }
