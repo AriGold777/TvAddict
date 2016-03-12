@@ -45,7 +45,21 @@
         	</c:forEach>
     	</c:forEach>
     </div>
+    <div id="sendetag">
+<!-- Hier soll natürlich nur der explizite Sendetag der serie ausgegeben werden, 
+da das aber gerade nicht funzt, ist jetzt erstmal die Tabelle drin damit ich nicht ganz so frustriert bin :D -->		
+		<b>Sendetage:</b><br>
+		<c:forEach items="${sendetagList}" var="columns">
+        	<c:forEach items="${columns}" var="column">
+          	<c:out value="${column.value}" /><br>
+        	</c:forEach>
+    	</c:forEach>
 	</div>
+<!-- Hier könnte man später Serien zum persönlichen Sendeplan hinzufügen -->
+	<form action="Sendeplan">
+		<input type="submit" value="Zu meinem Sendeplan hinzufügen">
+	</form>
+	
     </br>
 	<footer>
 		<ul id="navmenu">

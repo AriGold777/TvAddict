@@ -273,7 +273,11 @@ table {
 	margin-left: 10%;
 }
 
-
+#sendetag {
+	color: white;
+	text-align: left;
+	margin-right: 10%;
+}
 
 
 

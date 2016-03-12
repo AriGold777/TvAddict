@@ -41,6 +41,7 @@
 					<button type="submit">Suchen</button>
 				
 				</form>
+				<br>
 				<form action="ErweiterteSuche">
     				<input type="submit" value="Erweiterte Suche" id="textfeldE">
 				</form>

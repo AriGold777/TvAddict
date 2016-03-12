@@ -40,12 +40,17 @@ public class DetailAnsichtServlet extends HttpServlet {
 		List<Map<String, Object>> schauspielerList = new ArrayList<Map<String, Object>>();
 		schauspielerList = searchobject.convert(rs);
 		
-		Bewertung bewertung = searchobject.bewertungSearch(name);
+		// Vorläufige Befehle zur Ausgabe von allen Sendetagen bis zur Lösung des expliziten Sendetages
+		// TODO: Befehl zur Ausgabe des expliziten Sendetages
+		ResultSet res = searchobject.sendetagSearch(name);
+		List<Map<String, Object>> sendetagList = new ArrayList<Map<String, Object>>();
+		sendetagList = searchobject.convert(res);
 		
+		Bewertung bewertung = searchobject.bewertungSearch(name);
 		request.setAttribute("bewertung", bewertung);
 		request.setAttribute("name", name);
 		request.setAttribute("schauspielerList", schauspielerList);
-		
+		request.setAttribute("sendetagList", sendetagList);
 		
 		request.getRequestDispatcher("DetailAnsicht.jsp").forward(request, response);
 	}

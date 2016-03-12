@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link href="styles.css" rel="stylesheet" type="text/css"/>
@@ -16,14 +17,14 @@
 		</div>
 		<nav id="navig">
 			
-			<myTags:navigation activeSite="SerienUebersicht"></myTags:navigation>
+			<myTags:navigation activeSite="erweiterteSuche"></myTags:navigation>
 	
 				<div id="beideSuchen">	
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit">Suchen</button>
-				
 				</form>
+				<br>
 				<form action="ErweiterteSuche">
     				<input type="submit" value="Erweiterte Suche" id="textfeldE">
 				</form>
@@ -56,7 +57,7 @@
     	<td>Name</td>
     	<td>Beschreibung</td>
     	<td>FSK</td>
-    	<td>Link</td>
+    	<td>Detailansicht</td>
     </tr>
     </thead>
     <tbody>
@@ -66,7 +67,7 @@
           <td><c:out value="${column.value}" /></td>
         </c:forEach>
         <td>
-        <a href="DetailAnsichtServlet?name=${columns.serie_name}">Click</a>
+        <a href="DetailAnsichtServlet?name=${columns.serie_name}">Serieninfo</a>
         </td>
       </tr>
     </c:forEach>

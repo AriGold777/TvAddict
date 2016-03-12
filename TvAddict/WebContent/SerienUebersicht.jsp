@@ -37,7 +37,7 @@
     	<td>Name</td>
     	<td>Beschreibung</td>
     	<td>FSK</td>
-    	<td>Link</td>
+    	<td>Detailansicht</td>
     </tr>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
           <td> <c:out value="${column.value}"></c:out> </td>
         </c:forEach>
         <td>
-        <a href="DetailAnsichtServlet?name=${columns.serie_name}">Click</a>
+        <a href="DetailAnsichtServlet?name=${columns.serie_name}">Serieninfo</a>
         </td>
       </tr>
     </c:forEach>
