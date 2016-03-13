@@ -26,7 +26,7 @@ public class Navigation extends TagSupport{
             pageContext.getOut().append(activeSite.equals("Anmelden") ? "<a href=\"Anmelden.jsp\" class=\"active\" active>Mein Profil</a> " : "<a href=\"Anmelden.jsp\" >Mein Profil</a> ");
             pageContext.getOut().append(activeSite.equals("kontakt") ? "<a href=\"kontakt.jsp\" class=\"active\" active>Kontakt</a> " : "<a href=\"kontakt.jsp\" >Kontakt</a> ");
             pageContext.getOut().append(activeSite.equals("schnelleSuche") ? "<a href=\"schnelleSuche.jsp\" class=\"active\" active>Suche</a> " : "<a href=\"schnelleSuche.jsp\" >Suche</a> ");
-            pageContext.getOut().append(activeSite.equals("erweiterteSuche") ? "<a href=\"erweiterteSuche.jsp\" class=\"active\" active>Erweiterte Suche</a> " : "<a href=\"erweiterteSuche.jsp\" >Erweiterte Suche</a> ");
+            pageContext.getOut().append(activeSite.equals("ErweiterteSuche") ? "<a href=\"ErweiterteSuche\" class=\"active\" active>Erweiterte Suche</a> " : "<a href=\"ErweiterteSuche\" >Erweiterte Suche</a> ");
             // Navigationsblock abschlieﬂen
             pageContext.getOut().append("</nav>");
 		} catch (IOException e) {

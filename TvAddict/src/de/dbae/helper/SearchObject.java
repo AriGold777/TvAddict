@@ -155,15 +155,19 @@ public class SearchObject {
 	
 	// Methode zur Ausgabe der Sendetage (noch nicht des Rätsels Lösung...)
 	// TODO: Optimieren bzw. alternative Lösung
-	public ResultSet sendetagSearch(String name) {
-		String sql ="SELECT sendetag FROM serie";
+	public String sendetagSearch(String name) {
+		String sql ="SELECT sendetag FROM serie WHERE serie.serie_name = '"+name+"'";
+		String sendeTag = "";
 		try {
 			result = con.prepareStatement(sql).executeQuery();
+			while(result.next()) {
+				sendeTag = result.getString(result.findColumn("sendetag"));	
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
+		return sendeTag;
 	}
 	
 	public Bewertung bewertungSearch(String name) {
