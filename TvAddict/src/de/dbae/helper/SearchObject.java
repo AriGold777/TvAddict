@@ -203,6 +203,19 @@ public class SearchObject {
 		return serieBewertung;
 	}
 	
+	public ResultSet anmeldeAbfrage(String benutzername, String passwort) {
+		String sql = "select * from benutzer where benutzer.user_name = '"+benutzername+"' and benutzer.passwort = '"+passwort+"'";
+		try {
+			result = con.prepareStatement(sql).executeQuery();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
 	public List<Benutzer> benutzerSearch() {
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
 		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer";

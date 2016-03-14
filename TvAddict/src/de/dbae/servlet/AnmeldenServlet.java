@@ -2,6 +2,10 @@ package de.dbae.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *@author: Hassib
  * 
  */
+
+import de.dbae.helper.SearchObject;
 
 /**
  * Servlet implementation class AnmeldenServlet
@@ -47,15 +53,16 @@ public class AnmeldenServlet extends HttpServlet {
 		
 		String benutzername = request.getParameter("benutzername");
 		String passwort = request.getParameter("Passwort");
-		PrintWriter out = response.getWriter();
-
-		if(benutzername.equals("Hassib") && passwort.equals("hallo")) {
-			request.getRequestDispatcher("meinProfil.jsp").forward(request, response);	
-
-			
-		}else {
-			request.getRequestDispatcher("registrieren.jsp").forward(request, response);	
-		}
+		
+		SearchObject so = new SearchObject();
+		
+		ResultSet rs = so.anmeldeAbfrage(benutzername, passwort);
+		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+		rows = so.convert(rs);
+		
+		request.setAttribute("result", rows);
+		request.getRequestDispatcher("schnelleSuche.jsp").forward(request, response);
+		
 		
 		
 		
