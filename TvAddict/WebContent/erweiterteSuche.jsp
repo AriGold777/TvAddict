@@ -17,7 +17,7 @@
 		</div>
 		<nav id="navig">
 			
-			<myTags:navigation activeSite="erweiterteSuche"></myTags:navigation>
+			<myTags:navigation activeSite="ErweiterteSuche"></myTags:navigation>
 	
 				<div id="beideSuchen">	
 				<form action="SchnelleSuche" id="textfeld" method="get">
@@ -36,10 +36,8 @@
 	<form action="ErweiterteSuche" id="textfeldE" method="get">
 		<input type="text" name="name" placeholder="Name der Serie"><br>
 		<input type="text" name="fsk" placeholder="Max. Altersfreigabe"><br>
-<!-- 		Wird noch dynamisch gemacht, damit alle vorhandenen Genres bei Serien angezeigt werden + Dropdownmenü 
-			bis jetzt kommt noch ein Fehler, wenn kein Genre ausgewählt ist. Irgendwie überwindet der "Null-String" die if
-			Abfrage bei SearchObject advancedSearch, mache ich morgen ;)-->
-		<select name="genre"> <%-- size="3" multiple --%>
+		<b><label style="color: white">Genre:</label></b><br>
+		<select name="genre">
 			<option>Beliebig</option>
 			<c:forEach items="${genreList}" var="genres">
 				<c:forEach items="${genres}" var="genre">
@@ -50,7 +48,7 @@
 		<button type="submit" id="suche">Suchen</button>
 	</form>
 	
-	<h3>${genre}</h3>
+	<b><h3 style="color: white">${genre}</h3></b>
 	<table border=3>
 	<thead>
     <tr>

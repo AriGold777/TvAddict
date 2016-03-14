@@ -203,6 +203,32 @@ public class SearchObject {
 		return serieBewertung;
 	}
 	
+	public List<Benutzer> benutzerSearch() {
+		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
+		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer";
+		ResultSetMetaData rsmd;
+		try {
+			ResultSet tempBenutzer = con.prepareStatement(sql).executeQuery();
+			rsmd = tempBenutzer.getMetaData();
+			int columnCount = rsmd.getColumnCount();
+			while(tempBenutzer.next()) {
+				Benutzer benutzer = new Benutzer();
+				benutzer.setUserID(tempBenutzer.getString(tempBenutzer.findColumn("user_id")));
+				benutzer.setBenutzername(tempBenutzer.getString(tempBenutzer.findColumn("user_name")));
+				benutzer.setVorname(tempBenutzer.getString(tempBenutzer.findColumn("v_name")));
+				benutzer.setNachname(tempBenutzer.getString(tempBenutzer.findColumn("n_name")));
+				benutzer.setEmail(tempBenutzer.getString(tempBenutzer.findColumn("email")));
+				benutzer.setVerschluesseltesPW(tempBenutzer.getString(tempBenutzer.findColumn("passwort")));
+				benutzerList.add(benutzer);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return benutzerList;
+	}
+	
 	//ResultSet konvertieren
 	public List<Map<String, Object>> convert(ResultSet rs) {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();

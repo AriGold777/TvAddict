@@ -37,12 +37,6 @@ public class Bewertung {
 		DecimalFormat df = new DecimalFormat("#.#");
 		df.setRoundingMode(RoundingMode.HALF_UP);
 		bewertungString = df.format(bewertung).replace(",", ".");
-//		bewertung = Double.parseDouble(bewertungString);
-//		System.out.println(bewertungString + " vs. " + bewertung);
-		
-//		System.out.println("gesamtBewertungen: "+gesamtBewertungen+" und bewertung: "+bewertung);
-//		System.out.println(df.format(bewertung));
-//		System.out.println(bewertungString);
 	}
 	
 	
