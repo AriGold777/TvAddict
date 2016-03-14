@@ -6,21 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
 
-import de.dbae.helper.Benutzer;
+import de.dbae.helper.DatabaseEdit;
 
 /**
- * Servlet implementation class BenutzerBearbeitenServlet
+ * Servlet implementation class BenutzerLoeschenServlet
  */
-@WebServlet("/BenutzerBearbeitenServlet")
-public class BenutzerBearbeitenServlet extends HttpServlet {
+@WebServlet("/BenutzerLoeschenServlet")
+public class BenutzerLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BenutzerBearbeitenServlet() {
+    public BenutzerLoeschenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,16 +36,10 @@ public class BenutzerBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Benutzer benutzer = new Benutzer();
-		benutzer.setUserID(request.getParameter("userID"));
-		benutzer.setBenutzername(request.getParameter("benutzername"));
-		benutzer.setVorname(request.getParameter("vorname"));
-		benutzer.setNachname(request.getParameter("nachname"));
-		benutzer.setEmail(request.getParameter("email"));
-		benutzer.setVerschluesseltesPW(request.getParameter("verschluesseltesPW"));
+		String userID = request.getParameter("userID");
+		new DatabaseEdit().deleteBenutzer(userID);
 		
-		request.setAttribute("benutzer", benutzer);
-		request.getRequestDispatcher("BenutzerBearbeiten.jsp").forward(request, response);
+		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);
 	}
 
 }

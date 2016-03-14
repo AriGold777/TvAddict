@@ -36,10 +36,15 @@
 		<form action="BenutzerBearbeitenServlet" method="post">
 			<input type="SUBMIT" name="bearbeiten" value="Bearbeiten">
 			<input type="hidden" name="userID" value="${benutzer.userID}">
+			<input type="hidden" name="benutzername" value="${benutzer.benutzername}">
+			<input type="hidden" name="vorname" value="${benutzer.vorname}">
+			<input type="hidden" name="nachname" value="${benutzer.nachname}">
+			<input type="hidden" name="email" value="${benutzer.email}">
+			<input type="hidden" name="verschluesseltesPW" value="${benutzer.verschluesseltesPW}">
 		</form>
 		</td>
 		<td>
-		<form action="#" method="post">
+		<form action="BenutzerLoeschenServlet" method="post">
 			<input type="SUBMIT" name="löschen" value="Löschen">
 			<input type="hidden" name="userID" value="${benutzer.userID}">
 		</form>

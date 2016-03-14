@@ -15,7 +15,7 @@ public class Benutzer {
 	private String email;
 	private String verschluesseltesPW;
 	
-	Benutzer () {
+	public Benutzer () {
 		
 	}
 

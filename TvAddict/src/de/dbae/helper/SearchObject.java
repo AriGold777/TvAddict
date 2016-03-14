@@ -207,10 +207,17 @@ public class SearchObject {
 				+ " WHERE user_name = '"+benutzername+"' AND passwort = '"+passwort+"')"
 				+ " THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END";
 		int abfrage = -1;
+		String mitarbeiterAbfrage = "SELECT mitarbeiter FROM benutzer WHERE user_name = '"+benutzername+"' AND passwort = '"+passwort+"'";
 		try {
 			result = con.prepareStatement(sql).executeQuery();
 			while(result.next()){
 				abfrage = Integer.parseInt(result.getString(1));
+				ResultSet tempRs = con.prepareStatement(mitarbeiterAbfrage).executeQuery();
+				while(tempRs.next()){
+					if(tempRs.getString(tempRs.findColumn("mitarbeiter")).equals("t")) {
+						abfrage = 7;
+					}
+				}
 			}
 			
 		} catch (SQLException e) {
@@ -224,11 +231,8 @@ public class SearchObject {
 	public List<Benutzer> benutzerSearch() {
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
 		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer";
-		ResultSetMetaData rsmd;
 		try {
 			ResultSet tempBenutzer = con.prepareStatement(sql).executeQuery();
-			rsmd = tempBenutzer.getMetaData();
-			int columnCount = rsmd.getColumnCount();
 			while(tempBenutzer.next()) {
 				Benutzer benutzer = new Benutzer();
 				benutzer.setUserID(tempBenutzer.getString(tempBenutzer.findColumn("user_id")));

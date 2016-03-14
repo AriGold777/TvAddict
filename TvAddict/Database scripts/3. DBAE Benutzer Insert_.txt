@@ -3,8 +3,5 @@ insert into benutzer (mitarbeiter,user_name,v_name,n_name,email,passwort) values
 insert into benutzer (mitarbeiter,user_name,v_name,n_name,email,passwort) values(true,'Daniel','Daniel','Weniger','weniger@uni-hildesheim.de','strongpassword'); 
 
 
-
-//Das nicht
-insert into benutzer (user_id,mitarbeiter,user_name,v_name,n_name,email,passwort, ) values(1,true,'AriGold','Marcel','Sievert','sievertm@uni-hildesheim.de','strongpassword',1); 
-insert into benutzer (user_id,mitarbeiter,user_name,v_name,n_name,email,passwort, ) values(1,true,'AriGold','Marcel','Sievert','sievertm@uni-hildesheim.de','strongpassword',2);
-insert into benutzer (user_id,mitarbeiter,user_name,v_name,n_name,email,passwort, ) values(1,true,'AriGold','Marcel','Sievert','sievertm@uni-hildesheim.de','strongpassword',3);
+//Nur für Testzwecke
+insert into benutzer (mitarbeiter,user_name,v_name,n_name,email,passwort) values(false,'testusername','testvorname','testnachname','test@uni-hildesheim.de','test'); 

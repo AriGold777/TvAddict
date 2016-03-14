@@ -6,21 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
 
-import de.dbae.helper.Benutzer;
+import de.dbae.helper.DatabaseEdit;
+import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class BenutzerBearbeitenServlet
+ * Servlet implementation class BenutzerAktualisierenServlet
  */
-@WebServlet("/BenutzerBearbeitenServlet")
-public class BenutzerBearbeitenServlet extends HttpServlet {
+@WebServlet("/BenutzerAktualisierenServlet")
+public class BenutzerAktualisierenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BenutzerBearbeitenServlet() {
+    public BenutzerAktualisierenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,16 +37,17 @@ public class BenutzerBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Benutzer benutzer = new Benutzer();
-		benutzer.setUserID(request.getParameter("userID"));
-		benutzer.setBenutzername(request.getParameter("benutzername"));
-		benutzer.setVorname(request.getParameter("vorname"));
-		benutzer.setNachname(request.getParameter("nachname"));
-		benutzer.setEmail(request.getParameter("email"));
-		benutzer.setVerschluesseltesPW(request.getParameter("verschluesseltesPW"));
+		String aktuelleUserID = request.getParameter("aktuelleUserID");
 		
-		request.setAttribute("benutzer", benutzer);
-		request.getRequestDispatcher("BenutzerBearbeiten.jsp").forward(request, response);
+		String userID = request.getParameter("neueUserID");
+		String benutzername = request.getParameter("neuerBenutzername");
+		String vorname = request.getParameter("neuerVorname");
+		String nachname = request.getParameter("neuerNachname");
+		String email = request.getParameter("neueEmail");
+		String passwort = request.getParameter("neuesVerschluesseltesPW");
+		
+		new DatabaseEdit().editBenutzer(aktuelleUserID, userID, benutzername, vorname, nachname, email, passwort);
+		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);
 	}
 
 }

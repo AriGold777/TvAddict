@@ -9,6 +9,14 @@
 </head>
 <body>
 	<c:choose>
+		<c:when test="${abfrage=='7'}">
+			Anmeldung erfolgreich!<br>
+			<b>Hallo Mitarbeiter ${benutzer}</b><br><br>
+			Weiterleitung zur Mitarbeiterseite...
+			<%
+				response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/MitarbeiterFunktionenServlet");
+			%>
+		</c:when>
 		<c:when test="${abfrage=='1'}">
 			Anmeldung erfolgreich!<br>
 			<b>Hallo ${benutzer}</b><br><br>
