@@ -40,9 +40,8 @@
 					<input type="password" placeholder="Passwort" name="passwort" required="required"> 
 					<input type="submit" value="Anmelden"></br></br>
 					<a id="submit" href="PasswortZur.jsp">Passwort vergessen?</a></br>
-					<a id="submit" href="registrieren.jsp">registrieren?</a>
-					</div>
-				
+					<a id="submit" href="registrieren.jsp">Registrieren?</a>
+					</div>	
 		</form>
 		
 	

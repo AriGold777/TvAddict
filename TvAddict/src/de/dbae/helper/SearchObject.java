@@ -153,8 +153,7 @@ public class SearchObject {
 		
 	}
 	
-	// Methode zur Ausgabe der Sendetage (noch nicht des Rätsels Lösung...)
-	// TODO: Optimieren bzw. alternative Lösung
+
 	public String sendetagSearch(String name) {
 		String sql ="SELECT sendetag FROM serie WHERE serie.serie_name = '"+name+"'";
 		String sendeTag = "";
@@ -203,16 +202,22 @@ public class SearchObject {
 		return serieBewertung;
 	}
 	
-	public ResultSet anmeldeAbfrage(String benutzername, String passwort) {
-		String sql = "select * from benutzer where benutzer.user_name = '"+benutzername+"' and benutzer.passwort = '"+passwort+"'";
+	public int anmeldeAbfrage(String benutzername, String passwort) {
+		String sql = "SELECT CASE WHEN EXISTS (SELECT * FROM benutzer"
+				+ " WHERE user_name = '"+benutzername+"' AND passwort = '"+passwort+"')"
+				+ " THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END";
+		int abfrage = -1;
 		try {
 			result = con.prepareStatement(sql).executeQuery();
+			while(result.next()){
+				abfrage = Integer.parseInt(result.getString(1));
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
+		return abfrage;
 		
 	}
 	

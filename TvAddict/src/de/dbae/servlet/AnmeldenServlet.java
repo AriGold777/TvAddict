@@ -52,16 +52,15 @@ public class AnmeldenServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String benutzername = request.getParameter("benutzername");
-		String passwort = request.getParameter("Passwort");
+		String passwort = request.getParameter("passwort");
 		
 		SearchObject so = new SearchObject();
+		//Wenn abfrage = 1 dann gibt es die benutzer+passwort Kombination. Wenn 0, dann ist mindestens eins davon falsch (Gibt es nicht)
+		int abfrage = so.anmeldeAbfrage(benutzername, passwort);
 		
-		ResultSet rs = so.anmeldeAbfrage(benutzername, passwort);
-		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-		rows = so.convert(rs);
-		
-		request.setAttribute("result", rows);
-		request.getRequestDispatcher("schnelleSuche.jsp").forward(request, response);
+		request.setAttribute("abfrage", abfrage);
+		request.setAttribute("benutzer", benutzername);
+		request.getRequestDispatcher("AnmeldeCheck.jsp").forward(request, response);
 		
 		
 		
