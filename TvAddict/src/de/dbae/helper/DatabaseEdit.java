@@ -4,6 +4,7 @@
 package de.dbae.helper;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -30,29 +31,48 @@ public class DatabaseEdit {
 			try {
 				
 				if (!(ID.equals("")) && (ID != null)) {
-					String idSQL = "UPDATE benutzer SET user_id = '"+ID+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(idSQL).executeUpdate();
+					String idSQL = "UPDATE benutzer SET user_id = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(idSQL);
+					pstmt.setInt(1, Integer.parseInt(ID));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
+					aktuelleID = ID;
 				}
 				if (!(benutzername.equals("")) && (benutzername != null)) {
-					String benutzernameSQL = "UPDATE benutzer SET user_name = '"+benutzername+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(benutzernameSQL).executeUpdate();
+					String benutzernameSQL = "UPDATE benutzer SET user_name = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(benutzernameSQL);
+					pstmt.setString(1, (benutzername));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
 				}
 				if (!(vorname.equals("")) && (vorname != null)) {
-					String vornameSQL = "UPDATE benutzer SET v_name = '"+vorname+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(vornameSQL).executeUpdate();
+					String vornameSQL = "UPDATE benutzer SET v_name = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(vornameSQL);
+					pstmt.setString(1, (vorname));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
 				}
 				if (!(nachname.equals("")) && (nachname != null)) {
-					String nachnameSQL = "UPDATE benutzer SET n_name = '"+nachname+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(nachnameSQL).executeUpdate();
+					String nachnameSQL = "UPDATE benutzer SET n_name = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(nachnameSQL);
+					pstmt.setString(1, (nachname));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
 				}
 				if (!(email.equals("")) && (email != null)) {
-					String emailSQL = "UPDATE benutzer SET email = '"+email+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(emailSQL).executeUpdate();
+					String emailSQL = "UPDATE benutzer SET email = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(emailSQL);
+					pstmt.setString(1, (email));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
 				}
 				if (!(pw.equals("")) && (pw != null)) {
 					// pw = neueKlasse/Objekt.verschlüsseln(pw);
-					String pwSQL = "UPDATE benutzer SET passwort = '"+pw+"' WHERE user_id = '"+aktuelleID+"'";
-				con.prepareStatement(pwSQL).executeUpdate();
+					String pwSQL = "UPDATE benutzer SET passwort = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(pwSQL);
+					pstmt.setString(1, (pw));
+					pstmt.setInt(2, Integer.parseInt(aktuelleID));
+					pstmt.executeUpdate();
 				}
 				
 				
@@ -66,9 +86,11 @@ public class DatabaseEdit {
 	}
 	
 	public void deleteBenutzer(String userID) {
-		String sql = "DELETE FROM benutzer WHERE user_id = '"+userID+"'";
+		String sql = "DELETE FROM benutzer WHERE user_id = ?";
 		try {
-			con.prepareStatement(sql).executeUpdate();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(userID));
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

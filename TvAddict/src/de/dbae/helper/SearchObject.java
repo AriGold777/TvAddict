@@ -38,9 +38,12 @@ public class SearchObject {
 		
 		//Leerer where-String
 		String where ="";
+		boolean nameIsSet = true;
 		
 		if (!name.equals("") && name != null) {
 			where += " AND serie.serie_name ilike ?";
+		} else {
+			nameIsSet = false;
 		}
 		
 		
@@ -50,7 +53,9 @@ public class SearchObject {
 		//Prepared Statement in ResultSet
 		try {
 			PreparedStatement pstmt = con.prepareStatement(completeSQL);
-			pstmt.setString(1, name);
+			if(nameIsSet){
+				pstmt.setString(1, "%" + name + "%");				
+			}
 			
 			result = pstmt.executeQuery();
 		} catch (SQLException e) {
@@ -66,15 +71,34 @@ public class SearchObject {
 				
 		//Leerer where-String
 		String where ="";
-				
+		boolean nameIsSet = true;
+		boolean fskIsSet = true;
+		boolean genreIsSet = true;
+		int paraAnzahl = 0;
+		int nameParaCount = 0;
+		int fskParaCount = 0;
+		int genreParaCount = 0;
+		
 		if (!name.equals("") && name != null) {
-			where += " AND serie.serie_name ilike '%"+name+"%'";
+			where += " AND serie.serie_name ilike ?";
+			paraAnzahl++;
+			nameParaCount = paraAnzahl;
+		} else {
+			nameIsSet = false;
 		}
 		if (!fsk.equals("") && fsk != null) {
-			where += " AND serie.fsk <= "+fsk;
+			where += " AND serie.fsk <= ?";
+			paraAnzahl++;
+			fskParaCount = paraAnzahl;
+		} else {
+			fskIsSet = false;
 		}
 		if (!genre.equals("") && genre != null) {
-			where += " AND (serie.genre1 = '"+genre+"' OR serie.genre2 = '"+genre+"' OR serie.genre3 = '"+genre+"')";
+			where += " AND (serie.genre1 = ? OR serie.genre2 = ? OR serie.genre3 = ?)";
+			paraAnzahl++;
+			genreParaCount = paraAnzahl;
+		} else {
+			genreIsSet = false;
 		}
 				
 		//SQL Statement & Where Statement verbinden
@@ -82,7 +106,20 @@ public class SearchObject {
 				
 		//Prepared Statement in ResultSet
 		try {
-			result = con.prepareStatement(completeSQL).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(completeSQL);
+			if (nameIsSet) {
+				pstmt.setString(nameParaCount, "%" + name + "%");				
+			}
+			if (fskIsSet) {
+				pstmt.setInt(fskParaCount, Integer.parseInt(fsk));				
+			}
+			if (genreIsSet) {
+				pstmt.setString(genreParaCount, genre);
+				pstmt.setString(genreParaCount+1, genre);
+				pstmt.setString(genreParaCount+2, genre);				
+			}
+			
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +138,8 @@ public class SearchObject {
 		int count = 0;
 		try {
 			ResultSet rs;
-			rs = con.prepareStatement(countSql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(countSql);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 	            count = rs.getInt("count");
 	        }
@@ -122,7 +160,8 @@ public class SearchObject {
 				+ " SELECT genre3 FROM serie"
 				+ " WHERE genre3<>''";
 		try {
-			result = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,7 +172,8 @@ public class SearchObject {
 	public ResultSet uebersichtSearch() {
 		String sql = "SELECT serie_name, beschreibung, fsk FROM serie";
 		try {
-			result = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,9 +186,11 @@ public class SearchObject {
 	public ResultSet detailSchauspielerSearch(String name) {
 		String sql ="SELECT schauspieler.name FROM schauspieler"
 				+ " INNER JOIN serie ON schauspieler.serie_id = serie.serie_id"
-				+ " WHERE serie.serie_name='"+name+"'";
+				+ " WHERE serie.serie_name = ?";
 		try {
-			result = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,10 +201,13 @@ public class SearchObject {
 	
 
 	public String sendetagSearch(String name) {
-		String sql ="SELECT sendetag FROM serie WHERE serie.serie_name = '"+name+"'";
+		String sql ="SELECT sendetag FROM serie WHERE serie.serie_name = ?";
 		String sendeTag = "";
 		try {
-			result = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			result = pstmt.executeQuery();
 			while(result.next()) {
 				sendeTag = result.getString(result.findColumn("sendetag"));	
 			}
@@ -181,9 +226,12 @@ public class SearchObject {
 				+ " bewertungen.anzahl_9, bewertungen.anzahl_10"
 				+ " FROM bewertungen"
 				+ " INNER JOIN serie ON bewertungen.serie_id = serie.serie_id"
-				+ " WHERE serie.serie_name = '"+name+"'";
+				+ " WHERE serie.serie_name = ?";
 		try {
-			ResultSet tempBewertungen = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			ResultSet tempBewertungen = pstmt.executeQuery();
 			while(tempBewertungen.next()) {
 				serieBewertung.setAnzahl1(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_1"))));
 				serieBewertung.setAnzahl2(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_2"))));
@@ -208,15 +256,23 @@ public class SearchObject {
 	
 	public int anmeldeAbfrage(String benutzername, String passwort) {
 		String sql = "SELECT CASE WHEN EXISTS (SELECT * FROM benutzer"
-				+ " WHERE user_name = '"+benutzername+"' AND passwort = '"+passwort+"')"
+				+ " WHERE user_name = ? AND passwort = ?)"
 				+ " THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END";
 		int abfrage = -1;
-		String mitarbeiterAbfrage = "SELECT mitarbeiter FROM benutzer WHERE user_name = '"+benutzername+"' AND passwort = '"+passwort+"'";
+		String mitarbeiterAbfrage = "SELECT mitarbeiter FROM benutzer WHERE user_name = ? AND passwort = ?";
 		try {
-			result = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, benutzername);
+			pstmt.setString(2, passwort);
+			
+			result = pstmt.executeQuery();
 			while(result.next()){
 				abfrage = Integer.parseInt(result.getString(1));
-				ResultSet tempRs = con.prepareStatement(mitarbeiterAbfrage).executeQuery();
+				PreparedStatement mitarbeiterPstmt = con.prepareStatement(mitarbeiterAbfrage);
+				mitarbeiterPstmt.setString(1, benutzername);
+				mitarbeiterPstmt.setString(2, passwort);
+				
+				ResultSet tempRs = mitarbeiterPstmt.executeQuery();
 				while(tempRs.next()){
 					if(tempRs.getString(tempRs.findColumn("mitarbeiter")).equals("t")) {
 						abfrage = 7;
@@ -236,7 +292,8 @@ public class SearchObject {
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
 		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer";
 		try {
-			ResultSet tempBenutzer = con.prepareStatement(sql).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet tempBenutzer = pstmt.executeQuery();
 			while(tempBenutzer.next()) {
 				Benutzer benutzer = new Benutzer();
 				benutzer.setUserID(tempBenutzer.getString(tempBenutzer.findColumn("user_id")));
