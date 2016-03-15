@@ -4,6 +4,7 @@
 package de.dbae.helper;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -39,7 +40,7 @@ public class SearchObject {
 		String where ="";
 		
 		if (!name.equals("") && name != null) {
-			where += " AND serie.serie_name ilike '%"+name+"%'";
+			where += " AND serie.serie_name ilike ?";
 		}
 		
 		
@@ -48,7 +49,10 @@ public class SearchObject {
 		
 		//Prepared Statement in ResultSet
 		try {
-			result = con.prepareStatement(completeSQL).executeQuery();
+			PreparedStatement pstmt = con.prepareStatement(completeSQL);
+			pstmt.setString(1, name);
+			
+			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
