@@ -35,13 +35,13 @@
 			<h2>Registrieren</h2>
 			<p>Bitte gebe deine Daten ein um dich zu registrieren</p>
 				<div class="inputs" align="center">
-					<input type="text" placeholder="Vorname" name="vorname" required="required" autofocus></br>
+					<label>${errorMessage}</label>
+					<input type="text" placeholder="Benutzername" minlength="5" name="benutzername" pattern="{5,15}"  required="required" title="Bitte mind. 5 Zeichen eingaben" autofocus></br>
+					<input type="text" placeholder="Vorname" name="vorname" required="required"></br>
 					<input type="text" placeholder="Nachname" name="nachname"></br>
-					<input type="text" placeholder="Benutzername" minlength="5" name="benutzername" pattern="{5,15}"  required="required" title="Bitte mind. 5 Zeichen eingaben"></br>
 					<input type="email" placeholder="E-mail" name="email" required="required"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de"></br>
 					<input type="password" placeholder="Passwort" name="passwort" required="required"></br>
 					<input type="password" placeholder="Passwort wiederholen" name="passwortW" required="required"></br>
-					
 					<input type="submit" value="registrieren"></br>
 					
 					

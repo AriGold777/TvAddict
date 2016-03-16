@@ -3,6 +3,7 @@ package de.dbae.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 import de.dbae.helper.Benutzer;
+import de.dbae.helper.DatabaseEdit;
+import de.dbae.helper.SearchObject;
 
 /**
  * Servlet implementation class RegestrierenServlet
@@ -44,22 +47,44 @@ public class RegestrierenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		List<Benutzer> checkUsernames = new SearchObject().benutzerSearch();
+		boolean usernameAlreadyExists = false;
+		boolean pwCheck = false;
 		
+		String errorMessage = "";
 		
+		String benutzername = request.getParameter("benutzername");
+		for (Benutzer benutzer : checkUsernames) {
+			if(benutzer.getBenutzername().equals(benutzername)) {
+				usernameAlreadyExists = true;
+				errorMessage = "Benutzername bereits vergeben.";
+			}
+		}		
+		String vorname = request.getParameter("vorname");
+		String nachname = request.getParameter("nachname");
+		String email = request.getParameter("email");
+		//String pw = new Verschlüssellung.verschluesselPasswort(request.getParameter("pw");
+		String pw = request.getParameter("passwort");
+		String pwWiederholung = request.getParameter("passwortW");
+		if(pw.equals(pwWiederholung)) {
+			pwCheck = true;
+		}
+		if(pwCheck && (!usernameAlreadyExists)){
+			new DatabaseEdit().addBenutzer(benutzername, vorname, nachname, email, pw);			
+		}
 		
-		Benutzer benutzer = new Benutzer();
-		benutzer.setBenutzername(request.getParameter("benutzername"));
-		benutzer.setVorname(request.getParameter("vorname"));
-		benutzer.setNachname(request.getParameter("nachname"));
-		benutzer.setEmail(request.getParameter("email"));
-		benutzer.setVerschluesseltesPW(request.getParameter("pw"));
-		benutzer.setVerschluesseltesPW(request.getParameter("pww"));
-
-		
-		
-		request.setAttribute("benutzer", benutzer);
-		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
+		//Evtl hier was mit session...mal gucken :D
+		if(usernameAlreadyExists) {
+			request.setAttribute("errorMessage", errorMessage);
+			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
+		}
+		if(pwCheck) {
+			request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
+		} else {
+			errorMessage = "Passwort stimmt nicht überein.";
+			request.setAttribute("errorMessage", errorMessage);
+			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
+		}
 	}
 
 		

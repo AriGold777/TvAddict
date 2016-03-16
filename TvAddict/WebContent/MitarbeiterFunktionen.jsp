@@ -10,6 +10,9 @@
 </head>
 <body>
 	<div align="center">
+	<a href="http://localhost:8080/TvAddict/">Zurück auf die Hauptseite</a><br>
+	
+	<h1>Benutzerübersicht</h1>
 	<table border=3>
 	<thead>
     <tr>
@@ -53,13 +56,75 @@
 	</c:forEach>
 	</tbody>
 	</table>
-	<%
-// 		Enumeration ParamNames = request.getParameterNames();
-// 		while(ParamNames.hasMoreElements()) {
-// 			String paramName = (String)ParamNames.nextElement();
-// 			out.print(paramName+"<br>"+request.getParameter(paramName)+"<br>");
-// 		}
-	%>
+	<br><br>
+	<h1>Serienübersicht</h1><br>
+	<table border=3>
+	<thead>
+    <tr>
+    	<td>ID</td>
+    	<td>Name</td>
+    	<td>Beschreibung</td>
+    	<td>FSK</td>
+    	<td>Sendetag</td>
+    	<td>Genre 1</td>
+    	<td>Genre 2</td>
+    	<td>Genre 3</td>
+    	<td>Bearbeiten</td>
+    	<td>Löschen</td>
+    </tr>
+    </thead>
+    <tbody>
+	<c:forEach items="${SerieList}" var="serie">
+		<tr>
+		<td><c:out value="${serie.id}" /></td>
+		<td><c:out value="${serie.name}" /></td>
+		<td><c:out value="${serie.beschreibung}" /></td>
+		<td><c:out value="${serie.fsk}" /></td>
+		<td><c:out value="${serie.sendetag}" /></td>
+		<td><c:out value="${serie.genre1}" /></td>
+		<td><c:out value="${serie.genre2}" /></td>
+		<td><c:out value="${serie.genre3}" /></td>
+		<td>
+		<form action="SerieBearbeitenServlet" method="post">
+			<input type="SUBMIT" name="bearbeiten" value="Bearbeiten">
+			<input type="hidden" name="id" value="${serie.id}">
+			<input type="hidden" name="name" value="${serie.name}">
+			<input type="hidden" name="beschreibung" value="${serie.beschreibung}">
+			<input type="hidden" name="fsk" value="${serie.fsk}">
+			<input type="hidden" name="sendetag" value="${serie.sendetag}">
+			<input type="hidden" name="genre1" value="${serie.genre1}">
+			<input type="hidden" name="genre2" value="${serie.genre2}">
+			<input type="hidden" name="genre3" value="${serie.genre3}">
+		</form>
+		</td>
+		<td>
+		<form action="SerieLoeschenServlet" method="post">
+			<input type="SUBMIT" name="löschen" value="Löschen">
+			<input type="hidden" name="id" value="${serie.id}">
+		</form>
+		</td>
+		</tr>
+	</c:forEach>
+	</tbody>
+	</table>
+	<h1>Neue Serie anlegen</h1><br>
+		<form action="SerieAnlegenServlet" method="post">
+			<Label>Name: </Label>
+			<input type="text" name="name" value="${serie.name}" required="required"><br>
+			<Label>Beschreibung: </Label>
+			<input type="text" name="beschreibung" value="${serie.beschreibung}" required="required"><br>
+			<Label>FSK: </Label>
+			<input type="text" name="fsk" value="${serie.fsk}" required="required"><br>
+			<Label>Sendetag: </Label>
+			<input type="text" name="sendetag" value="${serie.sendetag}" required="required"><br>
+			<Label>Genre 1: </Label>
+			<input type="text" name="genre1" value="${serie.genre1}" required="required"><br>
+			<Label>Genre 2: </Label>
+			<input type="text" name="genre2" value="${serie.genre2}"><br>
+			<Label>Genre 3: </Label>
+			<input type="text" name="genre3" value="${serie.genre3}"><br>
+			<input type="SUBMIT" name="anlegen" value="Anlegen!">
+		</form>
 	</div>
 </body>
 </html>

@@ -1,10 +1,6 @@
 package de.dbae.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,21 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.dbae.helper.Benutzer;
-import de.dbae.helper.Bewertung;
-import de.dbae.helper.SearchObject;
 import de.dbae.helper.Serie;
 
 /**
- * Servlet implementation class MitarbeiterFunktionenServlet
+ * Servlet implementation class SerieBearbeitenServlet
  */
-@WebServlet("/MitarbeiterFunktionenServlet")
-public class MitarbeiterFunktionenServlet extends HttpServlet {
+@WebServlet("/SerieBearbeitenServlet")
+public class SerieBearbeitenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MitarbeiterFunktionenServlet() {
+    public SerieBearbeitenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,25 +29,27 @@ public class MitarbeiterFunktionenServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SearchObject searchobject = new SearchObject();
-		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
-		benutzerList = searchobject.benutzerSearch();
-		
-		List<Serie> serieList = new ArrayList<>();
-		serieList = searchobject.serieSearch();
-
-		request.setAttribute("BenutzerList", benutzerList);
-		request.setAttribute("SerieList", serieList);
-		
-		request.getRequestDispatcher("MitarbeiterFunktionen.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Serie serie = new Serie();
+		serie.setId(request.getParameter("id"));;
+		serie.setName(request.getParameter("name"));
+		serie.setBeschreibung(request.getParameter("beschreibung"));
+		serie.setFsk(request.getParameter("fsk"));
+		serie.setSendetag(request.getParameter("sendetag"));
+		serie.setGenre1(request.getParameter("genre1"));
+		serie.setGenre2(request.getParameter("genre2"));
+		serie.setGenre3(request.getParameter("genre3"));
+		
+		
+		request.setAttribute("serie", serie);
+		request.getRequestDispatcher("SerieBearbeiten.jsp").forward(request, response);
 	}
 
 }
