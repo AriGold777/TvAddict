@@ -3,10 +3,12 @@
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!--@author: Hassib-->
+
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registrieren</title>
+<title>registrieren</title>
 
 </head>
 <body>
@@ -20,7 +22,7 @@
 			
 			<myTags:navigation activeSite="index"></myTags:navigation>
 						
-			<form action="SchnelleSuche" id="textfeld" method="get">
+			<form action="Testsuche" id="textfeld" method="post">
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
 			</form>
@@ -29,16 +31,20 @@
 </br>
 	<div id="main">
 		<h1>Jetzt kostenlos registrieren</h1>
-		<form id="signup" action="RegestrierenServlet" method="get" align="center">
+		<form id="signup" action="RegestrierenServlet" method="post" align="center">
 			<h2>Registrieren</h2>
 			<p>Bitte gebe deine Daten ein um dich zu registrieren</p>
 				<div class="inputs" align="center">
 					<input type="text" placeholder="Vorname" name="vorname" required="required" autofocus></br>
-					<input type="text" placeholder="Nachname" name="nachname" required="required"></br>
-					<input type="text" placeholder="Benutzername" name="benutzername" required="required" ></br>
-					<input type="email" placeholder="E-mail" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></br>
-					<input type="password" placeholder="Password" name="passwort" required="required"></br>
-					<input type="submit" value="regestrieren"></br>
+					<input type="text" placeholder="Nachname" name="nachname"></br>
+					<input type="text" placeholder="Benutzername" minlength="5" name="benutzername" pattern="{5,15}"  required="required" title="Bitte mind. 5 Zeichen eingaben"></br>
+					<input type="email" placeholder="E-mail" name="email" required="required"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de"></br>
+					<input type="password" placeholder="Passwort" name="passwort" required="required"></br>
+					<input type="password" placeholder="Passwort wiederholen" name="passwortW" required="required"></br>
+					
+					<input type="submit" value="registrieren"></br>
+					
+					
 				</div>
 		</form>
 	</div>

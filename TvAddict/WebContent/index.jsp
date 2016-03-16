@@ -8,19 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
-<script type="text/javascript">
+<script type="text/javascript">slideit();
 	<!-->
-	var image1=new Image()
-	image1.src="bb.png"
+	function slideit()
 	
-	var image2=new Image()
-	image2.src="tbb.png"
-	
-	var image3=new Image()
-	image3.src="fg.png"
-	
-	var image4=new Image()
-	image4.src="himym.png"
 		//-->
 		
 </script>
@@ -38,10 +29,10 @@
 		<myTags:navigation activeSite="index"></myTags:navigation> <br>
 			
 			<!-- Muss neu positioniert werden -->
-			<form action="SchnelleSuche" id="textfeld" method="get">
-				<input type="text" name="name" placeholder="Name der Serie"> 
-				<button type="submit"> Suchen</button>
-			</form>	
+		<form action="SchnelleSuche" id="textfeld" method="get">
+			<input type="text" name="name" placeholder="Name der Serie"> 
+			<button type="submit"> Suchen</button>
+		</form>	
 				
 	</header>
 </br>
@@ -65,18 +56,7 @@
 		<div id="slider" align="center">
 			<img src="bb.png" name="slide" width="500" height="281">	
 			<script type="text/javascript">
-			<!--
-			var step=1
-			function slideit() {
-			document.images.slide.src=eval("image"+step+".src")
-			if(step<4)
-			step++
-			else
-				step=1
-				setTimeout("slideit()",2500)
-			}
-			slideit()
-			//-->
+
 	
 	  	</script>
 		</div>

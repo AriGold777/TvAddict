@@ -96,4 +96,59 @@ public class DatabaseEdit {
 			e.printStackTrace();
 		}
 	}
+
+	public void addBenutzer(String vorname, String nachname, String benutzername, String email, String pw, String pww) {
+		try {
+			
+			if (!(benutzername.equals("")) && (benutzername != null)) {
+				String benutzernameSQL = "CREATE benutzer SET user_name = ? WHERE user_id = ?";
+				PreparedStatement pstmt = con.prepareStatement(benutzernameSQL);
+				pstmt.setString(1, (benutzername));
+				pstmt.executeUpdate();
+			}
+			if (!(vorname.equals("")) && (vorname != null)) {
+				String vornameSQL = "CREATE benutzer SET v_name = ? WHERE user_id = ?";
+				PreparedStatement pstmt = con.prepareStatement(vornameSQL);
+				pstmt.setString(1, (vorname));
+				pstmt.executeUpdate();
+			}
+			if (!(nachname.equals("")) && (nachname != null)) {
+				String nachnameSQL = "CREATE benutzer SET n_name = ? WHERE user_id = ?";
+				PreparedStatement pstmt = con.prepareStatement(nachnameSQL);
+				pstmt.setString(1, (nachname));
+				pstmt.executeUpdate();
+			}
+			if (!(email.equals("")) && (email != null)) {
+				String emailSQL = "CREATE benutzer SET email = ? WHERE user_id = ?";
+				PreparedStatement pstmt = con.prepareStatement(emailSQL);
+				pstmt.setString(1, (email));
+				pstmt.executeUpdate();
+			}
+			if (!(pw.equals("")) && (pw != null)) {
+				String pwSQL = "CREATE benutzer SET passwort = ? WHERE user_id = ?";
+				PreparedStatement pstmt = con.prepareStatement(pwSQL);
+				pstmt.setString(1, (pw));
+				pstmt.executeUpdate();
+			}
+			
+			if (!(pww.equals(pw)) && (pww != null))
+				if(!(pww.equals(""))){
+					String pwSQL = "CREATE benutzer SET passwort = ? WHERE user_id = ?";
+					PreparedStatement pstmt = con.prepareStatement(pwSQL);
+					pstmt.setString(1, (pw));
+					pstmt.executeUpdate();
+			}
+			
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }
+	

@@ -70,17 +70,10 @@ li {
 
 
 #textfeld {
-	float: right;
+	float:right;
 	margin-top: 1em;
+	margin-right: 2.5em;
 }
-
-#textfeldE {
-	margin-top: auto;
-	margin-bottom:1em;
-	
-}
-
-
 
 #main {
 	margin-top:9em;
@@ -279,6 +272,18 @@ table {
 	text-align: left;
 	margin-right: 10%;
 }
+
+input:required {
+	
+    padding-right:0;
+    conten: sdsd;
+}
+
+input:invalid{
+ color:red;
+}
+
+
 
 
 

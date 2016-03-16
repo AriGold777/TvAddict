@@ -14,12 +14,16 @@ import javax.servlet.http.HttpServletResponse;
  * 
  */
 
+import de.dbae.helper.Benutzer;
+
 /**
  * Servlet implementation class RegestrierenServlet
  */
 @WebServlet("/RegestrierenServlet")
 public class RegestrierenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,31 +48,21 @@ public class RegestrierenServlet extends HttpServlet {
 		
 		
 		
-		String vorname = request.getParameter("vorname");
-		String nachname = request.getParameter("nachname");
-		String benutzername = request.getParameter("benutzername");
-		String email = request.getParameter("email");
-		
-		ArrayList<String> liste = new ArrayList<String>();
-        PrintWriter out = response.getWriter();
+		Benutzer benutzer = new Benutzer();
+		benutzer.setBenutzername(request.getParameter("benutzername"));
+		benutzer.setVorname(request.getParameter("vorname"));
+		benutzer.setNachname(request.getParameter("nachname"));
+		benutzer.setEmail(request.getParameter("email"));
+		benutzer.setVerschluesseltesPW(request.getParameter("pw"));
+		benutzer.setVerschluesseltesPW(request.getParameter("pww"));
 
-		liste.add(request.getParameter(vorname));
-		liste.add(request.getParameter(nachname));
-		liste.add(request.getParameter(benutzername));
-		liste.add(request.getParameter(email));
 		
+		
+		request.setAttribute("benutzer", benutzer);
+		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
+	}
 
-		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);	
-		  out.println("<html>");
-	      out.println("<head>");
-	      out.println("<title>JSP Tutorial - SimpleServlet</title>");
-	      out.println("</head>");
-	      out.println("<body>");
-	      out.println("<h2>" + "Hello " + vorname + "</h2>");
-	      out.println("</body></html>");
 		
-	   }
-	
 	
 
 }
