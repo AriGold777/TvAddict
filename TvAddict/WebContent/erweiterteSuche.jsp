@@ -24,10 +24,6 @@
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit">Suchen</button>
 				</form>
-				<br>
-				<form action="ErweiterteSuche">
-    				<input type="submit" value="Erweiterte Suche" id="textfeldE">
-				</form>
 				</div>
 		</nav>			
 	</header>

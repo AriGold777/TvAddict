@@ -17,18 +17,14 @@ public class Navigation extends TagSupport{
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			// Navigationsblock schreiben
-            pageContext.getOut().append("<nav>");
+			
             // Überprüfung/Entscheidung ob Seite Aktiv
             //                          Falls aktive Seite     		gebe als aktiv markierten link aus                         falls nicht aktiv gebe normalen link aus
             pageContext.getOut().append(activeSite.equals("index") ? "<a href=\"index.jsp\" class=\"active\" active>Startseite</a> " : "<a href=\"index.jsp\" >Startseite</a> ");
             pageContext.getOut().append(activeSite.equals("SerienUebersicht") ? "<a href=\"SerienUebersicht\" class=\"active\" active>Serien</a> " : "<a href=\"SerienUebersicht\" >Serien</a> ");
             pageContext.getOut().append(activeSite.equals("Anmelden") ? "<a href=\"Anmelden.jsp\" class=\"active\" active>Mein Profil</a> " : "<a href=\"Anmelden.jsp\" >Mein Profil</a> ");
-            pageContext.getOut().append(activeSite.equals("kontakt") ? "<a href=\"kontakt.jsp\" class=\"active\" active>Kontakt</a> " : "<a href=\"kontakt.jsp\" >Kontakt</a> ");
-            pageContext.getOut().append(activeSite.equals("schnelleSuche") ? "<a href=\"schnelleSuche.jsp\" class=\"active\" active>Suche</a> " : "<a href=\"schnelleSuche.jsp\" >Suche</a> ");
             pageContext.getOut().append(activeSite.equals("ErweiterteSuche") ? "<a href=\"ErweiterteSuche\" class=\"active\" active>Erweiterte Suche</a> " : "<a href=\"ErweiterteSuche\" >Erweiterte Suche</a> ");
-            // Navigationsblock abschließen
-            pageContext.getOut().append("</nav>");
+            
 		} catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

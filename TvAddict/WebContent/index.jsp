@@ -29,31 +29,26 @@
 
 <div id="seite">
 	<header>
+		
 		<div id="logo">
 			<img src="tv.png" width="100" height="50">
 		</div>
+		
 		<nav id="navig">
-			
-			<myTags:navigation activeSite="index"></myTags:navigation>
-				<div id="beideSuchen">	
-				<form action="SchnelleSuche" id="textfeld" method="get">
-					<input type="text" name="name" placeholder="Name der Serie"> 
-					<button type="submit">Suchen</button>
+		<myTags:navigation activeSite="index"></myTags:navigation> <br>
+			<form action="SchnelleSuche" id="textfeld" method="get">
+				<input type="text" name="name" placeholder="Name der Serie"> 
+				<button type="submit"> Suchen</button>
+			</form>
+		</nav>	
 				
-				</form>
-				<br>
-				<form action="ErweiterteSuche">
-    				<input type="submit" value="Erweiterte Suche" id="textfeldE">
-				</form>
-				</div>
-		</nav>			
 	</header>
 </br>
 	<div id="main">
 		<h1>Willkommen bei TvAddict</h1>
 		<a href="Anmelden.jsp" class="button1 big farbe">Anmelden</a>
 		</form>
-		<a href="regestrieren.jsp" class="button2 big farbe">Regestrieren</a>
+		<a href="registrieren.jsp" class="button2 big farbe">Registrieren</a>
 		</br>
 		<p align="center">	Die Redakteure von TvAddict.de 
 			schreiben Reviews zu aktuellen Episoden und Serien. 

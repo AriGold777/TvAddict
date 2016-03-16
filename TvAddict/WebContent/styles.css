@@ -48,14 +48,15 @@ header {
     font-size: 25px;
     padding: 5px;
   }
-  #navig a:focus,
-  #navig a:hover,
-  #navig a:active {    
+  
+#navig a:focus,
+#navig a:hover,
+#navig a:active {    
     color: black; 
     background-color: red;
   }
   
-  #navig .active {
+#navig .active {
   	color: white; 
   }
 

@@ -17,15 +17,15 @@
 		<div id="logo">
 			<img src="tv.png" width="100" height="50">
 		</div>
-		<nav id="navig">
 			
-			<myTags:navigation activeSite="SerienUebersicht"></myTags:navigation>
-	
+			<nav id="navig">
+			<myTags:navigation activeSite="SerienUebersicht"></myTags:navigation> <br>
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit"> Suchen</button>
 				</form>
-		</nav>			
+			</nav>	
+						
 	</header>
 </br>
 

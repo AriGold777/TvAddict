@@ -19,13 +19,11 @@
 			<img src="tv.png" width="100" height="50">
 		</div>
 		<nav id="navig">
-			
-			<myTags:navigation activeSite="kontakt"></myTags:navigation>
-						
-				<form action="Testsuche" id="textfeld" method="post">
-					<input type="text" name="name" placeholder="Name der Serie"> 
-					<button type="submit"> Suchen</button>
-				</form>
+		<myTags:navigation activeSite="kontakt"></myTags:navigation>
+			<form action="Testsuche" id="textfeld" method="post">
+				<input type="text" name="name" placeholder="Name der Serie"> 
+				<button type="submit"> Suchen</button>
+			</form>
 		</nav>			
 	</header>
 </br>

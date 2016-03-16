@@ -23,10 +23,6 @@
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
 					<button type="submit">Suchen</button>
-				
-					<form action="ErweiterteSuche">
-    					<input type="submit" value="Erweiterte Suche" id="textfeldE">
-					</form>
 				</form>
 		</nav>			
 	</header>
@@ -46,11 +42,10 @@
     	</c:forEach>
     </div>
     <div id="sendetag">	
-		<b>Sendetag:</b><br>
-		${sendetag}
+		<b>Sendetag: </b> ${sendetag}
 	</div>
 <!-- Hier könnte man später Serien zum persönlichen Sendeplan hinzufügen -->
-	<form action="Sendeplan">
+	<form action="SendePlan">
 		<input type="submit" value="Zu meinem Sendeplan hinzufügen">
 	</form>
 	
