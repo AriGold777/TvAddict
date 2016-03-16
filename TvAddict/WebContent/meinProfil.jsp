@@ -18,17 +18,15 @@
 		<div id="logo">
 			<img src="tv.png" width="100" height="50">
 		</div>
-		<nav id="navig">
+		
+		<myTags:navigation activeSite="meinProfil"></myTags:navigation> <br>
 			
-			<myTags:navigation activeSite="meinProfil"></myTags:navigation>
-						
-			<div id="beideSuchen">	
-				<form action="SchnelleSuche" id="textfeld" method="get">
-					<input type="text" name="name" placeholder="Name der Serie"> 
-					<button type="submit">Suchen</button>
-				</form>
-			</div>
-		</nav>			
+			<!-- Muss neu positioniert werden -->
+			<form action="SchnelleSuche" id="textfeld" method="get">
+				<input type="text" name="name" placeholder="Name der Serie"> 
+				<button type="submit"> Suchen</button>
+			</form>	
+				
 	</header>
 </br>
 	<div id="main">

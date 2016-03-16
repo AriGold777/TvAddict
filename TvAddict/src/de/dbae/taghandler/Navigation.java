@@ -17,7 +17,7 @@ public class Navigation extends TagSupport{
 	@Override
 	public int doStartTag() throws JspException {
 		try {
-			
+			pageContext.getOut().append("<nav>");
             // Überprüfung/Entscheidung ob Seite Aktiv
             //                          Falls aktive Seite     		gebe als aktiv markierten link aus                         falls nicht aktiv gebe normalen link aus
             pageContext.getOut().append(activeSite.equals("index") ? "<a href=\"index.jsp\" class=\"active\" active>Startseite</a> " : "<a href=\"index.jsp\" >Startseite</a> ");
@@ -25,6 +25,7 @@ public class Navigation extends TagSupport{
             pageContext.getOut().append(activeSite.equals("Anmelden") ? "<a href=\"Anmelden.jsp\" class=\"active\" active>Mein Profil</a> " : "<a href=\"Anmelden.jsp\" >Mein Profil</a> ");
             pageContext.getOut().append(activeSite.equals("ErweiterteSuche") ? "<a href=\"ErweiterteSuche\" class=\"active\" active>Erweiterte Suche</a> " : "<a href=\"ErweiterteSuche\" >Erweiterte Suche</a> ");
             
+            pageContext.getOut().append("/nav>");
 		} catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
