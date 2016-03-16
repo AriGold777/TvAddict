@@ -312,6 +312,32 @@ public class SearchObject {
 		return benutzerList;
 	}
 	
+	public List<Serie> serieSearch() {
+		List<Serie> serieList = new ArrayList<Serie>();
+		String sql = "SELECT * FROM serie";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet tempSerie = pstmt.executeQuery();
+			while(tempSerie.next()) {
+				Serie serie = new Serie();
+				serie.setId(tempSerie.getString(tempSerie.findColumn("serie_id")));
+				serie.setName(tempSerie.getString(tempSerie.findColumn("serie_name")));
+				serie.setBeschreibung(tempSerie.getString(tempSerie.findColumn("beschreibung")));
+				serie.setFsk(tempSerie.getString(tempSerie.findColumn("fsk")));
+				serie.setSendetag(tempSerie.getString(tempSerie.findColumn("sendetag")));
+				serie.setGenre1(tempSerie.getString(tempSerie.findColumn("genre1")));
+				serie.setGenre2(tempSerie.getString(tempSerie.findColumn("genre2")));
+				serie.setGenre3(tempSerie.getString(tempSerie.findColumn("genre3")));
+				serieList.add(serie);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return serieList;
+	}
+	
 	//ResultSet konvertieren
 	public List<Map<String, Object>> convert(ResultSet rs) {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
