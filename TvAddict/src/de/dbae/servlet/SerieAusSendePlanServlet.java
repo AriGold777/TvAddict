@@ -6,18 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import de.dbae.helper.DatabaseEdit;
+import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class MeinProfilServlet
+ * Servlet implementation class SerieAusSendePlanServlet
  */
-@WebServlet("")
-public class MeinProfilServlet extends HttpServlet {
+@WebServlet("/SerieAusSendePlanServlet")
+public class SerieAusSendePlanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MeinProfilServlet() {
+    public SerieAusSendePlanServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +31,19 @@ public class MeinProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("loggedID");
+		int serieId = new SearchObject().getIdFromSerie(request.getParameter("serienName"));
+		new DatabaseEdit().removeSerieFromSendeplan(userId, serieId); 
+		
+		response.sendRedirect("http://localhost:8080/TvAddict/MeinProfilServlet");
 	}
 
 }

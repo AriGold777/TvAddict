@@ -48,13 +48,15 @@
 	<c:if test="${isUserLogged}">
 
 		<c:if test="${addCheck == 0}">
-			<form action="SerieZuSendePlanServlet">
+			<form action="SerieZuSendePlanServlet" method="post">
 				<input type="submit" value="Zu meinem Sendeplan hinzufügen">
+				<input type="hidden" name="serienName" value="${name}">
 			</form>
 		</c:if>
 		<c:if test="${addCheck == 1}">
 			<form action="SerieAusSendePlanServlet">
 				<input type="submit" value="Aus dem Sendeplan nehmen">
+				<input type="hidden" name="serienName" value="${name}">
 			</form>
 		</c:if>
 	</c:if>

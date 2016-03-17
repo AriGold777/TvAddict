@@ -227,5 +227,33 @@ public class DatabaseEdit {
 		
 	}
 
+	public void addSerieToSendeplan(String userId, int serieId) {
+		String sql = "INSERT INTO favorites (user_id,serie_id) values(?,?)";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(userId));
+			pstmt.setInt(2, serieId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void removeSerieFromSendeplan(String userId, int serieId) {
+		String sql = "DELETE FROM favorites WHERE user_id = ? AND serie_id = ?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(userId));
+			pstmt.setInt(2, serieId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
 }
 	

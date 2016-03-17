@@ -392,6 +392,24 @@ public class SearchObject {
 		return serieInSendePlan;
 	}
 	
+	public int getIdFromSerie(String name) {
+		int serieId = 0;
+		String sql = "SELECT serie_id FROM serie WHERE serie_name = ?";
+		PreparedStatement pstmt;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			result = pstmt.executeQuery();
+			while(result.next()){
+				serieId = result.getInt(result.findColumn("serie_id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return serieId;
+	}
+	
 	//ResultSet konvertieren
 	public List<Map<String, Object>> convert(ResultSet rs) {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
