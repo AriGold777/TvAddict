@@ -54,7 +54,7 @@
 			</form>
 		</c:if>
 		<c:if test="${addCheck == 1}">
-			<form action="SerieAusSendePlanServlet">
+			<form action="SerieAusSendePlanServlet" method="post">
 				<input type="submit" value="Aus dem Sendeplan nehmen">
 				<input type="hidden" name="serienName" value="${name}">
 			</form>
