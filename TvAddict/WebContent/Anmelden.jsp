@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="de.dbae.helper.Benutzer" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <!--@author: Hassib-->
 
@@ -31,6 +33,12 @@
 	</header>
 </br>
 	<div id="main">
+		<% 
+			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
+			session.setAttribute("isUserLogged", isUserLogged);
+		%>
+ 		<c:if test="${isUserLogged == false}">
+
 		<h1>Melden Sie sich an um den vollen Service zu erhalten</h1>
 		<form id="signup" action="AnmeldenServlet" method="post">
 			<h2>Anmelden</h2>
@@ -43,6 +51,16 @@
 					<a id="submit" href="registrieren.jsp">Registrieren?</a>
 					</div>	
 		</form>
+ 		</c:if>
+		<c:if test="${isUserLogged}">
+
+			<label style="color: white; text-align: center" ><b>Sie sind bereits als <%= session.getAttribute("loggedUser") %> eingeloggt.<br>
+			Möchten Sie sich abmelden?</b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+			
+		</c:if>
 		
 	
 	</div>

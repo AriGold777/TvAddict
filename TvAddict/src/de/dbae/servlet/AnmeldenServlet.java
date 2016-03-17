@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
  *@author: Hassib
  * 
  */
+import javax.servlet.http.HttpSession;
 
+import de.dbae.helper.Benutzer;
 import de.dbae.helper.SearchObject;
 
 /**
@@ -57,23 +59,23 @@ public class AnmeldenServlet extends HttpServlet {
 		SearchObject so = new SearchObject();
 		//Wenn abfrage = 1 dann gibt es die benutzer+passwort Kombination. Wenn 0, dann ist mindestens eins davon falsch (Gibt es nicht)
 		int abfrage = so.anmeldeAbfrage(benutzername, passwort);
+		if(abfrage == 1 || abfrage == 7) {
+			HttpSession userSession = request.getSession();
+			Benutzer benutzer = new Benutzer();
+			benutzer = new SearchObject().sessionBenutzer(benutzername, passwort);
+			userSession.setAttribute("loggedID", benutzer.getUserID());
+			userSession.setAttribute("isUserLogged", true);
+			userSession.setAttribute("loggedUser", benutzer.getBenutzername());
+			if(abfrage == 7){
+				userSession.setAttribute("isMitarbeiter", true);
+			}
+		}
 		
 		request.setAttribute("abfrage", abfrage);
-		request.setAttribute("benutzer", benutzername);
 		request.getRequestDispatcher("AnmeldeCheck.jsp").forward(request, response);
 		
 		
 		
-		
-		/**if(benutzername&&passwort.equals(//die Benutzer Ids der Datenbank)) {
-			Weiterleitung auf mein Profil }else {
-			
-			Meldung Passwort nicht Korrekt oder neu regestrieren und Weiterleitung auf seite Regestrieren
-			
-			
-		
-		}
-	*/
 	}
 
 }

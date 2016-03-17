@@ -290,7 +290,7 @@ public class SearchObject {
 	
 	public List<Benutzer> benutzerSearch() {
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
-		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer";
+		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort, mitarbeiter FROM benutzer";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet tempBenutzer = pstmt.executeQuery();
@@ -302,7 +302,9 @@ public class SearchObject {
 				benutzer.setNachname(tempBenutzer.getString(tempBenutzer.findColumn("n_name")));
 				benutzer.setEmail(tempBenutzer.getString(tempBenutzer.findColumn("email")));
 				benutzer.setVerschluesseltesPW(tempBenutzer.getString(tempBenutzer.findColumn("passwort")));
-				benutzerList.add(benutzer);
+				if (tempBenutzer.getString(tempBenutzer.findColumn("mitarbeiter")).equals("f")) {
+					benutzerList.add(benutzer);					
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -310,6 +312,33 @@ public class SearchObject {
 		}
 		
 		return benutzerList;
+	}
+	
+	public Benutzer sessionBenutzer(String benutzername, String passwort) {
+		Benutzer benutzer = new Benutzer();
+		//passwort = passwortverschlüsseln(passwort);
+		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer"
+				+ " WHERE user_name = ? AND passwort = ?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, benutzername);
+			pstmt.setString(2, passwort);
+			ResultSet tempBenutzer = pstmt.executeQuery();
+			while(tempBenutzer.next()) {
+				benutzer.setUserID(tempBenutzer.getString(tempBenutzer.findColumn("user_id")));
+				benutzer.setBenutzername(tempBenutzer.getString(tempBenutzer.findColumn("user_name")));
+				benutzer.setVorname(tempBenutzer.getString(tempBenutzer.findColumn("v_name")));
+				benutzer.setNachname(tempBenutzer.getString(tempBenutzer.findColumn("n_name")));
+				benutzer.setEmail(tempBenutzer.getString(tempBenutzer.findColumn("email")));
+				benutzer.setVerschluesseltesPW(tempBenutzer.getString(tempBenutzer.findColumn("passwort")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return benutzer;
 	}
 	
 	public List<Serie> serieSearch() {
@@ -336,6 +365,31 @@ public class SearchObject {
 		}
 		
 		return serieList;
+	}
+	
+	public int checkSerieBereitsImSendeplan(String serienName, String benutzerID) {
+		int serieInSendePlan = -1;
+		String sql = "SELECT CASE WHEN EXISTS (SELECT favorites.user_id, favorites.serie_id FROM favorites INNER JOIN serie"
+				+ " ON favorites.serie_id = serie.serie_id INNER JOIN benutzer ON favorites.user_id = benutzer.user_id"
+				+ " WHERE favorites.user_id = ? AND serie.serie_name = ?)"
+				+ " THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(benutzerID));
+			pstmt.setString(2, serienName);
+			result = pstmt.executeQuery();
+			
+			while(result.next()) {
+				serieInSendePlan = Integer.parseInt(result.getString(result.findColumn("case")));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return serieInSendePlan;
 	}
 	
 	//ResultSet konvertieren

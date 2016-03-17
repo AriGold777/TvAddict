@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  *@author: Hassib
  * 
  */
+import javax.servlet.http.HttpSession;
 
 import de.dbae.helper.Benutzer;
 import de.dbae.helper.DatabaseEdit;
@@ -79,6 +80,12 @@ public class RegestrierenServlet extends HttpServlet {
 			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
 		}
 		if(pwCheck) {
+			HttpSession userSession = request.getSession();
+			Benutzer benutzer = new Benutzer();
+			benutzer = new SearchObject().sessionBenutzer(benutzername, pw);
+			userSession.setAttribute("loggedID", benutzer.getUserID());
+			userSession.setAttribute("isUserLogged", true);
+			userSession.setAttribute("loggedUser", benutzer.getBenutzername());
 			request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
 		} else {
 			errorMessage = "Passwort stimmt nicht überein.";

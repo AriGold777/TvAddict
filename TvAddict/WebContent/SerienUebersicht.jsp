@@ -20,6 +20,13 @@
 			
 			<myTags:navigation activeSite="SerienUebersicht"></myTags:navigation> <br>
 			
+			<c:if test="${isUserLogged}">
+			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+			
+		</c:if>
 			<!-- Muss neu positioniert werden -->
 			<form action="SchnelleSuche" id="textfeld" method="get">
 				<input type="text" name="name" placeholder="Name der Serie"> 

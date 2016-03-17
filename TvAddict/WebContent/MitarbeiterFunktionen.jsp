@@ -9,10 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test="${isMitarbeiter == true}">
 	<div align="center">
-	<a href="http://localhost:8080/TvAddict/">Zurück auf die Hauptseite</a><br>
+	<a href="http://localhost:8080/TvAddict/">Zurück auf die Hauptseite</a><br><br>
+	<label style="text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
+	<form action="AbmeldenServlet" method="post">
+		<input type="submit" value="Abmelden">
+	</form>
 	
-	<h1>Benutzerübersicht</h1>
+	<h1>Benutzerübersicht</h1> <label style="size: 10px;">(Mitarbeiter ausgeschlossen)</label>
 	<table border=3>
 	<thead>
     <tr>
@@ -126,5 +131,12 @@
 			<input type="SUBMIT" name="anlegen" value="Anlegen!">
 		</form>
 	</div>
+	</c:if>
+	<c:if test="${isMitarbeiter == false}">
+		Zugriff verweigert!
+		<%
+			response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/");
+		%>
+	</c:if>
 </body>
 </html>

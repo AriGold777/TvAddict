@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--@author: Hassib-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,15 +9,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
-<script type="text/javascript">slideit();
-	<!-->
+<!-- <script type="text/javascript">slideit();
+
 	function slideit()
 	
-		//-->
+
 		
-</script>
+</script> -->
 </head>
 <body>
+
 
 <div id="seite">
 	<header>
@@ -27,8 +29,17 @@
 		
 		
 		<myTags:navigation activeSite="index"></myTags:navigation> <br>
+			<!-- Evtl in nav einfügen? -->
+		<c:if test="${isUserLogged}">
+			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+		</c:if>	
 			
 			<!-- Muss neu positioniert werden -->
+		
+			
 		<form action="SchnelleSuche" id="textfeld" method="get">
 			<input type="text" name="name" placeholder="Name der Serie"> 
 			<button type="submit"> Suchen</button>
@@ -38,21 +49,19 @@
 </br>
 	<div id="main">
 		<h1>Willkommen bei TvAddict</h1>
+		<c:if test="${isUserLogged == false}">
 		<a href="Anmelden.jsp" class="button1 big farbe">Anmelden</a>
-		</form>
+<!-- 		</form> -->
 		<a href="registrieren.jsp" class="button2 big farbe">Registrieren</a>
+		</c:if>
 		</br>
-		<p align="center">	Die Redakteure von TvAddict.de 
-			schreiben Reviews zu aktuellen Episoden und Serien. 
-			Dabei werden diese Kritiken auch gern von Lesern 
-			kommentiert, denn jeder hat zu seiner Lieblingsserie 
-			eine andere Meinung. Bislang wurden bereits 6.797 
-			(ja, wirklich schon so viel!) Reviews und 
-			Kritiken unserer Redakteure veröffentlicht.
-			Die Liste der aktuellen Kritiken zu Serien, 
-			Staffeln, Episoden oder Pilotfolgen findest Du immer hier.</br>
+		<p align="center">	Der Text war eine Lüge :D</br>
+			Bei Gelegenheit was anderes rein.
 			</br>
-			Bitte melde dich an um deine Lieblingsserien einzusehen oder regestriere dich jetzt kostenlos.</p>
+			<c:if test="${isUserLogged == false}">
+				<h2>Bitte melde dich an um deine Lieblingsserien einzusehen oder registriere dich jetzt kostenlos.</h2>		
+			</c:if>
+		</p>	
 		<div id="slider" align="center">
 			<img src="bb.png" name="slide" width="500" height="281">	
 			<script type="text/javascript">

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import de.dbae.helper.Bewertung;
 import de.dbae.helper.SearchObject;
@@ -41,8 +42,12 @@ public class DetailAnsichtServlet extends HttpServlet {
 		schauspielerList = searchobject.convert(rs);
 		
 		String sendetag = searchobject.sendetagSearch(name);
+		HttpSession session = request.getSession();
+		String benutzerID = (String)session.getAttribute("loggedID");
+		int serieBereitsHinzugefuegt = searchobject.checkSerieBereitsImSendeplan(name, benutzerID);
 		
 		Bewertung bewertung = searchobject.bewertungSearch(name);
+		request.setAttribute("addCheck", serieBereitsHinzugefuegt);
 		request.setAttribute("bewertung", bewertung);
 		request.setAttribute("name", name);
 		request.setAttribute("schauspielerList", schauspielerList);

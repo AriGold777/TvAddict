@@ -1,3 +1,4 @@
+<%@page import="de.dbae.helper.SearchObject"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -44,11 +45,19 @@
     <div id="sendetag">	
 		<b>Sendetag: </b> ${sendetag}
 	</div>
-<!-- Hier könnte man später Serien zum persönlichen Sendeplan hinzufügen -->
-	<form action="SendePlan">
-		<input type="submit" value="Zu meinem Sendeplan hinzufügen">
-	</form>
-	
+	<c:if test="${isUserLogged}">
+
+		<c:if test="${addCheck == 0}">
+			<form action="SerieZuSendePlanServlet">
+				<input type="submit" value="Zu meinem Sendeplan hinzufügen">
+			</form>
+		</c:if>
+		<c:if test="${addCheck == 1}">
+			<form action="SerieAusSendePlanServlet">
+				<input type="submit" value="Aus dem Sendeplan nehmen">
+			</form>
+		</c:if>
+	</c:if>
     </br>
 	<footer>
 		<ul id="navmenu">

@@ -20,6 +20,13 @@
 		</div>
 		
 		<myTags:navigation activeSite="meinProfil"></myTags:navigation> <br>
+		
+		<c:if test="${isUserLogged}">
+			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+		</c:if>
 			
 			<!-- Muss neu positioniert werden -->
 			<form action="SchnelleSuche" id="textfeld" method="get">
@@ -31,7 +38,7 @@
 </br>
 	<div id="main">
 		<h1>Mein Profil</h1>
-		<h2>Hallo </h2>
+		<h2>Hallo ${loggedUser} mit User ID = ${loggedID}</h2>
 				
 	</div> 
 	</br>
