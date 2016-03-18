@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
 <!--@author: Hassib-->
@@ -12,7 +15,15 @@
 
 </head>
 <body>
-
+	
+	<% 
+			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
+			session.setAttribute("isUserLogged", isUserLogged);
+	%>
+	<c:if test="${isUserLogged == false}">
+		<c:redirect url="http://localhost:8080/TvAddict/Anmelden.jsp"></c:redirect>
+	</c:if>
+	
 <div id="seite">
 	<header>
 		<div id="logo">
@@ -36,11 +47,16 @@
 				
 	</header>
 </br>
+	<c:if test="${isUserLogged == true}">
 	<div id="main">
 		<h1>Mein Profil</h1>
-		<h2>Hallo ${loggedUser} mit User ID = ${loggedID}</h2>
+		<h2>Hallo ${loggedUser},<br> hier ist ihr persönlicher Sendeplan für den aktuellen Monat</h2><br><br>
+		<div align="center" style="color: white">
+		${sendeplan} 
+		</div>
 				
-	</div> 
+	</div>
+	</c:if> 
 	</br>
 	<footer>
 		<ul id="navmenu">

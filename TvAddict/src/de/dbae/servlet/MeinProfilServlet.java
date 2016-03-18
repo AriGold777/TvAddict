@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import de.dbae.helper.SearchObject;
 
 /**
  * Servlet implementation class MeinProfilServlet
@@ -27,6 +30,11 @@ public class MeinProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String userID = (String) session.getAttribute("loggedID");
+		String sendeplan = new SearchObject().sendeplanSearch(Integer.parseInt(userID));
+		
+		request.setAttribute("sendeplan", sendeplan);
 		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
 	}
 

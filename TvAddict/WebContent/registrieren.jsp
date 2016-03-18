@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--@author: Hassib-->
@@ -30,6 +31,22 @@
 	</header>
 </br>
 	<div id="main">
+	<% 
+			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
+			session.setAttribute("isUserLogged", isUserLogged);
+	%>
+	
+	<c:if test="${isUserLogged}">
+
+			<label style="color: white; text-align: center" ><b>Sie sind bereits als <%= session.getAttribute("loggedUser") %> eingeloggt.<br>
+			Möchten Sie sich abmelden?</b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+			
+	</c:if>
+	
+	<c:if test="${isUserLogged == false}">
 		<h1>Jetzt kostenlos registrieren</h1>
 		<form id="signup" action="RegestrierenServlet" method="post" align="center">
 			<h2>Registrieren</h2>
@@ -47,6 +64,9 @@
 					
 				</div>
 		</form>
+		</c:if>
+		
+		
 	</div>
 	</br>
 	<footer>

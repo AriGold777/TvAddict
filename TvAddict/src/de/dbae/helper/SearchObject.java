@@ -13,6 +13,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import de.dbae.database.DatabaseConnection;
 
 /**
@@ -390,6 +392,39 @@ public class SearchObject {
 		
 		
 		return serieInSendePlan;
+	}
+	
+	public String sendeplanSearch(int userID) {
+		String sql = "SELECT favorites.serie_id, serie_name, beschreibung, fsk, genre1, genre2, genre3, sendetag"
+				+ " FROM favorites INNER JOIN serie ON favorites.serie_id = serie.serie_id"
+				+ " WHERE favorites.user_id = ?";
+		List<Serie> serieList = new ArrayList<Serie>();
+		String sendeplan = "";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, userID);
+			ResultSet tempSerie = pstmt.executeQuery();
+			while(tempSerie.next()) {
+				Serie serie = new Serie();
+				serie.setId(tempSerie.getString(tempSerie.findColumn("serie_id")));
+				serie.setName(tempSerie.getString(tempSerie.findColumn("serie_name")));
+				serie.setBeschreibung(tempSerie.getString(tempSerie.findColumn("beschreibung")));
+				serie.setFsk(tempSerie.getString(tempSerie.findColumn("fsk")));
+				serie.setSendetag(tempSerie.getString(tempSerie.findColumn("sendetag")));
+				serie.setGenre1(tempSerie.getString(tempSerie.findColumn("genre1")));
+				serie.setGenre2(tempSerie.getString(tempSerie.findColumn("genre2")));
+				serie.setGenre3(tempSerie.getString(tempSerie.findColumn("genre3")));
+				serieList.add(serie);
+			}
+			
+			Sendeplan createSendeplan = new Sendeplan(serieList);
+			sendeplan = createSendeplan.getSendeplan();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return sendeplan;
 	}
 	
 	public int getIdFromSerie(String name) {

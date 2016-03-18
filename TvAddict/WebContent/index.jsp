@@ -18,7 +18,10 @@
 </script> -->
 </head>
 <body>
-
+		<% 
+			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
+			session.setAttribute("isUserLogged", isUserLogged);
+		%>
 
 <div id="seite">
 	<header>
@@ -49,11 +52,11 @@
 </br>
 	<div id="main">
 		<h1>Willkommen bei TvAddict</h1>
-		<c:if test="${isUserLogged == false}">
+
 		<a href="Anmelden.jsp" class="button1 big farbe">Anmelden</a>
-<!-- 		</form> -->
+
 		<a href="registrieren.jsp" class="button2 big farbe">Registrieren</a>
-		</c:if>
+
 		</br>
 		<p align="center">	Der Text war eine Lüge :D</br>
 			Bei Gelegenheit was anderes rein.
