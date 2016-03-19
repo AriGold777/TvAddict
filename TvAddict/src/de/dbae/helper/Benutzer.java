@@ -5,9 +5,11 @@ package de.dbae.helper;
 
 /**
  * @author Marcel
- *
+ * 
+ * Diese Klasse dient dazu Benutzer anzulegen, meistens um die aus der Datenbank geholten Benutzerinformation zu speichern.
  */
 public class Benutzer {
+	//Variablen um die Informationen der "benutzer" Tabelle zu speichern.
 	private String userID;
 	private String benutzername;
 	private String vorname;
@@ -15,10 +17,11 @@ public class Benutzer {
 	private String email;
 	private String verschluesseltesPW;
 	
+	//Konstruktor
 	public Benutzer () {
 		
 	}
-
+	//Standard Getter und Setter
 	public String getUserID() {
 		return userID;
 	}

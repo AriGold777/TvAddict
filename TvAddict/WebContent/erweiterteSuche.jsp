@@ -1,3 +1,6 @@
+
+<!-- @author Marcel -->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -7,7 +10,7 @@
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Erweiterte Suche</title>
 </head>
 <body>
 	<div id="seite">
@@ -17,7 +20,7 @@
 		</div>
 		
 		<myTags:navigation activeSite="ErweiterteSuche"></myTags:navigation> <br>
-		
+		<!-- Wenn ein Benutzer eingemeldet ist wird ein Ausloggen Button angezeigt -->
 		<c:if test="${isUserLogged}">
 			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
 			<form action="AbmeldenServlet" method="post">
@@ -25,21 +28,22 @@
 			</form>
 		</c:if>
 			
-			<!-- Muss neu positioniert werden -->
-			<form action="SchnelleSuche" id="textfeld" method="get">
-				<input type="text" name="name" placeholder="Name der Serie"> 
-				<button type="submit"> Suchen</button>
-			</form>	
+		<form action="SchnelleSuche" id="textfeld" method="get">
+			<input type="text" name="name" placeholder="Name der Serie"> 
+			<button type="submit"> Suchen</button>
+		</form>	
 					
 	</header>
 	</br>
     <div id="main">
+    <!-- Formular um die erweiterte Suche zu starten -->
 	<form action="ErweiterteSuche" id="textfeldE" method="get">
 		<input type="text" name="name" placeholder="Name der Serie"><br>
 		<input type="text" name="fsk" placeholder="Max. Altersfreigabe"><br>
 		<b><label style="color: white">Genre:</label></b><br>
 		<select name="genre">
 			<option>Beliebig</option>
+			<!-- Für jedes Genre wird ein Selectoption angelegt -->
 			<c:forEach items="${genreList}" var="genres">
 				<c:forEach items="${genres}" var="genre">
 					<option><c:out value="${genre.value}" /></option>
@@ -48,7 +52,7 @@
   		</select>
 		<button type="submit" id="suche">Suchen</button>
 	</form>
-	
+	<!-- Nach Ausführen der Suche werden die Suchergebnisse direkt angezeigt -->
 	<b><h3 style="color: white">${genre}</h3></b>
 	<table border=3>
 	<thead>
@@ -66,6 +70,7 @@
           <td><c:out value="${column.value}" /></td>
         </c:forEach>
         <td>
+        <!-- Link zur Detailansicht für die aktuelle Serie in der Tabellenerstellung -->
         <a href="DetailAnsichtServlet?name=${columns.serie_name}">Serieninfo</a>
         </td>
       </tr>

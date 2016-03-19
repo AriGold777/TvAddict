@@ -12,7 +12,10 @@ import de.dbae.helper.DatabaseEdit;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class SerieZuSendePlanServlet
+ * @author Marcel
+ * 
+ * Servlet um eine Serie dem Sendeplan des Benutzers hinzuzufügen, wenn dieser den 
+ * "Serie zu Sendeplan hinzufügen" - Button in der Detailansicht einer Serie drückt.
  */
 @WebServlet("/SerieZuSendePlanServlet")
 public class SerieZuSendePlanServlet extends HttpServlet {
@@ -40,6 +43,7 @@ public class SerieZuSendePlanServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("loggedID");
 		int serieId = new SearchObject().getIdFromSerie(request.getParameter("serienName"));
+		//BenutzerID und SerieID werden der addSerieToSendeplan übergeben um die entsprechende Aktion in der Datenbank auszuführen.
 		new DatabaseEdit().addSerieToSendeplan(userId, serieId); 
 		
 		response.sendRedirect("http://localhost:8080/TvAddict/MeinProfilServlet");

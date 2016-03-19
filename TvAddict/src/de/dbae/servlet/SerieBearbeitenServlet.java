@@ -11,7 +11,9 @@ import de.dbae.helper.Benutzer;
 import de.dbae.helper.Serie;
 
 /**
- * Servlet implementation class SerieBearbeitenServlet
+ * @author Marcel
+ * 
+ * Servlet um die Serie als Objekt für die serieBearbeiten.jsp vorzubereiten.
  */
 @WebServlet("/SerieBearbeitenServlet")
 public class SerieBearbeitenServlet extends HttpServlet {
@@ -49,7 +51,7 @@ public class SerieBearbeitenServlet extends HttpServlet {
 		
 		
 		request.setAttribute("serie", serie);
-		request.getRequestDispatcher("SerieBearbeiten.jsp").forward(request, response);
+		request.getRequestDispatcher("serieBearbeiten.jsp").forward(request, response);
 	}
 
 }

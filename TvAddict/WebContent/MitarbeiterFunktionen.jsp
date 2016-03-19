@@ -1,3 +1,6 @@
+
+<!-- @author Marcel -->
+
 <%@page import="java.util.Enumeration"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -6,9 +9,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Mitarbeiter Funktionen</title>
 </head>
 <body>
+	<!-- Abfrage ob der Benutzer Mitarbeiter ist um die Funktionen zu nutzen -->
 	<c:if test="${isMitarbeiter == true}">
 	<div align="center">
 	<a href="http://localhost:8080/TvAddict/">Zurück auf die Hauptseite</a><br><br>
@@ -16,7 +20,7 @@
 	<form action="AbmeldenServlet" method="post">
 		<input type="submit" value="Abmelden">
 	</form>
-	
+	<!-- Benutzerübersichttabelle -->
 	<h1>Benutzerübersicht</h1> <label style="size: 10px;">(Mitarbeiter ausgeschlossen)</label>
 	<table border=3>
 	<thead>
@@ -32,6 +36,7 @@
     </tr>
     </thead>
     <tbody>
+    <!-- Jeder Benutzer wird ausgegeben -->
 	<c:forEach items="${BenutzerList}" var="benutzer">
 		<tr>
 		<td><c:out value="${benutzer.userID}" /></td>
@@ -41,6 +46,7 @@
 		<td><c:out value="${benutzer.email}" /></td>
 		<td><c:out value="${benutzer.verschluesseltesPW}" /></td>
 		<td>
+		<!-- Parameter werden als hidden für das Servlet zur Verfügung gestellt -->
 		<form action="BenutzerBearbeitenServlet" method="post">
 			<input type="SUBMIT" name="bearbeiten" value="Bearbeiten">
 			<input type="hidden" name="userID" value="${benutzer.userID}">
@@ -62,6 +68,7 @@
 	</tbody>
 	</table>
 	<br><br>
+	<!-- Serienübersicht nach dem gleichen Prinzip wie bei der Benutzerübersicht -->
 	<h1>Serienübersicht</h1><br>
 	<table border=3>
 	<thead>
@@ -112,6 +119,7 @@
 	</c:forEach>
 	</tbody>
 	</table>
+	<!-- Neue Serien können angelegt werden indem die Parameter an das SerieAnlegenServlet gesendet werden -->
 	<h1>Neue Serie anlegen</h1><br>
 		<form action="SerieAnlegenServlet" method="post">
 			<Label>Name: </Label>
@@ -132,6 +140,7 @@
 		</form>
 	</div>
 	</c:if>
+	<!-- Wenn ein Benutzer versucht auf die Seite zuzugreifen, und kein Mitarbeiter ist wird der Zugriff verweigert und er wird weitergeleitet -->
 	<c:if test="${isMitarbeiter == false}">
 		Zugriff verweigert!
 		<%

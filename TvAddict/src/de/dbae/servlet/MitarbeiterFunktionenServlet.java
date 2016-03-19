@@ -45,7 +45,7 @@ public class MitarbeiterFunktionenServlet extends HttpServlet {
 		request.setAttribute("BenutzerList", benutzerList);
 		request.setAttribute("SerieList", serieList);
 		
-		request.getRequestDispatcher("MitarbeiterFunktionen.jsp").forward(request, response);
+		request.getRequestDispatcher("mitarbeiterFunktionen.jsp").forward(request, response);
 	}
 
 	/**

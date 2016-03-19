@@ -5,7 +5,8 @@ package de.dbae.helper;
 
 /**
  * @author Marcel
- *
+ * 
+ * Klasse um Serien aus der Datenbank als Objekt anzulegen.
  */
 public class Serie {
 	private String id;
@@ -16,11 +17,11 @@ public class Serie {
 	private String genre1;
 	private String genre2;
 	private String genre3;
-	
+	//Konstruktor
 	public Serie() {
 		
 	}
-
+	//Getter und Setter
 	public String getId() {
 		return id;
 	}

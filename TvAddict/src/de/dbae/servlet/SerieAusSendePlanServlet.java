@@ -12,7 +12,9 @@ import de.dbae.helper.DatabaseEdit;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class SerieAusSendePlanServlet
+ * @author Marcel
+ * 
+ * Servlet, dass beim klicken des "Serie aus Sendeplan" Buttons die Serie aus dem Sendeplan des Benutzers nimmt.
  */
 @WebServlet("/SerieAusSendePlanServlet")
 public class SerieAusSendePlanServlet extends HttpServlet {
@@ -39,6 +41,7 @@ public class SerieAusSendePlanServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		//BenutzerID und SerienID werden ermittelt um damit anschließend die removeSerieFromSendeplan auszuführen.
 		String userId = (String)session.getAttribute("loggedID");
 		int serieId = new SearchObject().getIdFromSerie(request.getParameter("serienName"));
 		new DatabaseEdit().removeSerieFromSendeplan(userId, serieId); 

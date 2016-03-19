@@ -1,3 +1,7 @@
+ 
+ <!-- @author Marcel -->
+ 
+ 
 <%@page import="de.dbae.helper.SearchObject"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
@@ -9,7 +13,7 @@
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Detailansicht</title>
 </head>
 <body>
 <div id="seite">
@@ -20,6 +24,13 @@
 		<nav id="navig">
 			
 			<myTags:navigation activeSite="index"></myTags:navigation>
+			<!-- Wenn ein Benutzer eingemeldet ist wird ein Ausloggen Button angezeigt -->
+			<c:if test="${isUserLogged}">
+			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
+			<form action="AbmeldenServlet" method="post">
+			<input type="submit" value="Abmelden">
+			</form>
+			</c:if>
 					
 				<form action="SchnelleSuche" id="textfeld" method="get">
 					<input type="text" name="name" placeholder="Name der Serie"> 
@@ -31,9 +42,11 @@
 	<div id="main">
 	<h1>${name}</h1>
 	<br>
+	<!-- Bewertung der Serie wird von einer 1-10 Skala angezeigt -->
     <div id="bewertung">
     	<b>Bewertung: ${bewertung.bewertungString}/10 (${bewertung.gesamtBewertungen} Votes)</b>
     </div>
+    <!-- Schauspielerliste wird ausgegeben -->
 	<div id="schauspieler">
 		<b>Schauspieler:</b><br>
 		<c:forEach items="${schauspielerList}" var="columns">
@@ -45,8 +58,10 @@
     <div id="sendetag">	
 		<b>Sendetag: </b> ${sendetag}
 	</div>
+	<!-- Wenn ein Benutzer angemeldet ist werden die Funktionen für Serie zu Sendeplan hinzufügen/entfernen freigeschaltet -->
 	<c:if test="${isUserLogged}">
-
+		<!-- Je nach dem was die Abfrage an die Datenbank ergeben hat wird für 0 (Serie war nicht im Sendeplan) oder 1 (Serie ist im Sendeplan)
+			 die entsprechenden Funktion angezeigt -->
 		<c:if test="${addCheck == 0}">
 			<form action="SerieZuSendePlanServlet" method="post">
 				<input type="submit" value="Zu meinem Sendeplan hinzufügen">

@@ -1,3 +1,6 @@
+
+ <!-- @author Marcel -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
@@ -15,11 +18,12 @@
 
 </head>
 <body>
-	
 	<% 
+			//Abfrage, ob ein Benutzer angemeldet ist.
 			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
 			session.setAttribute("isUserLogged", isUserLogged);
 	%>
+	<!-- Wenn kein Benutzer angemeldet ist wird er auf die Anmeldeseite verwiesen -->
 	<c:if test="${isUserLogged == false}">
 		<c:redirect url="http://localhost:8080/TvAddict/Anmelden.jsp"></c:redirect>
 	</c:if>
@@ -31,7 +35,7 @@
 		</div>
 		
 		<myTags:navigation activeSite="meinProfil"></myTags:navigation> <br>
-		
+		<!-- Wenn ein Benutzer eingemeldet ist wird ein Ausloggen Button angezeigt -->
 		<c:if test="${isUserLogged}">
 			<label style="color: white; text-align: center" ><b>Angemeldet als <%= session.getAttribute("loggedUser") %>.<br></b></label>
 			<form action="AbmeldenServlet" method="post">
@@ -39,7 +43,6 @@
 			</form>
 		</c:if>
 			
-			<!-- Muss neu positioniert werden -->
 			<form action="SchnelleSuche" id="textfeld" method="get">
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
@@ -47,6 +50,7 @@
 				
 	</header>
 </br>
+	<!-- Wenn ein Benutzer eingeloggt ist wird er begrüßt und der persönliche Sendeplan wird angezeigt -->
 	<c:if test="${isUserLogged == true}">
 	<div id="main">
 		<h1>Mein Profil</h1>

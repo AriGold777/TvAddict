@@ -9,7 +9,8 @@ import java.text.DecimalFormat;
 
 /**
  * @author Marcel
- *
+ * 
+ * In dieser Klasse werden die Bewertungen einer Serie gespeichert und berechnet.
  */
 public class Bewertung {
 	private double bewertung;
@@ -26,9 +27,14 @@ public class Bewertung {
 	private int anzahl9;
 	private int anzahl10;
 	
+	//Konstruktor
 	public Bewertung(){
 		
 	}
+	/**
+	 * Die Methode berechnet die Gesamtanzahl der abgegebenen Bewertungen und berechnet dann den Durchschnitt und formatiert die Ausgabe
+	 * 
+	 */
 	public void berechnung() {
 		gesamtBewertungen = anzahl1+anzahl2+anzahl3+anzahl4+anzahl5+anzahl6+anzahl7+anzahl8+anzahl9+anzahl10;
 		bewertung = ((anzahl1*1.0)+(anzahl2*2.0)+(anzahl3*3.0)+(anzahl4*4.0)+(anzahl5*5.0)+(anzahl6*6.0)+anzahl7*(7.0)
@@ -39,7 +45,7 @@ public class Bewertung {
 		bewertungString = df.format(bewertung).replace(",", ".");
 	}
 	
-	
+	//Getter und Setter
 	
 	public double getBewertung() {
 		return bewertung;

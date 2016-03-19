@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class ErweiterteSuche
+ * @author Marcel
+ * 
+ * Servlet um das erweiterteSuche.jsp mit den nötigen Informationen zu füllen.
  */
 @WebServlet("/ErweiterteSuche")
 public class ErweiterteSuche extends HttpServlet {
@@ -37,7 +39,7 @@ public class ErweiterteSuche extends HttpServlet {
 		//Genre-Abfragen
 		String genre = request.getParameter("genre");
 		String paraGenre = "";
-		
+		//Je nach dem ob ein Genre bei der Suche ausgewählt wurde wird ein Text ausgegeben.
 		boolean genreNull = false;
 		if (!(genre != null)){
 			genreNull = true;
@@ -56,19 +58,18 @@ public class ErweiterteSuche extends HttpServlet {
 		SearchObject searchobject = new SearchObject();
 		
 		int genreAnzahl = searchobject.genreCount();
-		
+		//Alle Genres werden ermittelt um sie im Menü anzuzeigen.
 		ResultSet genreResultSet = searchobject.allGenres();
 		List<Map<String, Object>> genreList = new ArrayList<Map<String, Object>>();
 		genreList = searchobject.convert(genreResultSet);
 		
-		
+		//Nullpointer anfangen und dann die erweiterte Suche ausführen.
 		if ((name != null) && (fsk != null) && (!(genreNull))) {
 			ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
 			List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 			rows = searchobject.convert(rs);
 			request.setAttribute("result", rows);
 		}
-		
 		
 		request.setAttribute("genreList", genreList);
 		request.setAttribute("genreCount", genreAnzahl);

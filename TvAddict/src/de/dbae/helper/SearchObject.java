@@ -19,7 +19,9 @@ import de.dbae.database.DatabaseConnection;
 
 /**
  * @author Marcel
- *
+ * 
+ * Diese Klasse dient dazu Informationen mittels SQL-Befehlen aus der Datenbank zu holen.
+ * Keine dieser Methoden verändert Informationen in der Datenbank.
  */
 public class SearchObject {
 	private Connection con;
@@ -32,22 +34,26 @@ public class SearchObject {
 		//Verbindung holen aus Klasse DatabaseConnection
 		this.con = new DatabaseConnection().getConnection();
 	}
-	
+	/**
+	 * Methode, um eine einfache schnelle Suche der Serien in ein ResultSet zu speichern
+	 *  
+	 */
 	public ResultSet simpleSearch(String name) {
-		
 		//Basic SQL Statement
-		String sql = "SELECT * FROM serie WHERE TRUE";
-		
+		String sql = "SELECT serie_name, beschreibung, fsk FROM serie WHERE TRUE";
 		//Leerer where-String
 		String where ="";
+		//Boolean der je nach dem ob der Benutzer einen Begriff eingegeben hat auf true oder false gesetzt wird.
 		boolean nameIsSet = true;
-		
+		//Abfrage um zu überprüfen ob der Benutzer nach einem Begriff gesucht hat
 		if (!name.equals("") && name != null) {
 			where += " AND serie.serie_name ilike ?";
+			
 		} else {
+			//Wenn nichts eingegeben wurde, wird der boolean auf false gesetzt um die "?" Platzhalter nur zu setzen, wenn der
+			//"where" String mit einer Bedingung erweitert wurde-
 			nameIsSet = false;
 		}
-		
 		
 		//SQL Statement & Where Statement verbinden
 		String completeSQL = sql + where;
@@ -55,10 +61,11 @@ public class SearchObject {
 		//Prepared Statement in ResultSet
 		try {
 			PreparedStatement pstmt = con.prepareStatement(completeSQL);
+			//Platzhalter nur setzen, wenn etwas eingegeben wurde, sonst gibt es einen Fehler, da kein Parameter gesetzt werden müsste.
 			if(nameIsSet){
 				pstmt.setString(1, "%" + name + "%");				
 			}
-			
+			//Statement wird ausgeführt.
 			result = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -66,21 +73,28 @@ public class SearchObject {
 		}
 		return result;
 	}
-	
+	/**
+	 * Methode für die erweiterte Suche.
+	 * Es wird jeweils geprüft ob der Benutzer die Suche nach Genre, Altersfreigabe und/oder Name ausführt.
+	 */
 	public ResultSet advancedSearch(String name, String genre, String fsk) {
 		//Basic SQL Statement
 		String sql = "SELECT serie_name, beschreibung, fsk FROM serie WHERE TRUE";
 				
 		//Leerer where-String
 		String where ="";
+		//Booleans um zu überprüfen welche Parameter werden müssen.
 		boolean nameIsSet = true;
 		boolean fskIsSet = true;
 		boolean genreIsSet = true;
+		//Anzahl der gesetzten Parameter
 		int paraAnzahl = 0;
+		//Variablen, um festzuhalten an welcher Stelle (index) die Parameter gesetzt werden müssen falls der Benutzer eine Suchoption auslässt.
 		int nameParaCount = 0;
 		int fskParaCount = 0;
 		int genreParaCount = 0;
 		
+		//Es wird jeweils überprüft ob der Benutzer die Suchoption in Anspruch nimmt und wenn er dies tut werden die Parameter Variablen entsprechend gesetzt.
 		if (!name.equals("") && name != null) {
 			where += " AND serie.serie_name ilike ?";
 			paraAnzahl++;
@@ -109,6 +123,7 @@ public class SearchObject {
 		//Prepared Statement in ResultSet
 		try {
 			PreparedStatement pstmt = con.prepareStatement(completeSQL);
+			//Entsprechend der vorher ermittelten booleans wird hier entschieden welche Platzhalter in welcher Reihenfolge ersetzt werden müssen.
 			if (nameIsSet) {
 				pstmt.setString(nameParaCount, "%" + name + "%");				
 			}
@@ -128,6 +143,10 @@ public class SearchObject {
 		}
 		return result;
 	}
+	/**
+	 * Methode um die Anzahl der verschiedenen Genres der Serien auszugeben.
+	 * 
+	 */
 	
 	public int genreCount() {
 		String countSql = "SELECT COUNT (DISTINCT genre1)"
@@ -153,6 +172,10 @@ public class SearchObject {
 		return count;
 	}
 	
+	/**
+	 * Alle Genres, die die verschiedenen Serien haben werden rausgesucht und in einem ResultSet gespeichert.
+	 * 
+	 */
 	public ResultSet allGenres() {
 		String sql = "SELECT genre1 FROM serie WHERE genre1<>''"
 				+ " UNION"
@@ -170,7 +193,10 @@ public class SearchObject {
 		}
 		return result;
 	}
-	
+	/**
+	 * Alle Serien in der Datenbank werden zur Übersicht in ein ResultSet gespeichert.
+	 * 
+	 */
 	public ResultSet uebersichtSearch() {
 		String sql = "SELECT serie_name, beschreibung, fsk FROM serie";
 		try {
@@ -183,7 +209,10 @@ public class SearchObject {
 		return result;
 	}
 	
-	
+	/**
+	 * Alle Schauspieler einer bestimmten Serie werden gesucht und in einem ResultSet gespeichert.
+	 * 
+	 */
 	
 	public ResultSet detailSchauspielerSearch(String name) {
 		String sql ="SELECT schauspieler.name FROM schauspieler"
@@ -200,7 +229,10 @@ public class SearchObject {
 		return result;
 		
 	}
-	
+	/**
+	 * Suche um den Sendetag einer bestimmten Serie als String zurückzugeben.
+	 * 
+	 */
 
 	public String sendetagSearch(String name) {
 		String sql ="SELECT sendetag FROM serie WHERE serie.serie_name = ?";
@@ -210,6 +242,7 @@ public class SearchObject {
 			pstmt.setString(1, name);
 			
 			result = pstmt.executeQuery();
+			//Einträge des ResultSets werden durchsucht und der Sendetag wird aus der Spalte "sendetag" bezogen.
 			while(result.next()) {
 				sendeTag = result.getString(result.findColumn("sendetag"));	
 			}
@@ -219,7 +252,10 @@ public class SearchObject {
 		}
 		return sendeTag;
 	}
-	
+	/**
+	 * Bewertungen einer Serie werden ausgegeben und in einem Bewertungsobjekt gespeichert.
+	 * 
+	 */
 	public Bewertung bewertungSearch(String name) {
 		Bewertung serieBewertung = new Bewertung();
 		String sql = "SELECT serie.serie_name, bewertungen.anzahl_1, bewertungen.anzahl_2,"
@@ -234,6 +270,7 @@ public class SearchObject {
 			pstmt.setString(1, name);
 			
 			ResultSet tempBewertungen = pstmt.executeQuery();
+			//Alle nötigen Variablen der Bewertung werden gesetzt und anschließen wird die Bewertung berechnet.
 			while(tempBewertungen.next()) {
 				serieBewertung.setAnzahl1(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_1"))));
 				serieBewertung.setAnzahl2(Integer.parseInt(tempBewertungen.getString(tempBewertungen.findColumn("anzahl_2"))));
@@ -255,12 +292,19 @@ public class SearchObject {
 		
 		return serieBewertung;
 	}
+	/**
+	 * Methode um zu überprüfen, ob die eingegebene Benutzername/Passwort -Kombination in der Datenbank gibt.
+	 * 
+	 */
 	
 	public int anmeldeAbfrage(String benutzername, String passwort) {
 		String sql = "SELECT CASE WHEN EXISTS (SELECT * FROM benutzer"
 				+ " WHERE user_name = ? AND passwort = ?)"
 				+ " THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END";
+		// abfrage wird mit -1 initialisiert, da die möglichen Werte der Abfrage 0 oder 1 sein können.
 		int abfrage = -1;
+		// Es wird überprüft, ob es sich bei der Anmeldung um einen Mitarbeiter handelt. Wenn dies der Fall ist, wird die abfrage auf 7 gesetzt
+		// um so von einem normalen Benutzer (abfrage == 1) zu unterscheiden.
 		String mitarbeiterAbfrage = "SELECT mitarbeiter FROM benutzer WHERE user_name = ? AND passwort = ?";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -273,8 +317,8 @@ public class SearchObject {
 				PreparedStatement mitarbeiterPstmt = con.prepareStatement(mitarbeiterAbfrage);
 				mitarbeiterPstmt.setString(1, benutzername);
 				mitarbeiterPstmt.setString(2, passwort);
-				
 				ResultSet tempRs = mitarbeiterPstmt.executeQuery();
+				// Wenn der Benutzer Mitarbeiter ist, ist in der "mitarbeiter" -Spalte true oder "t" eingetragen.
 				while(tempRs.next()){
 					if(tempRs.getString(tempRs.findColumn("mitarbeiter")).equals("t")) {
 						abfrage = 7;
@@ -289,7 +333,10 @@ public class SearchObject {
 		return abfrage;
 		
 	}
-	
+	/**
+	 * Alle Benutzer werden in einer Benutzerliste gespeichert und übergeben.
+	 * 
+	 */
 	public List<Benutzer> benutzerSearch() {
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
 		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort, mitarbeiter FROM benutzer";
@@ -315,10 +362,12 @@ public class SearchObject {
 		
 		return benutzerList;
 	}
-	
+	/**
+	 * Gibt den Benutzer der aktuellen Session in einem Benutzerobjekt wieder.
+	 * 
+	 */
 	public Benutzer sessionBenutzer(String benutzername, String passwort) {
 		Benutzer benutzer = new Benutzer();
-		//passwort = passwortverschlüsseln(passwort);
 		String sql = "SELECT user_id, user_name, v_name, n_name, email, passwort FROM benutzer"
 				+ " WHERE user_name = ? AND passwort = ?";
 		try {
@@ -342,7 +391,10 @@ public class SearchObject {
 
 		return benutzer;
 	}
-	
+	/**
+	 * Alle Serien werden in einer Serienliste gespeichert und übergeben.
+	 * 
+	 */
 	public List<Serie> serieSearch() {
 		List<Serie> serieList = new ArrayList<Serie>();
 		String sql = "SELECT * FROM serie";
@@ -368,7 +420,10 @@ public class SearchObject {
 		
 		return serieList;
 	}
-	
+	/**
+	 * Es wird überprüft, ob die Serie bereits im Sendeplan eines Benutzers ist und ensprechend wird "serieInSendePlan" auf 0 für false und 1 für true gesetzt.
+	 * 
+	 */
 	public int checkSerieBereitsImSendeplan(String serienName, String benutzerID) {
 		int serieInSendePlan = -1;
 		String sql = "SELECT CASE WHEN EXISTS (SELECT favorites.user_id, favorites.serie_id FROM favorites INNER JOIN serie"
@@ -384,16 +439,17 @@ public class SearchObject {
 			while(result.next()) {
 				serieInSendePlan = Integer.parseInt(result.getString(result.findColumn("case")));
 			}
-			
+	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		return serieInSendePlan;
 	}
-	
+	/**
+	 * Es werden alle Serien des Sendeplans eines Benutzers in einer Liste gespeichert, und mit Hilfe der Sendeplan Klasse ein Sendeplan in einem String gespeichert,
+	 * der für html geschrieben ist.
+	 */
 	public String sendeplanSearch(int userID) {
 		String sql = "SELECT favorites.serie_id, serie_name, beschreibung, fsk, genre1, genre2, genre3, sendetag"
 				+ " FROM favorites INNER JOIN serie ON favorites.serie_id = serie.serie_id"
@@ -416,7 +472,7 @@ public class SearchObject {
 				serie.setGenre3(tempSerie.getString(tempSerie.findColumn("genre3")));
 				serieList.add(serie);
 			}
-			
+			//Sendeplan wird in der Sendeplan Klasse erstellt.
 			Sendeplan createSendeplan = new Sendeplan(serieList);
 			sendeplan = createSendeplan.getSendeplan();
 		} catch (SQLException e) {
@@ -426,7 +482,10 @@ public class SearchObject {
 		
 		return sendeplan;
 	}
-	
+	/**
+	 * Methode um die ID einer Serie zu bekommen, wenn nur der Name gegeben ist.
+	 * 
+	 */
 	public int getIdFromSerie(String name) {
 		int serieId = 0;
 		String sql = "SELECT serie_id FROM serie WHERE serie_name = ?";
@@ -445,7 +504,10 @@ public class SearchObject {
 		return serieId;
 	}
 	
-	//ResultSet konvertieren
+	/**
+	 * Methode um ResultSets zu konvertieren um sie leichter besser in JSPs ausgeben zu können.
+	 * 
+	 */
 	public List<Map<String, Object>> convert(ResultSet rs) {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		ResultSetMetaData rsmd;

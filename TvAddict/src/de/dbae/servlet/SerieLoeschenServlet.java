@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.DatabaseEdit;
 
 /**
- * Servlet implementation class SerieLoeschenServlet
+ * @author Marcel
+ * 
+ * Servlet um einem Mitarbeiter das löschen einer Serie zu ermöglichen.
  */
 @WebServlet("/SerieLoeschenServlet")
 public class SerieLoeschenServlet extends HttpServlet {
@@ -36,6 +38,7 @@ public class SerieLoeschenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//SerieID wird der deleteSerie Methode übergeben um sie zu löschen.
 		String id = request.getParameter("id");
 		new DatabaseEdit().deleteSerie(id);
 		

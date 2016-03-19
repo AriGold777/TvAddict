@@ -22,13 +22,17 @@ import sun.misc.BASE64Encoder;
 
 /**
  * @author Marcel
- * Klasse um Passwörter zu verschlüsseln. Code von: "http://blog.axxg.de/java-aes-verschluesselung-mit-beispiel/"
+ * 
+ * Klasse um Passwörter zu verschlüsseln. Kein eigener Algorithmus, da dies nicht Hauptaugenmerk sein sollte.
+ * Code von: "http://blog.axxg.de/java-aes-verschluesselung-mit-beispiel/"
  */
 public class Verschluesseln {
 	
 	public Verschluesseln () {		
 	}
-	
+	/**
+	 * Passwörter werden mit dieser Methode verschlüsseltlt um keine Klartext Passwörter in der Datenbank zu speichern.
+	 */
 	public String pwVerschluesseln(String pw) {
 		
 		String verschluesseltesPw = "";
@@ -45,7 +49,7 @@ public class Verschluesseln {
 			// der fertige Schlüssel
 			SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
 			
-			//der zu verschlüsselnde Text
+			//Passwort wird als zu verschlüsselnder Text gesetzt.
 			String text = pw;
 			// Verschluesseln
 		    Cipher cipher = Cipher.getInstance("AES");
@@ -56,7 +60,6 @@ public class Verschluesseln {
 		    BASE64Encoder myEncoder = new BASE64Encoder();
 		    verschluesseltesPw = myEncoder.encode(encrypted);
 				       	
-					
 		} catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
