@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import de.dbae.helper.Benutzer;
 import de.dbae.helper.SearchObject;
+import de.dbae.helper.Verschluesseln;
 
 /**
  * Servlet implementation class AnmeldenServlet
@@ -57,7 +58,8 @@ public class AnmeldenServlet extends HttpServlet {
 		String passwort = request.getParameter("passwort");
 		
 		SearchObject so = new SearchObject();
-		//Wenn abfrage = 1 dann gibt es die benutzer+passwort Kombination. Wenn 0, dann ist mindestens eins davon falsch (Gibt es nicht)
+		passwort = new Verschluesseln().pwVerschluesseln(passwort);
+		//Wenn abfrage = 1 dann gibt es die benutzer+passwort Kombination. Wenn 0, dann ist mindestens eins davon falsch (Gibt es nicht), wenn 7 dann admin=true
 		int abfrage = so.anmeldeAbfrage(benutzername, passwort);
 		if(abfrage == 1 || abfrage == 7) {
 			HttpSession userSession = request.getSession();

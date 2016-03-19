@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.dbae.helper.DatabaseEdit;
 import de.dbae.helper.SearchObject;
+import de.dbae.helper.Verschluesseln;
 
 /**
  * Servlet implementation class BenutzerAktualisierenServlet
@@ -45,6 +46,7 @@ public class BenutzerAktualisierenServlet extends HttpServlet {
 		String nachname = request.getParameter("neuerNachname");
 		String email = request.getParameter("neueEmail");
 		String passwort = request.getParameter("neuesVerschluesseltesPW");
+		passwort = new Verschluesseln().pwVerschluesseln(passwort);
 		
 		new DatabaseEdit().editBenutzer(aktuelleUserID, userID, benutzername, vorname, nachname, email, passwort);
 		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import de.dbae.helper.Benutzer;
 import de.dbae.helper.DatabaseEdit;
 import de.dbae.helper.SearchObject;
+import de.dbae.helper.Verschluesseln;
 
 /**
  * Servlet implementation class RegestrierenServlet
@@ -71,6 +72,7 @@ public class RegestrierenServlet extends HttpServlet {
 			pwCheck = true;
 		}
 		if(pwCheck && (!usernameAlreadyExists)){
+			pw = new Verschluesseln().pwVerschluesseln(pw);
 			new DatabaseEdit().addBenutzer(benutzername, vorname, nachname, email, pw);			
 		}
 		

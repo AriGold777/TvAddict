@@ -1,0 +1,4 @@
+Diese Textdatei ist nur für die Projektbewertung gedacht. Da Passwörter verschlüsselt sind und die Prüfer sich anmelden müssen kommen die Benutzerdaten in die Anleitung.
+
+Benutzername: testadmin
+Passwort: testadminpw123
