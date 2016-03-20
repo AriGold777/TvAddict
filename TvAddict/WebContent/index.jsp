@@ -54,7 +54,7 @@
 		
 		
 		<!-- Button mit Links zur anmelden.jsp und registrieren.jsp -->
-		<a href="Anmelden.jsp" class="button1 big farbe">Anmelden</a>
+		<a href="anmelden.jsp" class="button1 big farbe">Anmelden</a>
 
 		<a href="registrieren.jsp" class="button2 big farbe">Registrieren</a>
 

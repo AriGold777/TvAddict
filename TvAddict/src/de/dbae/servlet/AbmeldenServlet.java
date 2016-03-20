@@ -47,7 +47,7 @@ public class AbmeldenServlet extends HttpServlet {
 		session.setAttribute("isUserLogged", false);
 		session.setAttribute("isMitarbeiter", false);
 		
-		request.getRequestDispatcher("Anmelden.jsp").forward(request, response);
+		request.getRequestDispatcher("anmelden.jsp").forward(request, response);
 	}
 	
 

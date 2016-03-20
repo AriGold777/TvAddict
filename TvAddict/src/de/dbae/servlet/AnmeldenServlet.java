@@ -79,7 +79,7 @@ public class AnmeldenServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("abfrage", abfrage);
-		request.getRequestDispatcher("AnmeldeCheck.jsp").forward(request, response);
+		request.getRequestDispatcher("anmeldeCheck.jsp").forward(request, response);
 		
 		
 		

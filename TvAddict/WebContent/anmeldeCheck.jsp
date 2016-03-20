@@ -35,7 +35,7 @@
 			Benutzerdaten nicht korrekt!<br>
 			Weiterleitung...
 			<%
-				response.setHeader("Refresh", "2; URL=http://localhost:8080/TvAddict/Anmelden.jsp");
+				response.setHeader("Refresh", "2; URL=http://localhost:8080/TvAddict/anmelden.jsp");
 			%>
 		</c:otherwise>
 	</c:choose>

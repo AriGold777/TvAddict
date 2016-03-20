@@ -20,8 +20,8 @@
 		<nav id="navig">
 			<ul>
 				<li><a href="index.jsp">Startseite</a></li>
-				<li><a href="#">Serien</a></li>
-				<li><a href="Anmelden.jsp">Mein Profil</a></li>
+				<li><a href="SerienUebersicht.jsp">Serien</a></li>
+				<li><a href="anmelden.jsp">Mein Profil</a></li>
 				<li><a href="kontakt.jsp">Kontakt</a></li>
 			</ul>
 						

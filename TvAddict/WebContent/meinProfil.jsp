@@ -27,7 +27,7 @@
 	%>
 	<!-- Wenn kein Benutzer angemeldet ist wird er auf die Anmeldeseite verwiesen -->
 	<c:if test="${isUserLogged == false}">
-		<c:redirect url="http://localhost:8080/TvAddict/Anmelden.jsp"></c:redirect>
+		<c:redirect url="http://localhost:8080/TvAddict/anmelden.jsp"></c:redirect>
 	</c:if>
 	
 <div id="seite">
