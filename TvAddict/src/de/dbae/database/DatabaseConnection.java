@@ -8,16 +8,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author Marcel
+ * @author Daniel
  * 
  */
 public class DatabaseConnection {
 	protected static Connection instance;
-	private static final String DB_SERVER = "localhost:5432";
-	private static final String DB_NAME = "TvAddict";
-	private static final String DB_USER = "postgres";
-	private static final String DB_PASSWORD = "1234";
-	private static final String DB_DRIVER = "org.postgresql.Driver";
+	private static final String DB_SERVER = "localhost:5432";				// DB Server Adresse
+	private static final String DB_NAME = "TvAddict";						// DB Name
+	private static final String DB_USER = "postgres";						// DB User
+	private static final String DB_PASSWORD = "1234";						// DB Passwort
+	private static final String DB_DRIVER = "org.postgresql.Driver";		// DB Treiber
 	private static final String DB_URL = "jdbc:postgresql://" + DB_SERVER + "/" + DB_NAME;
 
 

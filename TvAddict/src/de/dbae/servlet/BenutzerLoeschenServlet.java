@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.DatabaseEdit;
 
 /**
- * Servlet implementation class BenutzerLoeschenServlet
+ * @author Daniel
+ * 
+ * Servlet um einem Mitarbeiter das löschen eines Benutzers zu ermöglichen
  */
 @WebServlet("/BenutzerLoeschenServlet")
 public class BenutzerLoeschenServlet extends HttpServlet {
@@ -36,6 +38,8 @@ public class BenutzerLoeschenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// BenutzerID wird der deleteBenutzer-Methode übergeben
 		String userID = request.getParameter("userID");
 		new DatabaseEdit().deleteBenutzer(userID);
 		

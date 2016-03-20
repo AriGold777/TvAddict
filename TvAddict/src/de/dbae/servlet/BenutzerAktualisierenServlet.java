@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.dbae.helper.DatabaseEdit;
-import de.dbae.helper.SearchObject;
 import de.dbae.helper.Verschluesseln;
 
 /**
- * Servlet implementation class BenutzerAktualisierenServlet
+ * @author Daniel
+ * 
+ * Servlet zum aktualisieren der Benutzer.
  */
 @WebServlet("/BenutzerAktualisierenServlet")
 public class BenutzerAktualisierenServlet extends HttpServlet {
@@ -38,8 +39,11 @@ public class BenutzerAktualisierenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Get Parameter "aktuelleUserID"
 		String aktuelleUserID = request.getParameter("aktuelleUserID");
 		
+		// Get Benutzer-Parameter zum aktualisieren der Benutzerdaten
 		String userID = request.getParameter("neueUserID");
 		String benutzername = request.getParameter("neuerBenutzername");
 		String vorname = request.getParameter("neuerVorname");
@@ -48,6 +52,7 @@ public class BenutzerAktualisierenServlet extends HttpServlet {
 		String passwort = request.getParameter("neuesVerschluesseltesPW");
 		passwort = new Verschluesseln().pwVerschluesseln(passwort);
 		
+		//Parameter werden der editBenutzer-Methode übergeben um die entsprechende Aktion in der Datenbank auszuführen.
 		new DatabaseEdit().editBenutzer(aktuelleUserID, userID, benutzername, vorname, nachname, email, passwort);
 		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);
 	}

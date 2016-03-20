@@ -3,7 +3,6 @@ package de.dbae.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.dbae.helper.Benutzer;
-import de.dbae.helper.Bewertung;
 import de.dbae.helper.SearchObject;
 import de.dbae.helper.Serie;
 
 /**
- * Servlet implementation class MitarbeiterFunktionenServlet
+ * @author Daniel
+ * 
+ * Servlet um die Serien- und die Benutzerliste für die mitarbeiterFunktionen.jsp vorzubereiten
  */
 @WebServlet("/MitarbeiterFunktionenServlet")
 public class MitarbeiterFunktionenServlet extends HttpServlet {
@@ -35,13 +35,19 @@ public class MitarbeiterFunktionenServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Neues SearchObject anlegen
 		SearchObject searchobject = new SearchObject();
+		
+		// Benutzerliste anlegen und mittels benutzerSearch-Methode Benutzerdaten aus Datenbank ermitteln 
 		List<Benutzer> benutzerList = new ArrayList<Benutzer>();
 		benutzerList = searchobject.benutzerSearch();
 		
+		// Serienliste anlegen und mittels serieSearch-Methode Seriendaten aus Datenbank ermitteln
 		List<Serie> serieList = new ArrayList<>();
 		serieList = searchobject.serieSearch();
 
+		// Setzen der Attribute BenutzerList und SerieList
 		request.setAttribute("BenutzerList", benutzerList);
 		request.setAttribute("SerieList", serieList);
 		

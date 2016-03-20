@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class SerienUebersicht
+ * @author Daniel
+ * 
+ * Servlet um die Serienübersicht für die serienUebersicht.jsp vorzubereiten
  */
 @WebServlet("/SerienUebersicht")
 public class SerienUebersicht extends HttpServlet {
@@ -33,13 +35,19 @@ public class SerienUebersicht extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SearchObject searchobject = new SearchObject();	
+		
+		// Neues SearchObjekt anlegen
+		SearchObject searchobject = new SearchObject();
+		
+		// Suchen nach Serienübersicht mittels ubersichtSearch-Methode
 		ResultSet rs = searchobject.uebersichtSearch();
+		
+		// Konvertieren des ResultSets mittels convert-Methode
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
-
 		rows = searchobject.convert(rs);
+		
 		request.setAttribute("result", rows);
-		request.getRequestDispatcher("SerienUebersicht.jsp").forward(request, response);
+		request.getRequestDispatcher("serienUebersicht.jsp").forward(request, response);
 	}
 
 	/**

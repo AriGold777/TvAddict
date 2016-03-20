@@ -1,41 +1,50 @@
+
+<!-- @author Daniel -->
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!--@author: Hassib-->
-
 <link href="styles.css" rel="stylesheet" type="text/css"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>registrieren</title>
+<title>Registrierung</title>
 
 </head>
 <body>
 
 <div id="seite">
+
+	<!-- Unknown tag header wegen css-Einstellungen -->
 	<header>
+	
 		<div id="logo">
 			<img src="tv.png" width="100" height="50">
 		</div>
-		<nav id="navig">
-			
-			<myTags:navigation activeSite="index"></myTags:navigation>
-						
-			<form action="Testsuche" id="textfeld" method="post">
+		
+		<!-- Einfügen des Navigationstags -->
+		<myTags:navigation activeSite="index"></myTags:navigation>
+		
+		<!-- Formular mit Textfeld und Absende-Button für die schnelle Suche  -->			
+		<form action="Testsuche" id="textfeld" method="post">
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
-			</form>
-		</nav>			
+		</form>
+		
 	</header>
-</br>
+	
+	<br>
+	
 	<div id="main">
 	<% 
+			//Abfrage, ob ein Benutzer angemeldet ist.
 			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
 			session.setAttribute("isUserLogged", isUserLogged);
 	%>
 	
+	<!-- Wenn schon angemeldet, wird ausgegeben als wer man angemeldet ist und es gibt die Möglichkeit sich abzumelden -->
 	<c:if test="${isUserLogged}">
 
 			<label style="color: white; text-align: center" ><b>Sie sind bereits als <%= session.getAttribute("loggedUser") %> eingeloggt.<br>
@@ -46,6 +55,7 @@
 			
 	</c:if>
 	
+	<!-- Wenn noch nicht angemeldet wird ein Formular zur Registrierung bereitgestellt -->
 	<c:if test="${isUserLogged == false}">
 		<h1>Jetzt kostenlos registrieren</h1>
 		<form id="signup" action="RegestrierenServlet" method="post" align="center">
@@ -65,11 +75,12 @@
 				</div>
 		</form>
 		</c:if>
-		
-		
+			
 	</div>
-	</br>
+	
+	<!--  Unknown tag footer wegen css-Einstellungen -->
 	<footer>
+		<!-- footer-navmenu -->
 		<ul id="navmenu">
 			<li><a href="#">Impressum</a></li>
 			<li><a href="#">AGB</a></li>

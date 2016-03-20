@@ -6,12 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
 
 import de.dbae.helper.Benutzer;
 
 /**
- * Servlet implementation class BenutzerBearbeitenServlet
+ * @author Daniel
+ * 
+ * Servlet um den Benutzer als Objekt für die benutzerBearbeiten.jsp vorzubereiten
  */
 @WebServlet("/BenutzerBearbeitenServlet")
 public class BenutzerBearbeitenServlet extends HttpServlet {
@@ -37,7 +38,10 @@ public class BenutzerBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Neues Benutzer-Objekt erstellen
 		Benutzer benutzer = new Benutzer();
+		
+		// Setzen der Benutzer-Objekt-Atrribute
 		benutzer.setUserID(request.getParameter("userID"));
 		benutzer.setBenutzername(request.getParameter("benutzername"));
 		benutzer.setVorname(request.getParameter("vorname"));
@@ -45,8 +49,10 @@ public class BenutzerBearbeitenServlet extends HttpServlet {
 		benutzer.setEmail(request.getParameter("email"));
 		benutzer.setVerschluesseltesPW(request.getParameter("verschluesseltesPW"));
 		
+		// Attribut Benutzer wird gesetzt
 		request.setAttribute("benutzer", benutzer);
-		request.getRequestDispatcher("BenutzerBearbeiten.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("benutzerBearbeiten.jsp").forward(request, response);
 	}
 
 }

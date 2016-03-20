@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class Testsuche
+ * @author Daniel
+ * 
+ * Servlet zur Verarbeitung einer schnellen Suche durch den Namen der Serie
  */
 @WebServlet("/SchnelleSuche")
 public class SchnelleSuche extends HttpServlet {
@@ -33,13 +35,21 @@ public class SchnelleSuche extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Get Parameter name
 		String name = request.getParameter("name");
 		
+		// Neues SearchObject anlegen
 		SearchObject searchobject = new SearchObject();
+		
+		// Suche nach Serien mittels simpleSearch-Methode 
 		ResultSet rs = searchobject.simpleSearch(name);
+		
+		// Konvertieren des ResultSets mittels convert-Methode
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		rows = searchobject.convert(rs);
+		
 		request.setAttribute("result", rows);
+		
 		request.getRequestDispatcher("schnelleSuche.jsp").forward(request, response);
 
 	}
