@@ -1,3 +1,5 @@
+<!--author Hassib-->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -9,6 +11,7 @@
 </head>
 <body>
 	<c:choose>
+	<!-- Wenn Abfrage = 7 dann Anmeldung eines Admin -->
 		<c:when test="${abfrage=='7'}">
 			Anmeldung erfolgreich!<br>
 			<b>Hallo Mitarbeiter <%= session.getAttribute("loggedUser") %></b><br><br>
@@ -17,6 +20,8 @@
 				response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/MitarbeiterFunktionenServlet");
 			%>
 		</c:when>
+		<!-- Wenn Abfrage = 1 dann Anmeldung eines Nutzer -->
+		
 		<c:when test="${abfrage=='1'}">
 			Anmeldung erfolgreich!<br>
 			<b>Hallo <%= session.getAttribute("loggedUser") %></b><br><br>
@@ -25,6 +30,7 @@
 				response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/MeinProfilServlet");
 			%>
 		</c:when>
+		<!-- Falsche eingabe Weiterleitung zu Abmelden jsp -->
 		<c:otherwise>
 			Benutzerdaten nicht korrekt!<br>
 			Weiterleitung...
