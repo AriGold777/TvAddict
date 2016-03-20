@@ -11,8 +11,9 @@ import java.sql.SQLException;
 import de.dbae.database.DatabaseConnection;
 
 /**
- * @author Marcel
+ * @author Hassib
  *
+ *Diese KLasse dient zum Bearbeiten, Hinzufügen, Löschen von Benutzer und Serie 
  */
 public class DatabaseEdit {
 	private Connection con;
@@ -26,6 +27,7 @@ public class DatabaseEdit {
 		this.con = new DatabaseConnection().getConnection();
 	}
 	
+	//Methode zum bearbeiten des Benutzers
 	public void editBenutzer(String aktuelleID, String ID, String benutzername, String vorname, String nachname,
 			String email, String pw) {
 			try {
@@ -84,6 +86,7 @@ public class DatabaseEdit {
 			
 	}
 	
+	// Methode zum löschen des Benutzers
 	public void deleteBenutzer(String userID) {
 		String sql = "DELETE FROM benutzer WHERE user_id = ?";
 		try {
@@ -95,7 +98,7 @@ public class DatabaseEdit {
 			e.printStackTrace();
 		}
 	}
-
+	//Methode zum hinzufügen eines neuen Benutzer
 	public void addBenutzer(String benutzername, String vorname, String nachname, String email, String pw) {
 		String sql = "INSERT INTO benutzer (mitarbeiter,user_name,v_name,n_name,email,passwort) values(false,?,?,?,?,?)";
 				PreparedStatement pstmt;
@@ -113,7 +116,7 @@ public class DatabaseEdit {
 					e.printStackTrace();
 				}
 	}
-	
+	//Methode zum ändern der E-mail Adresse
 	public void meinProfilEmailEdit(String email, int id) {
 		if (!(email.equals("")) && (email != null)) {
 			String emailSQL = "UPDATE benutzer SET email = ? WHERE user_id = ?";
@@ -129,7 +132,7 @@ public class DatabaseEdit {
 			}
 		}
 	}
-
+	//Methode zum ändern des Passwortes
 	public void meinProfilPasswortEdit(String neuesPasswort, int id) {
 		if (!(neuesPasswort.equals("")) && (neuesPasswort != null)) {
 			String pwSQL = "UPDATE benutzer SET passwort = ? WHERE user_id = ?";
@@ -147,6 +150,7 @@ public class DatabaseEdit {
 		
 	}
 	
+	//Methode zum Bearbeiten einer Serie
 	public void editSerie(String aktuelleID, String ID, String name, String beschreibung, String fsk, String sendetag,
 			String genre1, String genre2, String genre3) {
 		try {
@@ -224,7 +228,7 @@ public class DatabaseEdit {
 		}
 		
 	}
-
+	//Methode zum Löschen einer Serie
 	public void deleteSerie(String id) {
 		String sql = "DELETE FROM serie WHERE serie_id = ?";
 		try {
@@ -236,7 +240,7 @@ public class DatabaseEdit {
 			e.printStackTrace();
 		}
 	}
-
+	//Methode zum Hinzufügen einer Serie
 	public void addSerie(String name, String beschreibung, String fsk, String genre1, String genre2, String genre3,
 			String sendetag) {
 		String sql = "INSERT INTO serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values(?,?,?,?,?,?,?)";
@@ -258,7 +262,7 @@ public class DatabaseEdit {
 		}
 		
 	}
-
+	//Methode um eine Serie zum Sendeplan hinzuzufügen
 	public void addSerieToSendeplan(String userId, int serieId) {
 		String sql = "INSERT INTO favorites (user_id,serie_id) values(?,?)";
 		try {
@@ -272,7 +276,7 @@ public class DatabaseEdit {
 		}
 		
 	}
-
+	//Methode zum entfernen einer Serie aus dem Sendeplan
 	public void removeSerieFromSendeplan(String userId, int serieId) {
 		String sql = "DELETE FROM favorites WHERE user_id = ? AND serie_id = ?";
 		try {

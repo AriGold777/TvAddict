@@ -21,7 +21,6 @@
 		
 		<myTags:navigation activeSite="#"></myTags:navigation> <br>
 			
-			<!-- Muss neu positioniert werden -->
 			<form action="SchnelleSuche" id="textfeld" method="get">
 				<input type="text" name="name" placeholder="Name der Serie"> 
 				<button type="submit"> Suchen</button>
@@ -35,6 +34,7 @@
 			<h2>Kontaktformular</h2>
 			<p>Haben Sie Fragen oder Anmerkungen? Dann schreiben Sie uns.</p>
 			<div class="inputs" align="center">
+			<!-- Textfeld und und Button für die Kontaktaufnahme -->
 				<form action="textarea.html" method="post"> 
 	   				 <input type="email" placeholder="E-MAIL" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" autofocus>
 	     			 <label for="text"></label>
@@ -47,8 +47,8 @@
 	</br>
 	<footer>
 		<ul id="navmenu">
-			<li><a href="#">Impressum</a></li>
-			<li><a href="#">AGB</a></li>
+			<li><a href="impressum.jsp">Impressum</a></li>
+			<li><a href="agb.jsp">AGB</a></li>
 			<li><a href="kontakt.jsp">Kontakt</a></li>
 		</ul>
 	

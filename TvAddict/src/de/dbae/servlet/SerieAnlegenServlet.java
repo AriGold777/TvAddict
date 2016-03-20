@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.DatabaseEdit;
 
 /**
- * Servlet implementation class SerieAnlegenServlet
+ * @author Hassib
+ * 
+ * Servlet zum Anlegen einer Serie
  */
 @WebServlet("/SerieAnlegenServlet")
 public class SerieAnlegenServlet extends HttpServlet {
@@ -36,6 +38,8 @@ public class SerieAnlegenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Empfangen und speichern der Notwendigen Informationen der Serie
+
 		String name = request.getParameter("name");
 		String beschreibung = request.getParameter("beschreibung");
 		String fsk = request.getParameter("fsk");
@@ -43,7 +47,7 @@ public class SerieAnlegenServlet extends HttpServlet {
 		String genre2 = request.getParameter("genre2");
 		String genre3 = request.getParameter("genre3");
 		String sendetag = request.getParameter("sendetag");
-		
+		// Hinzufügen der neuen Serie
 		new DatabaseEdit().addSerie(name, beschreibung, fsk, genre1, genre2, genre3, sendetag);
 		
 		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);

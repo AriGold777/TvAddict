@@ -63,7 +63,7 @@ public class ErweiterteSuche extends HttpServlet {
 		List<Map<String, Object>> genreList = new ArrayList<Map<String, Object>>();
 		genreList = searchobject.convert(genreResultSet);
 		
-		//Nullpointer anfangen und dann die erweiterte Suche ausführen.
+		//Nullpointer abfangen und dann die erweiterte Suche ausführen.
 		if ((name != null) && (fsk != null) && (!(genreNull))) {
 			ResultSet rs = searchobject.advancedSearch(name,genre,fsk);
 			List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();

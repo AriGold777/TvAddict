@@ -11,7 +11,10 @@ import javax.servlet.http.HttpSession;
 import de.dbae.helper.SearchObject;
 
 /**
- * Servlet implementation class MeinProfilServlet
+ * @author Hassib
+ * 
+ * Servlet zum Profil des angemeldeten Benutzers
+ * 
  */
 @WebServlet("/MeinProfilServlet")
 public class MeinProfilServlet extends HttpServlet {
@@ -30,6 +33,8 @@ public class MeinProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Empfangen und Speichern der nötigen Informationen 
 		HttpSession session = request.getSession();
 		String userID = (String) session.getAttribute("loggedID");
 		String sendeplan = new SearchObject().sendeplanSearch(Integer.parseInt(userID));

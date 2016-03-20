@@ -23,7 +23,9 @@ import de.dbae.helper.SearchObject;
 import de.dbae.helper.Verschluesseln;
 
 /**
- * Servlet implementation class AnmeldenServlet
+ * @author Hassib
+ * 
+ * Servlet zum Anmelden eines Nutzers
  */
 @WebServlet("/AnmeldenServlet")
 public class AnmeldenServlet extends HttpServlet {
@@ -54,6 +56,7 @@ public class AnmeldenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//Get Parameter benutzer und paswort
 		String benutzername = request.getParameter("benutzername");
 		String passwort = request.getParameter("passwort");
 		

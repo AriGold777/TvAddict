@@ -36,6 +36,7 @@
 		<h1>Haben Sie Ihre Passwort vergessen?</h1>
 		<form id="signup">
 			<h2>Passwort zurücksetzen</h2>
+			<!-- Email Feld zum zurücksetzen des PW -->
 			<p>Bitte geben Sie Ihre E-Mail Adresse ein, wir senden Ihnen einen Link zum zurücksetzen Ihres Passwortes.</p>
 				<div class="inputs" align="center">
 					<form action="textarea.html" method="post"> 
@@ -50,8 +51,8 @@
 	 </br>
 	<footer>
 		<ul id="navmenu">
-			<li><a href="#">Impressum</a></li>
-			<li><a href="#">AGB</a></li>
+			<li><a href="impressum.jsp">Impressum</a></li>
+			<li><a href="agb.jsp">AGB</a></li>
 			<li><a href="kontakt.jsp">Kontakt</a></li>
 		</ul>
 </div>

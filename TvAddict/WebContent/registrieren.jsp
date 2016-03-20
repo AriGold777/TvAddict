@@ -82,8 +82,8 @@
 	<footer>
 		<!-- footer-navmenu -->
 		<ul id="navmenu">
-			<li><a href="#">Impressum</a></li>
-			<li><a href="#">AGB</a></li>
+			<li><a href="impressum.jsp">Impressum</a></li>
+			<li><a href="agb.jsp">AGB</a></li>
 			<li><a href="kontakt.jsp">Kontakt</a></li>
 		</ul>
 	</footer>

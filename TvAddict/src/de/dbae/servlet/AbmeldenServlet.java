@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AbmeldenServlet
+ * 
+ * @ author: Hassib
+ *
+ * Servlet zum Abmelden eines Benutzers
+ * 
  */
 @WebServlet("/AbmeldenServlet")
 public class AbmeldenServlet extends HttpServlet {
@@ -34,6 +38,8 @@ public class AbmeldenServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	//DoPost Methode zum Abmelden eines Benutzers
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("loggedUser", "");

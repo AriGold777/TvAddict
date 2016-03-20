@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import de.dbae.helper.DatabaseEdit;
 
 /**
- * Servlet implementation class SerieAktualisierenServlet
+ * @author Hassib
+ * Servlet zur Aktualisierung der Serien
  */
 @WebServlet("/SerieAktualisierenServlet")
 public class SerieAktualisierenServlet extends HttpServlet {
@@ -38,6 +39,7 @@ public class SerieAktualisierenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String aktuelleID = request.getParameter("aktuelleID");
 		
+		// Empfangen und speichern der Notwendigen Informationen der Serie
 		String ID = request.getParameter("neueID");
 		String name = request.getParameter("neuerName");
 		String beschreibung = request.getParameter("neueBeschreibung");
@@ -46,7 +48,7 @@ public class SerieAktualisierenServlet extends HttpServlet {
 		String genre1 = request.getParameter("neuesGenre1");
 		String genre2 = request.getParameter("neuesGenre2");
 		String genre3 = request.getParameter("neuesGenre3");
-		
+		// Ändern der Eigenschaften der Serie
 		new DatabaseEdit().editSerie(aktuelleID, ID, name, beschreibung, fsk, sendetag, genre1, genre2, genre3);
 		request.getRequestDispatcher("MitarbeiterFunktionenServlet").forward(request, response);
 	}

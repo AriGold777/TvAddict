@@ -22,7 +22,9 @@ import de.dbae.helper.SearchObject;
 import de.dbae.helper.Verschluesseln;
 
 /**
- * Servlet implementation class RegestrierenServlet
+ * @author Hassib
+ * 
+ * Servlet zum Registrieren
  */
 @WebServlet("/RegestrierenServlet")
 public class RegestrierenServlet extends HttpServlet {
@@ -48,6 +50,7 @@ public class RegestrierenServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//Methode zum Registrieren eines Benutzers
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Benutzer> checkUsernames = new SearchObject().benutzerSearch();
 		boolean usernameAlreadyExists = false;
@@ -56,6 +59,7 @@ public class RegestrierenServlet extends HttpServlet {
 		
 		String errorMessage = "";
 		
+		//Überprüfung des Benutzernamen
 		String benutzername = request.getParameter("benutzername");
 		for (Benutzer benutzer : checkUsernames) {
 			if(benutzer.getBenutzername().equals(benutzername)) {
@@ -63,6 +67,7 @@ public class RegestrierenServlet extends HttpServlet {
 				errorMessage = "Benutzername bereits vergeben.";
 			}
 		}
+		//Überprüfung der E-Mail
 		String email = request.getParameter("email");
 		for (Benutzer benutzer : checkUsernames) {
 			if(benutzer.getEmail().equals(email)) {
@@ -70,19 +75,22 @@ public class RegestrierenServlet extends HttpServlet {
 				errorMessage = "Email bereits vergeben.";
 			}
 		}
+		
 		String vorname = request.getParameter("vorname");
 		String nachname = request.getParameter("nachname");
 		String pw = request.getParameter("passwort");
 		String pwWiederholung = request.getParameter("passwortW");
+		// Prüfen ob beide Passwörter gleich sind
 		if(pw.equals(pwWiederholung)) {
 			pwCheck = true;
 		}
+		// Wenn Passwoörter übereinstimmen und E-Mail und Benutzername nicht Existieren, wird der neue benutzer angelegt
 		if(pwCheck && (!usernameAlreadyExists) && (!emailAlreadyExists)){
 			pw = new Verschluesseln().pwVerschluesseln(pw);
 			new DatabaseEdit().addBenutzer(benutzername, vorname, nachname, email, pw);			
 		}
 		
-
+		// Wenn die Email oder Benutzername bereits vergeben sind folgt nach der Fehlermeldung eine Weiterleitung auf die Registrieren Seite  
 		if(usernameAlreadyExists) {
 			request.setAttribute("errorMessage", errorMessage);
 			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
@@ -90,7 +98,10 @@ public class RegestrierenServlet extends HttpServlet {
 		if(emailAlreadyExists) {
 			request.setAttribute("errorMessage", errorMessage);
 			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
+			
+		
 		}
+		//Bei übereinstimmenden Passwörtern wird der benutzer angelegt und zur meinProfil Seite weitergeleitet
 		if(pwCheck) {
 			HttpSession userSession = request.getSession();
 			Benutzer benutzer = new Benutzer();
