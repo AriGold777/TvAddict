@@ -54,7 +54,7 @@ public class SearchObject {
 			//"where" String mit einer Bedingung erweitert wurde-
 			nameIsSet = false;
 		}
-		
+		where += " ORDER BY serie_name";
 		//SQL Statement & Where Statement verbinden
 		String completeSQL = sql + where;
 		
@@ -116,7 +116,7 @@ public class SearchObject {
 		} else {
 			genreIsSet = false;
 		}
-				
+		where += " ORDER BY serie_name";		
 		//SQL Statement & Where Statement verbinden
 		String completeSQL = sql + where;
 				
@@ -198,7 +198,7 @@ public class SearchObject {
 	 * 
 	 */
 	public ResultSet uebersichtSearch() {
-		String sql = "SELECT serie_name, beschreibung, fsk FROM serie";
+		String sql = "SELECT serie_name, beschreibung, fsk FROM serie ORDER BY serie_name";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			result = pstmt.executeQuery();
@@ -397,7 +397,7 @@ public class SearchObject {
 	 */
 	public List<Serie> serieSearch() {
 		List<Serie> serieList = new ArrayList<Serie>();
-		String sql = "SELECT * FROM serie";
+		String sql = "SELECT * FROM serie ORDER BY serie_name";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet tempSerie = pstmt.executeQuery();

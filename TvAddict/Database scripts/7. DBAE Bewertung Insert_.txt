@@ -1,8 +1,0 @@
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(1,7.0,0,0,0,0,3,4,2,5,1,1);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(2,0.0,0,0,0,0,0,0,0,0,0,0);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(3,0.0,0,0,0,0,0,0,0,0,0,0);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(4,6.3,6,2,7,10,20,11,44,23,7,9);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(5,0.0,0,0,0,0,0,0,0,0,0,0);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(6,0.0,0,0,0,0,0,0,0,0,0,0);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(7,0.0,0,0,0,0,0,0,0,0,0,0);
-insert into bewertungen (serie_id,bewertung,anzahl_1,anzahl_2,anzahl_3,anzahl_4,anzahl_5,anzahl_6,anzahl_7,anzahl_8,anzahl_9,anzahl_10) values(8,0.0,0,0,0,0,0,0,0,0,0,0);

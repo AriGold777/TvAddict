@@ -1,9 +1,0 @@
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Lucifer', 'Der Teufel nimmt sich Urlaub und hilft dem LAPD.',16,'Fantasy','Comedy','Crime','Montag');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Suits', 'Der geniale College-Abbrecher Mike Ross gibt sich als Anwalt aus.',12,'Drama','Comedy','','Donnerstag');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('The Big Bang Theory', '4 Nerds treffen auf die hübsche Blondine Penny.',12,'Comedy','','','Donnerstag');
-
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Blindspot', 'Eine unbekannte Frau ohne Erinnerung versucht mit den Tattoos auf ihrem Körper rauszufinden wer sie ist.',16,'Crime','Mystery','Action','Dienstag');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Supernatural', '2 Brüder gegen Dämonen und andere Monster.',16,'Drama','Action','Fantasy','Donnerstag');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Limitless', 'Die Droge NZT erweitert Brian Sinclairs Bewusstsein und ist dem FBI damit eine große Hilfe.',16,'Drama','Crime','Thriller','Mittwoch');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('The 100', '97 Jahre nach einem Atomkrieg versuchen 100 Jugendliche herauszufinden, ob die Erde wieder bewohnbar ist.',16,'Science-Fiction','Action','','Freitag');
-insert into Serie (serie_name,beschreibung,fsk,genre1,genre2,genre3,sendetag) values('Arrow', 'Fünf Jahre auf einer einsamen Insel bringen Oliver Queen dazu in Starling City für Gerechtigkeit zu sorgen.',16,'Drama','Action','','Donnerstag');

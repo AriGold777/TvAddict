@@ -1,0 +1,10 @@
+Admin:
+
+Benutzername: testadmin
+Passwort: testadminpw123
+
+
+Um sich als normaler Benutzer anzumelden, können Sie sich registrieren oder folgende Zugangsdaten benutzen:
+
+Benutzername: EazPeaz
+Passwort: testpw

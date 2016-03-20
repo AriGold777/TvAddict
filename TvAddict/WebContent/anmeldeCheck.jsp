@@ -10,8 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:choose>
 	<!-- Wenn Abfrage = 7 dann Anmeldung eines Admin -->
+	<!-- Wenn Abfrage = 1 dann Anmeldung eines Nutzer -->
+	<!-- Falsche eingabe Weiterleitung zu Abmelden jsp -->
+	<c:choose>
 		<c:when test="${abfrage=='7'}">
 			Anmeldung erfolgreich!<br>
 			<b>Hallo Mitarbeiter <%= session.getAttribute("loggedUser") %></b><br><br>
@@ -20,7 +22,6 @@
 				response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/MitarbeiterFunktionenServlet");
 			%>
 		</c:when>
-		<!-- Wenn Abfrage = 1 dann Anmeldung eines Nutzer -->
 		
 		<c:when test="${abfrage=='1'}">
 			Anmeldung erfolgreich!<br>
@@ -30,7 +31,6 @@
 				response.setHeader("Refresh", "3; URL=http://localhost:8080/TvAddict/MeinProfilServlet");
 			%>
 		</c:when>
-		<!-- Falsche eingabe Weiterleitung zu Abmelden jsp -->
 		<c:otherwise>
 			Benutzerdaten nicht korrekt!<br>
 			Weiterleitung...

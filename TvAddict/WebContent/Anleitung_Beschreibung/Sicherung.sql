@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.0
 -- Dumped by pg_dump version 9.5.0
 
--- Started on 2016-03-19 14:32:24
+-- Started on 2016-03-20 22:00:19
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -277,13 +277,13 @@ ALTER TABLE ONLY serie ALTER COLUMN serie_id SET DEFAULT nextval('serie_serie_id
 
 COPY benutzer (user_id, mitarbeiter, user_name, v_name, n_name, email, passwort) FROM stdin;
 10	f	regpwtest	reg	pwtest	pwtest@huhu.de	hCdwNMSXM84iltolM1vMJA==
-5	f	MingLee	copy	pasterino	email@uni-hildesheim.de	TUemKI1ESRSmFHL+gdgXEA==
+5	f	MingLee	copy	pasterino	emailtest@web.de	TUemKI1ESRSmFHL+gdgXEA==
+7	f	TestBenutzer	Max	Mustermann	maxm@max.de	DNEP62krF6rwZGH65v+65w==
 1	t	AriGold	Marcel	Sievert	sievertm@uni-hildesheim.de	SgiUGQ8jZu4KjXvuylJW7A==
 2	t	Hassib	Said Hassib	Sadat	sadats@uni-hildesheim.de	SgiUGQ8jZu4KjXvuylJW7A==
 3	t	Daniel	Daniel	Weniger	weniger@uni-hildesheim.de	SgiUGQ8jZu4KjXvuylJW7A==
 9	t	testadmin	test	admin	testadmin@uni-hildesheim.de	x4rs4pXFRq8FiPKr3Okm3A==
 8	f	EazPeaz	Mr	Sir	mr.sir@uni.hildesheim.de	Se4XX9mpeEpTFRR2SvqSWQ==
-7	f	TestBenutzer	Max	Mustermann	mm@uni-hildesheim.de	9sCf6uabZCTgbY+62hZGpg==
 \.
 
 
@@ -304,13 +304,13 @@ SELECT pg_catalog.setval('benutzer_user_id_seq', 10, true);
 
 COPY bewertungen (serie_id, bewertung, anzahl_1, anzahl_2, anzahl_3, anzahl_4, anzahl_5, anzahl_6, anzahl_7, anzahl_8, anzahl_9, anzahl_10) FROM stdin;
 1	7.0	0	0	0	0	3	4	2	5	1	1
-2	0.0	0	0	0	0	0	0	0	0	0	0
 3	0.0	0	0	0	0	0	0	0	0	0	0
 4	6.4	6	2	7	10	20	11	44	23	7	9
 5	0.0	0	0	0	0	0	0	0	0	0	0
 6	0.0	0	0	0	0	0	0	0	0	0	0
 7	0.0	0	0	0	0	0	0	0	0	0	0
 8	0.0	0	0	0	0	0	0	0	0	0	0
+2	0.0	0	0	0	0	0	0	1	0	0	0
 \.
 
 
@@ -472,7 +472,6 @@ SELECT pg_catalog.setval('schauspieler_person_id_seq', 66, true);
 --
 
 COPY serie (serie_id, serie_name, beschreibung, fsk, genre1, genre2, genre3, sendetag) FROM stdin;
-1	Lucifer	Der Teufel nimmt sich Urlaub und hilft dem LAPD.	16	Fantasy	Comedy	Crime	Montag
 2	Suits	Der geniale College-Abbrecher Mike Ross gibt sich als Anwalt aus.	12	Drama	Comedy		Donnerstag
 4	Blindspot	Eine unbekannte Frau ohne Erinnerung versucht mit den Tattoos auf ihrem Körper rauszufinden wer sie ist.	16	Crime	Mystery	Action	Dienstag
 5	Supernatural	2 Brüder gegen Dämonen und andere Monster.	16	Drama	Action	Fantasy	Donnerstag
@@ -480,7 +479,7 @@ COPY serie (serie_id, serie_name, beschreibung, fsk, genre1, genre2, genre3, sen
 7	The 100	97 Jahre nach einem Atomkrieg versuchen 100 Jugendliche herauszufinden, ob die Erde wieder bewohnbar ist.	16	Science-Fiction	Action		Freitag
 8	Arrow	Fünf Jahre auf einer einsamen Insel bringen Oliver Queen dazu in Starling City für Gerechtigkeit zu sorgen.	16	Drama	Action		Donnerstag
 3	The Big Bang Theory	4 Nerds treffen auf die hübsche Blondine Penny.	12	Comedy	Fantasy		Donnerstag
-10	TestSerie	Plot	18	Comedy	Fantasy	Crime	Montag
+1	Lucifer	Der Teufel nimmt sich Urlaub und hilft dem LAPD.	16	Fantasy	Comedy	Crime	Montag
 \.
 
 
@@ -490,7 +489,7 @@ COPY serie (serie_id, serie_name, beschreibung, fsk, genre1, genre2, genre3, sen
 -- Name: serie_serie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('serie_serie_id_seq', 10, true);
+SELECT pg_catalog.setval('serie_serie_id_seq', 11, true);
 
 
 --
@@ -631,7 +630,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-03-19 14:32:24
+-- Completed on 2016-03-20 22:00:20
 
 --
 -- PostgreSQL database dump complete

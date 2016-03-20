@@ -58,6 +58,7 @@
     			<option>9</option>
     			<option>10</option>
     		</select>
+    		<input type="hidden" name="serienNameBewertung" value="${name}">
     		<input type="submit" value="Bewerten">
     	</form>
     </div>

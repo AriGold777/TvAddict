@@ -289,6 +289,26 @@ public class DatabaseEdit {
 			e.printStackTrace();
 		}
 	}
+	//Methode um eine Bewertung für eine Serie einzutragen
+	
+	public void addBewertung(int serienId, String abgegebeneBewertung) {
+		//Es wird ein String zusammengesetzt um die richtige Spalte mit der Bewertung zu ergänzen.
+		String anzahlSpalte = "anzahl_"+abgegebeneBewertung;
+		String sql = "UPDATE bewertungen SET ? = (? + 1) WHERE bewertungen.serie_id = ?";
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, anzahlSpalte);
+			pstmt.setString(2, anzahlSpalte);
+			pstmt.setInt(3, serienId);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("An sich funktioniert dieses Statement, nur nicht als PreparedStatement."
+					+ " Mit Variablen im sql String würde es funktionieren, würde aber die Sicherheit"
+					+ " durch SQL Injektions gefährden.");
+			System.out.println("Code in der DatabaseEdit Klasse. Methode addBewertung - wegen FEHLER: Syntaxfehler bei „$x“ wird nichts geändert.");
+		}
+	}
 
 
 
