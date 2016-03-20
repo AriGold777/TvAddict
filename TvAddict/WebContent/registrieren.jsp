@@ -56,9 +56,9 @@
 					<input type="text" placeholder="Benutzername" minlength="5" name="benutzername" pattern="{5,15}"  required="required" title="Bitte mind. 5 Zeichen eingaben" autofocus></br>
 					<input type="text" placeholder="Vorname" name="vorname" required="required"></br>
 					<input type="text" placeholder="Nachname" name="nachname" required="required"></br>
-					<input type="email" placeholder="E-mail" name="email" required="required"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de"></br>
-					<input type="password" placeholder="Passwort" name="passwort" required="required"></br>
-					<input type="password" placeholder="Passwort wiederholen" name="passwortW" required="required"></br>
+					<input type="email" placeholder="E-mail" name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de"></br>
+					<input type="password" placeholder="Passwort" name="passwort" required="required" pattern="[A-Za-z0-9]{5,15}" title="A-Z, a-z, 0-9, min. 5, max.15 Zeichen"></br>
+					<input type="password" placeholder="Passwort wiederholen" name="passwortW" required="required" pattern="[A-Za-z0-9]{5,15}" title="A-Z, a-z, 0-9, min. 5, max.15 Zeichen"></br>
 					<input type="submit" value="registrieren"></br>
 					
 					

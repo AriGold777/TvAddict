@@ -3,6 +3,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="de.dbae.helper.Benutzer"%>
 <%@ taglib prefix="myTags" uri="/WEB-INF/lib/myTags.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,6 +23,7 @@
 			//Abfrage, ob ein Benutzer angemeldet ist.
 			boolean isUserLogged = (session.getAttribute("loggedUser") != "");
 			session.setAttribute("isUserLogged", isUserLogged);
+			Benutzer benutzer = (Benutzer) session.getAttribute("benutzer");			
 	%>
 	<!-- Wenn kein Benutzer angemeldet ist wird er auf die Anmeldeseite verwiesen -->
 	<c:if test="${isUserLogged == false}">
@@ -53,7 +55,21 @@
 	<!-- Wenn ein Benutzer eingeloggt ist wird er begrüßt und der persönliche Sendeplan wird angezeigt -->
 	<c:if test="${isUserLogged == true}">
 	<div id="main">
-		<h1>Mein Profil</h1>
+		<h1>Mein Profil</h1><br>
+		<label style="color: red; font: bold;">${errorMessage}</label>
+		<form action="EmailBearbeitenServlet" method="post">
+			<Label style="color: white">Aktuelle Email: <%= benutzer.getEmail() %></Label><br>
+			<input type="text" name="neueEmailBenutzerEdit" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de">
+			<input type="text" name="neueEmailWdhBenutzerEdit" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="bsp@blabla.de">
+			<input type="submit" value="Ändern!">
+		</form>
+		<form action="PasswortAendernServlet" method="post">
+			<Label style="color: white">Um Ihr aktuelles Passwort zu ändern bitte beide Felder ausfüllen um ein Versehen auszuschließen </Label><br>
+			<!-- Nur Buchstaben und Zahlen. Mindestens 5, Maximal 15 Zeichen -->
+			<input type="password" name="neuesPasswortBenutzerEdit" required="required" pattern="[A-Za-z0-9]{5,15}" title="A-Z, a-z, 0-9, min. 5, max.15 Zeichen">
+			<input type="password" name="neuesPasswortWdhBenutzerEdit" required="required" pattern="[A-Za-z0-9]{5,15}" title="A-Z, a-z, 0-9, min. 5, max.15 Zeichen"">
+			<input type="submit" value="Ändern!">
+		</form><br>
 		<h2>Hallo ${loggedUser},<br> hier ist ihr persönlicher Sendeplan für den aktuellen Monat</h2><br><br>
 		<div align="center" style="color: white">
 		${sendeplan} 

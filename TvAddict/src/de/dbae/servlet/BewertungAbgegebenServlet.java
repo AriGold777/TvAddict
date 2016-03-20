@@ -6,21 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import de.dbae.helper.SearchObject;
+import de.dbae.helper.Bewertung;
 
 /**
- * Servlet implementation class MeinProfilServlet
+ * @author Marcel
+ * 
+ * Servlet um die abgegebene Bewertung zu einer Serie zu bearbeiten.
  */
-@WebServlet("/MeinProfilServlet")
-public class MeinProfilServlet extends HttpServlet {
+@WebServlet("/BewertungAbgegebenServlet")
+public class BewertungAbgegebenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MeinProfilServlet() {
+    public BewertungAbgegebenServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,19 +31,16 @@ public class MeinProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		String userID = (String) session.getAttribute("loggedID");
-		String sendeplan = new SearchObject().sendeplanSearch(Integer.parseInt(userID));
-		
-		session.setAttribute("sendeplan", sendeplan);
-		request.getRequestDispatcher("meinProfil.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		//Kommt noch eine Funktion hinter
+		
+		request.getRequestDispatcher("SerienUebersicht").forward(request, response);;
 	}
 
 }

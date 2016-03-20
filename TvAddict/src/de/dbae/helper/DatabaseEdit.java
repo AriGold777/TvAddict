@@ -67,7 +67,6 @@ public class DatabaseEdit {
 					pstmt.executeUpdate();
 				}
 				if (!(pw.equals("")) && (pw != null)) {
-					// pw = neueKlasse/Objekt.verschlüsseln(pw);
 					String pwSQL = "UPDATE benutzer SET passwort = ? WHERE user_id = ?";
 					PreparedStatement pstmt = con.prepareStatement(pwSQL);
 					pstmt.setString(1, (pw));
@@ -114,7 +113,40 @@ public class DatabaseEdit {
 					e.printStackTrace();
 				}
 	}
+	
+	public void meinProfilEmailEdit(String email, int id) {
+		if (!(email.equals("")) && (email != null)) {
+			String emailSQL = "UPDATE benutzer SET email = ? WHERE user_id = ?";
+			PreparedStatement pstmt;
+			try {
+				pstmt = con.prepareStatement(emailSQL);
+				pstmt.setString(1, email);
+				pstmt.setInt(2, id);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
+	public void meinProfilPasswortEdit(String neuesPasswort, int id) {
+		if (!(neuesPasswort.equals("")) && (neuesPasswort != null)) {
+			String pwSQL = "UPDATE benutzer SET passwort = ? WHERE user_id = ?";
+			PreparedStatement pstmt;
+			try {
+				pstmt = con.prepareStatement(pwSQL);
+				pstmt.setString(1, neuesPasswort);
+				pstmt.setInt(2, id);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public void editSerie(String aktuelleID, String ID, String name, String beschreibung, String fsk, String sendetag,
 			String genre1, String genre2, String genre3) {
 		try {
@@ -253,6 +285,7 @@ public class DatabaseEdit {
 			e.printStackTrace();
 		}
 	}
+
 
 
 }

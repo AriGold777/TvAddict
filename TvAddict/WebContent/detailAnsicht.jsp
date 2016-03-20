@@ -38,13 +38,28 @@
 				</form>
 		</nav>			
 	</header>
-	</br>
+	<br>
 	<div id="main">
 	<h1>${name}</h1>
 	<br>
 	<!-- Bewertung der Serie wird von einer 1-10 Skala angezeigt -->
     <div id="bewertung">
     	<b>Bewertung: ${bewertung.bewertungString}/10 (${bewertung.gesamtBewertungen} Votes)</b>
+    	<form action="BewertungAbgegebenServlet" method="post">
+    		<select name="abgegebeneBewertung">
+    			<option>1</option>
+    			<option>2</option>
+    			<option>3</option>
+    			<option>4</option>
+    			<option>5</option>
+    			<option>6</option>
+    			<option>7</option>
+    			<option>8</option>
+    			<option>9</option>
+    			<option>10</option>
+    		</select>
+    		<input type="submit" value="Bewerten">
+    	</form>
     </div>
     <!-- Schauspielerliste wird ausgegeben -->
 	<div id="schauspieler">
@@ -75,7 +90,7 @@
 			</form>
 		</c:if>
 	</c:if>
-    </br>
+    <br>
 	<footer>
 		<ul id="navmenu">
 			<li><a href="#">Impressum</a></li>

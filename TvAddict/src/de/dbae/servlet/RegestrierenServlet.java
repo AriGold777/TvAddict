@@ -51,6 +51,7 @@ public class RegestrierenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Benutzer> checkUsernames = new SearchObject().benutzerSearch();
 		boolean usernameAlreadyExists = false;
+		boolean emailAlreadyExists = false;
 		boolean pwCheck = false;
 		
 		String errorMessage = "";
@@ -61,23 +62,32 @@ public class RegestrierenServlet extends HttpServlet {
 				usernameAlreadyExists = true;
 				errorMessage = "Benutzername bereits vergeben.";
 			}
-		}		
+		}
+		String email = request.getParameter("email");
+		for (Benutzer benutzer : checkUsernames) {
+			if(benutzer.getEmail().equals(email)) {
+				usernameAlreadyExists = true;
+				errorMessage = "Email bereits vergeben.";
+			}
+		}
 		String vorname = request.getParameter("vorname");
 		String nachname = request.getParameter("nachname");
-		String email = request.getParameter("email");
-		//String pw = new Verschlüssellung.verschluesselPasswort(request.getParameter("pw");
 		String pw = request.getParameter("passwort");
 		String pwWiederholung = request.getParameter("passwortW");
 		if(pw.equals(pwWiederholung)) {
 			pwCheck = true;
 		}
-		if(pwCheck && (!usernameAlreadyExists)){
+		if(pwCheck && (!usernameAlreadyExists) && (!emailAlreadyExists)){
 			pw = new Verschluesseln().pwVerschluesseln(pw);
 			new DatabaseEdit().addBenutzer(benutzername, vorname, nachname, email, pw);			
 		}
 		
-		//Evtl hier was mit session...mal gucken :D
+
 		if(usernameAlreadyExists) {
+			request.setAttribute("errorMessage", errorMessage);
+			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
+		}
+		if(emailAlreadyExists) {
 			request.setAttribute("errorMessage", errorMessage);
 			request.getRequestDispatcher("registrieren.jsp").forward(request, response);
 		}

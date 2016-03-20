@@ -68,6 +68,8 @@ public class AnmeldenServlet extends HttpServlet {
 			userSession.setAttribute("loggedID", benutzer.getUserID());
 			userSession.setAttribute("isUserLogged", true);
 			userSession.setAttribute("loggedUser", benutzer.getBenutzername());
+			
+			userSession.setAttribute("benutzer", benutzer);
 			if(abfrage == 7){
 				userSession.setAttribute("isMitarbeiter", true);
 			}
